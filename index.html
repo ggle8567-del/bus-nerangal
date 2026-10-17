@@ -161,6 +161,10 @@ header,#dateBar{animation:up .6s cubic-bezier(.2,.8,.2,1) both}
 .mp{text-decoration:none;font-size:1.1rem;padding:2px 6px;flex:none}
 a.clr{display:inline-block;text-decoration:none;color:var(--ink)}
 .ver{text-align:center;color:var(--muted);font-size:.7rem;margin-top:18px;opacity:.7}
+.slist li{display:grid;grid-template-columns:24px minmax(0,1fr) 28px 108px;align-items:center;gap:8px}
+.slist .nm{min-width:0;overflow-wrap:anywhere;line-height:1.35}
+.slist .mp{padding:0;text-align:center}
+.slist input{width:108px;min-width:0;justify-self:end;font-size:.85rem;padding:5px 4px}
 </style>
 </head>
 <body>
@@ -216,7 +220,7 @@ a.clr{display:inline-block;text-decoration:none;color:var(--ink)}
 
   <div id="next" aria-live="polite"></div>
   <div id="list"></div>
-  <div id="ver" class="ver">பதிப்பு: v2026.10.17-தேடல்</div>
+  <div id="ver" class="ver">பதிப்பு: v2026.10.17-நேரம்</div>
   <div id="empty" hidden>பொருந்தும் பேருந்து இல்லை. வேறு சொல்லில் தேடுங்கள்.</div>
 </div>
 
