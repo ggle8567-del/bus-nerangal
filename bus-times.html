@@ -165,6 +165,70 @@ a.clr{display:inline-block;text-decoration:none;color:var(--ink)}
 .slist .nm{min-width:0;overflow-wrap:anywhere;line-height:1.35}
 .slist .mp{padding:0;text-align:center}
 .slist input{width:108px;min-width:0;justify-self:end;font-size:.85rem;padding:5px 4px}
+.hbtns{display:flex;gap:6px;justify-content:flex-end}
+#profBtn{border:1px solid var(--gbrd);background:var(--glass);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:1rem;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:var(--gsh)}
+.langbar{display:flex;gap:6px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+.lb{flex:none;font:inherit;font-size:.82rem;padding:6px 12px;border-radius:999px;border:1px solid var(--gbrd);background:var(--glass);color:var(--ink);cursor:pointer}
+.lb[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--bg)}
+.sheet{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:rgba(10,25,19,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.sheet[hidden]{display:none}
+.sbox{width:min(420px,100%);max-height:100%;overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--gbrd);border-radius:20px;padding:20px;box-shadow:var(--gsh)}
+.sbox h2{margin:0 0 6px;font-size:1.2rem}
+.sbox p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.sbox label{display:block;font-size:.82rem;color:var(--muted);margin:10px 0 4px}
+.sbox input{width:100%;font:inherit;font-size:1rem;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.sbox .go{width:100%;margin-top:16px;font:inherit;font-weight:700;padding:12px;border:0;border-radius:12px;background:var(--green);color:var(--bg);cursor:pointer}
+.sbox .err{color:#d14b3b;font-size:.85rem;margin-top:8px;min-height:1.2em}
+.sbox .x{margin-top:8px;width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--ink);cursor:pointer}
+.sbox .langbar{padding:0 0 4px;flex-wrap:wrap;overflow:visible}
+.sbox .lb:not([aria-pressed="true"]){border-color:var(--line);background:var(--soft)}
+.hwrap{position:relative;display:inline-block}
+#langBtn{border:1px solid var(--gbrd);background:var(--glass);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:1rem;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:var(--gsh)}
+.tlb{font-weight:700;font-size:.9rem;letter-spacing:.02em}
+#profBtn.av{border-radius:50%;width:38px;height:38px;padding:0;font-weight:700;font-size:1rem;background:var(--green);border-color:var(--green);color:var(--bg)}
+.langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:180px;background:var(--card);border:1px solid var(--gbrd);border-radius:14px;box-shadow:var(--gsh);padding:6px;z-index:60;text-align:left;animation:pop .2s ease}
+.langmenu[hidden]{display:none}
+.lm{display:block;width:100%;text-align:left;font:inherit;padding:10px 12px;border:0;background:transparent;color:var(--ink);border-radius:10px;cursor:pointer}
+.lm[aria-current="true"]{background:var(--soft);font-weight:700}
+#langBtn:focus-visible,#profBtn:focus-visible,.lm:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.sbox select{width:100%;font:inherit;font-size:1rem;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+header{position:relative;z-index:70}
+.appbar{position:sticky;top:0;z-index:70;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:4px;margin:-20px -16px 12px;padding:10px 12px;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border-bottom:1px solid var(--gbrd);animation:none}
+.appbar h1{margin:0;text-align:center;font-size:1.3rem;font-weight:600;line-height:1.3}
+.ib{width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.ib:active{background:var(--soft)}
+#profBtn.av{width:42px;height:42px;padding:0;border-radius:50%;border:3px solid transparent;font-size:1rem;font-weight:700;color:var(--bg);background:linear-gradient(var(--green),var(--green)) padding-box,linear-gradient(135deg,#2fbf8f,#f2b230,#6aa3ff) border-box;box-shadow:none;justify-self:end}
+.clockline{font-size:.82rem;opacity:.92;margin-top:2px}
+#dateBar #clock{color:inherit;font-weight:700;font-size:.85rem}
+#sync{margin-left:10px;font-size:.75rem}
+#scrim{position:fixed;inset:0;z-index:75;background:rgba(0,0,0,.45)}
+#scrim[hidden]{display:none}
+#drawer{position:fixed;top:0;bottom:0;left:0;z-index:80;width:min(310px,84vw);background:var(--card);color:var(--ink);box-shadow:var(--gsh);padding:max(env(safe-area-inset-top,0px),16px) 12px 16px;overflow-y:auto;transform:translateX(-105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+#drawer.open{transform:none}
+.dhead{display:flex;align-items:center;gap:10px;padding:8px 8px 14px;font-size:1.1rem}
+.dlogo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--amber);font-size:1.3rem}
+.dsec{font-size:.78rem;color:var(--muted);padding:14px 10px 6px;letter-spacing:.02em}
+.acc{display:flex;align-items:center;gap:8px;width:100%;font:inherit;font-weight:600;text-align:left;padding:13px 10px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.acc>span:first-child{flex:1}
+.accv{font-weight:400;color:var(--muted);font-size:.9rem}
+.chev{transition:transform .25s ease;color:var(--muted)}
+.acc[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.accbody{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 4px}
+.accbody.open{padding:4px}
+#kural{overflow:hidden}
+#game{position:fixed;inset:0;z-index:85;background:#0f1a15;color:#fff;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#game[hidden]{display:none}
+#game .ib{color:#fff}
+.gbar{display:flex;align-items:center;justify-content:space-between;padding:6px 12px}
+.ghud{display:flex;gap:18px;font-size:1.05rem;margin-left:auto}
+#gMute{font-size:1.25rem}
+#gStage{position:relative;flex:1;min-height:0;display:grid;place-items:center;padding:0 8px 8px;touch-action:none;user-select:none;-webkit-user-select:none}
+#gCanvas{height:100%;max-width:100%;aspect-ratio:3/5;border-radius:16px;background:#26332d;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+#gMsg{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;gap:12px;text-align:center;padding:28px;background:rgba(10,25,19,.62);border-radius:16px}
+#gMsg[hidden]{display:none}
+#gMsg h2{margin:0;font-size:1.6rem}
+#gMsg p{margin:0;max-width:300px;line-height:1.6;opacity:.92}
+#gMsg .go{font:inherit;font-weight:700;font-size:1.05rem;padding:12px 30px;border:0;border-radius:14px;background:var(--amber);color:var(--on-amber);cursor:pointer}
 </style>
 </head>
 <body>
@@ -180,25 +244,20 @@ a.clr{display:inline-block;text-decoration:none;color:var(--ink)}
       <circle cx="30" cy="74" r="3.5" fill="#d9dfdb"/><circle cx="66" cy="74" r="3.5" fill="#d9dfdb"/>
     </svg>
   </div>
-  <div class="s-title">பேருந்து நேரங்கள்</div>
-  <div class="s-sub">இறையமங்கலம் ⇄ திருச்செங்கோடு</div>
+  <div class="s-title" id="sTitle">பேருந்து நேரங்கள்</div>
+  <div class="s-sub" id="sSub">இறையமங்கலம் ⇄ திருச்செங்கோடு</div>
   <div class="s-road"><i></i></div>
 </div>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>பேருந்து நேரங்கள்</h1>
-    </div>
-    <div style="text-align:right">
-      <div id="clock" aria-live="off"></div>
-      <div id="sync" class="sub" style="font-size:.72rem"></div>
-      <button id="themeBtn" aria-label="தீம் மாற்று" title="தீம் மாற்று">🌓</button>
-    </div>
+  <header class="appbar">
+    <button id="menuBtn" class="ib" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+    <h1 id="appH1">பேருந்து நேரங்கள்</h1>
+    <button id="profBtn" class="av" aria-label="Profile" title="Profile">👤</button>
   </header>
-  <p class="kural">அருவினை என்ப உளவோ கருவியால்<br>காலம் அறிந்து செயின்.<span>— குறள் 482</span></p>
+  <p class="kural" id="kural"></p>
 
   <div id="dateBar">
-    <div><div id="dateMain"></div><div id="dateSel"></div></div>
+    <div><div id="dateMain"></div><div id="dateSel"></div><div class="clockline"><span id="clock" aria-live="off"></span><span id="sync"></span></div></div>
     <button id="calBtn" aria-expanded="false" aria-controls="cal">📅 நாட்காட்டி</button>
   </div>
   <div id="todayNote" hidden></div>
@@ -220,11 +279,134 @@ a.clr{display:inline-block;text-decoration:none;color:var(--ink)}
 
   <div id="next" aria-live="polite"></div>
   <div id="list"></div>
-  <div id="ver" class="ver">பதிப்பு: v2026.10.17-நேரம்</div>
+  <div id="ver" class="ver">பதிப்பு: v2026.10.17-ஒலி</div>
   <div id="empty" hidden>பொருந்தும் பேருந்து இல்லை. வேறு சொல்லில் தேடுங்கள்.</div>
 </div>
 
+<div id="scrim" hidden></div>
+<aside id="drawer" aria-hidden="true" aria-label="Menu">
+  <div class="dhead"><span class="dlogo">🚌</span><b id="dTitle">பேருந்து நேரங்கள்</b></div>
+  <button class="acc" id="accLang" aria-expanded="false" aria-controls="langmenu"><span id="accLangT"></span><span class="accv" id="accLangV"></span><span class="chev">▾</span></button>
+  <div class="accbody" id="langmenu" role="menu"></div>
+  <button class="acc" id="accTheme" aria-expanded="false" aria-controls="themeList"><span id="accThemeT"></span><span class="accv" id="accThemeV"></span><span class="chev">▾</span></button>
+  <div class="accbody" id="themeList" role="menu"></div>
+  <div class="dsec"></div>
+  <button class="lm" id="dGame"></button>
+  <button class="lm" id="dProf"></button>
+</aside>
+<div id="game" hidden role="dialog" aria-modal="true" aria-label="Bus Dash">
+  <div class="gbar"><button id="gClose" class="ib" aria-label="Close">✕</button><button id="gMute" class="ib" aria-label="Sound">🔊</button><div class="ghud"><span>⭐ <b id="gScore">0</b></span><span><span id="gBestL"></span> <b id="gBest">0</b></span></div></div>
+  <div id="gStage"><canvas id="gCanvas" width="600" height="1000"></canvas>
+    <div id="gMsg"><h2 id="gTitle"></h2><p id="gSub"></p><button class="go" id="gStart"></button></div></div>
+</div>
+<div id="sheet" class="sheet" hidden></div>
 <script>
+
+// ---- Languages ----
+const LANGS = [["ta","தமிழ்"],["en","English"],["hi","हिन्दी"],["te","తెలుగు"],["kn","ಕನ್ನಡ"],["ml","മലയാളം"]];
+const LI = {ta:0, en:1, hi:2, te:3, kn:4, ml:5};
+let lang = "ta"; try { const s = localStorage.getItem("lang:v1"); if (s && LI[s] !== undefined) lang = s; } catch(e) {}
+// order: ta, en, hi, te, kn, ml
+const K = {
+ appTitle:["பேருந்து நேரங்கள்","Bus Timings","बस समय","బస్సు సమయాలు","ಬಸ್ ಸಮಯಗಳು","ബസ് സമയങ്ങൾ"],
+ themeTip:["தீம்","Theme","थीम","థీమ్","ಥೀಮ್","തീം"],
+ themeAuto:["தானியங்கி (போனின் அமைப்பு)","Auto (phone setting)","ऑटो (फ़ोन सेटिंग)","ఆటో (ఫోన్ సెట్టింగ్)","ಆಟೋ (ಫೋನ್ ಸೆಟ್ಟಿಂಗ್)","ഓട്ടോ (ഫോൺ ക്രമീകരണം)"],
+ themeLight:["வெளிச்சம்","Light","लाइट","లైట్","ಲೈಟ್","ലൈറ്റ്"],
+ themeDark:["இருள்","Dark","डार्क","డార్క్","ಡಾರ್ಕ್","ഡാർക്ക്"],
+ calBtn:["📅 நாட்காட்டி","📅 Calendar","📅 कैलेंडर","📅 క్యాలెండర్","📅 ಕ್ಯಾಲೆಂಡರ್","📅 കലണ്ടർ"],
+ calGoToday:["இன்றைக்குச் செல்","Go to today","आज पर जाएँ","ఈరోజుకు వెళ్లు","ಇಂದಿಗೆ ಹೋಗಿ","ഇന്നത്തേക്ക് പോകുക"],
+ prevYear:["முந்தைய ஆண்டு","Previous year","पिछला वर्ष","గత సంవత్సరం","ಹಿಂದಿನ ವರ್ಷ","മുൻ വർഷം"],
+ nextYear:["அடுத்த ஆண்டு","Next year","अगला वर्ष","వచ్చే సంవత్సరం","ಮುಂದಿನ ವರ್ಷ","അടുത്ത വർഷം"],
+ monthsAria:["மாதங்கள்","Months","महीने","నెలలు","ತಿಂಗಳುಗಳು","മാസങ്ങൾ"],
+ searchPh:["தேடல்","Search","खोजें","వెతుకు","ಹುಡುಕಿ","തിരയുക"],
+ all:["அனைத்தும்","All","सभी","అన్నీ","ಎಲ್ಲಾ","എല്ലാം"],
+ dirAria:["திசை வடிகட்டி","Direction filter","दिशा फ़िल्टर","దిశ ఫిల్టర్","ದಿಕ್ಕು ಫಿಲ್ಟರ್","ദിശ ഫിൽട്ടർ"],
+ empty:["பொருந்தும் பேருந்து இல்லை. வேறு சொல்லில் தேடுங்கள்.","No matching bus. Try another word.","कोई बस नहीं मिली। दूसरा शब्द खोजें।","సరిపోయే బస్సు లేదు. వేరే పదంతో వెతకండి.","ಹೊಂದುವ ಬಸ್ ಇಲ್ಲ. ಬೇರೆ ಪದದಿಂದ ಹುಡುಕಿ.","പൊരുത്തപ്പെടുന്ന ബസ് ഇല്ല. മറ്റൊരു വാക്ക് തിരയുക."],
+ live:["🟢 ஆன்லைன்","🟢 Online","🟢 ऑनलाइन","🟢 ఆన్‌లైన్","🟢 ಆನ್‌ಲೈನ್","🟢 ഓൺലൈൻ"],
+ offline:["🔴 ஆஃப்லைன்","🔴 Offline","🔴 ऑफ़लाइन","🔴 ఆఫ్‌లైన్","🔴 ಆಫ್‌ಲೈನ್","🔴 ഓഫ്‌ലൈൻ"],
+ hr:["மணி","h","घंटा","గం","ಗಂ","മണി"],
+ min:["நிமிடம்","min","मिनट","నిమి","ನಿಮಿ","മിനിറ്റ്"],
+ inT:["{t} கழித்து","in {t}","{t} में","{t} లో","{t} ನಲ್ಲಿ","{t} കഴിഞ്ഞ്"],
+ nextBus:["அடுத்த பேருந்து","Next bus","अगली बस","తదుపరి బస్సు","ಮುಂದಿನ ಬಸ್","അടുത്ത ബസ്"],
+ ended:["இன்றைய பேருந்துகள் முடிந்தன","Today's buses are over","आज की बसें समाप्त","ఈరోజు బస్సులు ముగిశాయి","ಇಂದಿನ ಬಸ್‌ಗಳು ಮುಗಿದವು","ഇന്നത്തെ ബസുകൾ കഴിഞ്ഞു"],
+ tomFirst:["நாளை முதல்:","First tomorrow:","कल पहली बस:","రేపు మొదటి బస్సు:","ನಾಳೆ ಮೊದಲ ಬಸ್:","നാളെ ആദ്യ ബസ്:"],
+ tagNext:["அடுத்தது","Next","अगली","తదుపరి","ಮುಂದಿನ","അടുത്തത്"],
+ trip:["பயணம்","Trip","फेरा","ట్రిప్","ಟ್ರಿಪ್","ട്രിപ്പ്"],
+ nStops:["{n} நிறுத்தங்கள்","{n} stops","{n} स्टॉप","{n} స్టాప్‌లు","{n} ನಿಲ್ದಾಣಗಳು","{n} സ്റ്റോപ്പുകൾ"],
+ travel:["பயண நேரம்","Travel time","यात्रा समय","ప్రయాణ సమయం","ಪ್ರಯಾಣ ಸಮಯ","യാത്രാ സമയം"],
+ stopsToggle:["நிறுத்தங்கள் &amp; நேரங்கள்","Stops &amp; times","स्टॉप &amp; समय","స్టాప్‌లు &amp; సమయాలు","ನಿಲ್ದಾಣಗಳು &amp; ಸಮಯಗಳು","സ്റ്റോപ്പുകൾ &amp; സമയങ്ങൾ"],
+ filledSfx:["நிரப்பப்பட்டது","filled","भरे गए","నింపబడ్డాయి","ತುಂಬಲಾಗಿದೆ","പൂരിപ്പിച്ചു"],
+ hintShared:["மாற்றங்கள் அனைவருக்கும் உடனே தெரியும்.","Changes are visible to everyone instantly.","बदलाव सभी को तुरंत दिखेंगे।","మార్పులు అందరికీ వెంటనే కనిపిస్తాయి.","ಬದಲಾವಣೆಗಳು ಎಲ್ಲರಿಗೂ ತಕ್ಷಣ ಕಾಣುತ್ತವೆ.","മാറ്റങ്ങൾ എല്ലാവർക്കും ഉടൻ കാണാം."],
+ hintLocal:["மாற்றங்கள் இந்தச் சாதனத்தில் மட்டும் சேமிக்கப்படும்.","Changes are saved on this device only.","बदलाव केवल इसी डिवाइस पर सहेजे जाते हैं।","మార్పులు ఈ పరికరంలో మాత్రమే సేవ్ అవుతాయి.","ಬದಲಾವಣೆಗಳು ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಉಳಿಯುತ್ತವೆ.","മാറ്റങ്ങൾ ഈ ഉപകരണത്തിൽ മാത്രം സേവ് ചെയ്യും."],
+ lastEdit:["கடைசி மாற்றம்:","Last change:","अंतिम बदलाव:","చివరి మార్పు:","ಕೊನೆಯ ಬದಲಾವಣೆ:","അവസാന മാറ്റം:"],
+ routeBtn:["🗺️ முழு வழித்தடம் (Google Maps)","🗺️ Full route (Google Maps)","🗺️ पूरा मार्ग (Google Maps)","🗺️ పూర్తి మార్గం (Google Maps)","🗺️ ಪೂರ್ಣ ಮಾರ್ಗ (Google Maps)","🗺️ പൂർണ്ണ റൂട്ട് (Google Maps)"],
+ reset:["இயல்புக்கு மீட்டமை","Reset to default","डिफ़ॉल्ट पर रीसेट","డిఫాల్ట్‌కు రీసెట్","ಡೀಫಾಲ್ಟ್‌ಗೆ ಮರುಹೊಂದಿಸಿ","ഡിഫോൾട്ടിലേക്ക് റീസെറ്റ്"],
+ resetEveryone:["(அனைவருக்கும்)","(for everyone)","(सभी के लिए)","(అందరికీ)","(ಎಲ್ಲರಿಗೂ)","(എല്ലാവർക്കും)"],
+ mapAria:["வரைபடம்","Map","नक्शा","మ్యాప్","ನಕ್ಷೆ","മാപ്പ്"],
+ busAlt:["பேருந்து","Bus","बस","బస్సు","ಬಸ್","ബസ്"],
+ notePh:["குறிப்பு (எ.கா. ஊருக்குப் போகணும்)","Note (e.g. Going to my village)","नोट (जैसे: गाँव जाना है)","గమనిక (ఉదా: ఊరికి వెళ్ళాలి)","ಟಿಪ್ಪಣಿ (ಉದಾ: ಊರಿಗೆ ಹೋಗಬೇಕು)","കുറിപ്പ് (ഉദാ: നാട്ടിൽ പോകണം)"],
+ noteTime:["⏰ நினைவூட்டல் நேரம்","⏰ Reminder time","⏰ रिमाइंडर समय","⏰ రిమైండర్ సమయం","⏰ ಜ್ಞಾಪನೆ ಸಮಯ","⏰ ഓർമ്മപ്പെടുത്തൽ സമയം"],
+ save:["சேமி","Save","सहेजें","సేవ్","ಉಳಿಸಿ","സേവ് ചെയ്യുക"],
+ del:["நீக்கு","Delete","हटाएँ","తొలగించు","ಅಳಿಸಿ","ഇല്ലാതാക്കുക"],
+ noteHintApp:["அந்த நாளில் இந்த நேரத்தில் அறிவிப்பு (notification) வரும்.","You will get a notification on that day at this time.","उस दिन इस समय नोटिफ़िकेशन आएगा।","ఆ రోజు ఈ సమయానికి నోటిఫికేషన్ వస్తుంది.","ಆ ದಿನ ಈ ಸಮಯಕ್ಕೆ ಅಧಿಸೂಚನೆ ಬರುತ್ತದೆ.","ആ ദിവസം ഈ സമയത്ത് അറിയിപ്പ് വരും."],
+ noteHintWeb:["அறிவிப்பு வசதி APK ஆப்பில் மட்டும் வேலை செய்யும். இங்கே குறிப்பு மட்டும் சேமிக்கப்படும்.","Notifications work only in the APK app. Here the note is only saved.","नोटिफ़िकेशन केवल APK ऐप में काम करते हैं। यहाँ केवल नोट सहेजा जाता है।","నోటిఫికేషన్లు APK యాప్‌లో మాత్రమే పనిచేస్తాయి. ఇక్కడ గమనిక మాత్రమే సేవ్ అవుతుంది.","ಅಧಿಸೂಚನೆಗಳು APK ಆ್ಯಪ್‌ನಲ್ಲಿ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತವೆ. ಇಲ್ಲಿ ಟಿಪ್ಪಣಿ ಮಾತ್ರ ಉಳಿಯುತ್ತದೆ.","അറിയിപ്പുകൾ APK ആപ്പിൽ മാത്രം പ്രവർത്തിക്കും. ഇവിടെ കുറിപ്പ് മാത്രം സേവ് ആകും."],
+ upcoming:["வரவிருக்கும் குறிப்புகள்","Upcoming notes","आने वाले नोट","రాబోయే గమనికలు","ಮುಂಬರುವ ಟಿಪ್ಪಣಿಗಳು","വരാനിരിക്കുന്ന കുറിപ്പുകൾ"],
+ today:["இன்று:","Today:","आज:","ఈరోజు:","ಇಂದು:","ഇന്ന്:"],
+ tomorrow:["நாளை:","Tomorrow:","कल:","రేపు:","ನಾಳೆ:","നാളെ:"],
+ selDate:["தேர்ந்தெடுத்த தேதி:","Selected date:","चुनी हुई तारीख:","ఎంచుకున్న తేదీ:","ಆಯ್ದ ದಿನಾಂಕ:","തിരഞ്ഞെടുത്ത തീയതി:"],
+ version:["பதிப்பு:","Version:","संस्करण:","వెర్షన్:","ಆವೃತ್ತಿ:","പതിപ്പ്:"],
+ profile:["சுயவிவரம்","Profile","प्रोफ़ाइल","ప్రొఫైల్","ಪ್ರೊಫೈಲ್","പ്രൊഫൈൽ"],
+ pName:["பெயர் (விருப்பம்)","Name (optional)","नाम (वैकल्पिक)","పేరు (ఐచ్ఛికం)","ಹೆಸರು (ಐಚ್ಛಿಕ)","പേര് (ഓപ്ഷണൽ)"],
+ pMobile:["மொபைல் எண்","Mobile number","मोबाइल नंबर","మొబైల్ నంబర్","ಮೊಬೈಲ್ ಸಂಖ್ಯೆ","മൊബൈൽ നമ്പർ"],
+ gateTitle:["வரவேற்கிறோம்!","Welcome!","स्वागत है!","స్వాగతం!","ಸ್ವಾಗತ!","സ്വാഗതം!"],
+ gateDesc:["தொடர உங்கள் மொபைல் எண்ணை உள்ளிடவும்.","Enter your mobile number to continue.","जारी रखने के लिए अपना मोबाइल नंबर दर्ज करें।","కొనసాగడానికి మీ మొబైల్ నంబర్ నమోదు చేయండి.","ಮುಂದುವರಿಯಲು ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ.","തുടരാൻ നിങ്ങളുടെ മൊബൈൽ നമ്പർ നൽകുക."],
+ gateGo:["தொடர்","Continue","जारी रखें","కొనసాగించు","ಮುಂದುವರಿಸಿ","തുടരുക"],
+ badMobile:["சரியான 10 இலக்க மொபைல் எண்ணை உள்ளிடவும்.","Enter a valid 10-digit mobile number.","सही 10 अंकों का मोबाइल नंबर दर्ज करें।","సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి.","ಸರಿಯಾದ 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ.","ശരിയായ 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക."],
+ privacy:["இந்த எண் உங்கள் சாதனத்தில் மட்டும் சேமிக்கப்படும்.","This number is stored only on your device.","यह नंबर केवल आपके डिवाइस पर सहेजा जाता है।","ఈ నంబర్ మీ పరికరంలో మాత్రమే సేవ్ అవుతుంది.","ಈ ಸಂಖ್ಯೆ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ ಉಳಿಯುತ್ತದೆ.","ഈ നമ്പർ നിങ്ങളുടെ ഉപകരണത്തിൽ മാത്രം സേവ് ചെയ്യും."],
+ close:["மூடு","Close","बंद करें","మూసివేయి","ಮುಚ್ಚಿ","അടയ്ക്കുക"],
+ lang:["மொழி","Language","भाषा","భాష","ಭಾಷೆ","ഭാഷ"],
+ game:["விளையாட்டு","Game","खेल","ఆట","ಆಟ","കളി"],
+ sound:["ஒலி","Sound","ध्वनि","ధ్వని","ಧ್ವನಿ","ശബ്ദം"],
+ best:["சிறந்தது","Best","सर्वश्रेष्ठ","ఉత్తమం","ಅತ್ಯುತ್ತಮ","മികച്ചത്"],
+ tapStart:["தொடங்கு","Start","शुरू करें","ప్రారంభించు","ಪ್ರಾರಂಭಿಸಿ","തുടങ്ങുക"],
+ gameOver:["ஆட்டம் முடிந்தது","Game over","खेल खत्म","ఆట ముగిసింది","ಆಟ ಮುಗಿಯಿತು","കളി കഴിഞ്ഞു"],
+ again:["மீண்டும் விளையாடு","Play again","फिर खेलें","మళ్లీ ఆడండి","ಮತ್ತೆ ಆಡಿ","വീണ്ടും കളിക്കുക"],
+ gHint:["இடது / வலது பக்கம் தொட்டு பேருந்தை நகர்த்துங்கள். மாடுகளையும் தடைகளையும் தவிர்த்து ⭐ சேகரியுங்கள்!","Tap left / right to steer the bus. Dodge cows and barriers, collect ⭐!","बस को चलाने के लिए बाएँ / दाएँ टैप करें। गायों और रुकावटों से बचें, ⭐ इकट्ठा करें!","బస్సును నడపడానికి ఎడమ / కుడి నొక్కండి. ఆవులు, అడ్డంకులను తప్పించి ⭐ సేకరించండి!","ಬಸ್ ಚಲಾಯಿಸಲು ಎಡ / ಬಲ ಟ್ಯಾಪ್ ಮಾಡಿ. ಹಸು, ಅಡೆತಡೆ ತಪ್ಪಿಸಿ ⭐ ಸಂಗ್ರಹಿಸಿ!","ബസ് നീക്കാൻ ഇടത് / വലത് ടാപ്പ് ചെയ്യുക. പശുക്കളെയും തടസ്സങ്ങളെയും ഒഴിവാക്കി ⭐ ശേഖരിക്കുക!"]
+};
+function tr(k, v){
+  const row = K[k] || []; let s = row[LI[lang]] || row[1] || row[0] || k;
+  if (v) for (const x in v) s = s.split("{" + x + "}").join(v[x]);
+  return s;
+}
+const DATE_L = {
+ ta:{m:["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்"],ms:["ஜன","பிப்","மார்","ஏப்","மே","ஜூன்","ஜூலை","ஆக","செப்","அக்","நவ","டிச"],d:["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"],ds:["ஞா","தி","செ","பு","வி","வெ","ச"]},
+ en:{m:["January","February","March","April","May","June","July","August","September","October","November","December"],ms:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],d:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],ds:["S","M","T","W","T","F","S"]},
+ hi:{m:["जनवरी","फ़रवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितंबर","अक्टूबर","नवंबर","दिसंबर"],ms:["जन","फ़र","मार्च","अप्रै","मई","जून","जुला","अग","सित","अक्टू","नव","दिस"],d:["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],ds:["र","सो","मं","बु","गु","शु","श"]},
+ te:{m:["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"],ms:["జన","ఫిబ్ర","మార్చి","ఏప్రి","మే","జూన్","జూలై","ఆగ","సెప్","అక్టో","నవం","డిసెం"],d:["ఆదివారం","సోమవారం","మంగళవారం","బుధవారం","గురువారం","శుక్రవారం","శనివారం"],ds:["ఆ","సో","మం","బు","గు","శు","శ"]},
+ kn:{m:["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಏಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟೆಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್"],ms:["ಜನ","ಫೆಬ್ರ","ಮಾರ್ಚ್","ಏಪ್ರಿ","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗ","ಸೆಪ್","ಅಕ್ಟೋ","ನವೆಂ","ಡಿಸೆಂ"],d:["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],ds:["ಭಾ","ಸೋ","ಮಂ","ಬು","ಗು","ಶು","ಶ"]},
+ ml:{m:["ജനുവരി","ഫെബ്രുവരി","മാർച്ച്","ഏപ്രിൽ","മേയ്","ജൂൺ","ജൂലൈ","ഓഗസ്റ്റ്","സെപ്റ്റംബർ","ഒക്ടോബർ","നവംബർ","ഡിസംബർ"],ms:["ജനു","ഫെബ്രു","മാർച്ച്","ഏപ്രി","മേയ്","ജൂൺ","ജൂലൈ","ഓഗ","സെപ്റ്റ","ഒക്ടോ","നവം","ഡിസം"],d:["ഞായർ","തിങ്കൾ","ചൊവ്വ","ബുധൻ","വ്യാഴം","വെള്ളി","ശനി"],ds:["ഞാ","തി","ചൊ","ബു","വ്യാ","വെ","ശ"]}
+};
+const PLACE = {ta:["இறையமங்கலம்","திருச்செங்கோடு"],en:["Iraiyamangalam","Tiruchengode"],hi:["इरैयमंगलम","तिरुचेंगोडु"],te:["ఇరైయమంగళం","తిరుచెంగోడు"],kn:["ಇರೈಯಮಂಗಲಂ","ತಿರುಚೆಂಗೋಡು"],ml:["ഇറൈയമംഗലം","തിരുച്ചെങ്കോട്"]};
+const STOPS_EN = ["Iraiyamangalam","Muniyappan Palayam","Molasi","Govt. High School, Molasi","Vakkil Thottam","Mudhalaipalayam","Rayakkavalasu","Andivalasu","Pirithi","Panneerkuthipalayam","Rice Mill","Puliyankadu","Vettuvapalayam","Sirumolasi","Samathuvapuram","Nadar Colony","Sundamedu","Gandhi Nagar","Karattupalayam Police Station","Karattupalayam","Walter Gate","CHP Colony","Krishna Hospital","Erode Road","Old Bus Stand","Tiruchengode Bus Stand"];
+const pl = n => { const i = n === PLACE.ta[0] ? 0 : n === PLACE.ta[1] ? 1 : -1; return i < 0 ? n : PLACE[lang][i]; };
+const KURALS = [[1, "அகர முதல எழுத்தெல்லாம் ஆதி", "பகவன் முதற்றே உலகு."], [2, "கற்றதனால் ஆய பயனென்கொல் வாலறிவன்", "நற்றாள் தொழாஅர் எனின்."], [7, "தனக்குவமை இல்லாதான் தாள்சேர்ந்தார்க்கு அல்லால்", "மனக்கவலை மாற்றல் அரிது."], [26, "செயற்கரிய செய்வார் பெரியர் சிறியர்", "செயற்கரிய செய்கலா தார்."], [34, "மனத்துக்கண் மாசிலன் ஆதல் அனைத்தறன்", "ஆகுல நீர பிற."], [45, "அன்பும் அறனும் உடைத்தாயின் இல்வாழ்க்கை", "பண்பும் பயனும் அது."], [48, "ஆற்றின் ஒழுக்கி அறனிழுக்கா இல்வாழ்க்கை", "நோற்பாரின் நோன்மை உடைத்து."], [61, "பெறுமவற்றுள் யாமறிவ தில்லை அறிவறிந்த", "மக்கட்பேறு அல்ல பிற."], [66, "குழலினிது யாழினிது என்பதம் மக்கள்", "மழலைச்சொற் கேளா தவர்."], [71, "அன்பிற்கும் உண்டோ அடைக்குந்தாழ் ஆர்வலர்", "புன்கண்நீர் பூசல் தரும்."], [72, "அன்பிலார் எல்லாம் தமக்குரியர் அன்புடையார்", "என்பும் உரியர் பிறர்க்கு."], [80, "அன்பின் வழியது உயிர்நிலை அஃதிலார்க்கு", "என்புதோல் போர்த்த உடம்பு."], [82, "விருந்து புறத்ததாத் தானுண்டல் சாவா", "மருந்தெனினும் வேண்டற்பாற் றன்று."], [95, "பணிவுடையன் இன்சொலன் ஆதல் ஒருவற்கு", "அணியல்ல மற்றுப் பிற."], [100, "இனிய உளவாக இன்னாத கூறல்", "கனியிருப்பக் காய்கவர்ந் தற்று."], [101, "செய்யாமல் செய்த உதவிக்கு வையகமும்", "வானகமும் ஆற்றல் அரிது."], [102, "காலத்தினாற் செய்த நன்றி சிறிதெனினும்", "ஞாலத்தின் மாணப் பெரிது."], [104, "தினைத்துணை நன்றி செயினும் பனைத்துணையாக்", "கொள்வர் பயன்தெரி வார்."], [108, "நன்றி மறப்பது நன்றன்று நன்றல்லது", "அன்றே மறப்பது நன்று."], [114, "தக்கார் தகவிலர் என்பது அவரவர்", "எச்சத்தாற் காணப் படும்."], [121, "அடக்கம் அமரருள் உய்க்கும் அடங்காமை", "ஆரிருள் உய்த்து விடும்."], [125, "எல்லார்க்கும் நன்றாம் பணிதல் அதுஅவருள்", "செல்வர்க்கே செல்வம் தகைத்து."], [131, "ஒழுக்கம் விழுப்பம் தரலான் ஒழுக்கம்", "உயிரினும் ஓம்பப் படும்."], [156, "ஒறுத்தார்க்கு ஒருநாளை இன்பம் பொறுத்தார்க்குப்", "பொன்றுந் துணையும் புகழ்."], [168, "அழுக்காறு எனஒரு பாவி திருச்செற்றுத்", "தீயுழி உய்த்து விடும்."], [200, "சொல்லுக சொல்லிற் பயனுடைய சொல்லற்க", "சொல்லிற் பயனிலாச் சொல்."], [203, "அறிவினுள் எல்லாம் தலையென்ப தீயவை", "செறுவார்க்கும் செய்யா விடல்."], [236, "தோன்றின் புகழொடு தோன்றுக அஃதிலார்", "தோன்றலின் தோன்றாமை நன்று."], [291, "வாய்மை எனப்படுவ தியாதெனின் யாதொன்றும்", "தீமை இலாத சொலல்."], [314, "இன்னா செய்தாரை ஒறுத்தல் அவர்நாண", "நன்னயஞ் செய்து விடல்."], [319, "பிறர்க்கின்னா முற்பகல் செய்யின் தமக்கின்னா", "பிற்பகல் தாமே வரும்."], [391, "கற்க கசடறக் கற்பவை கற்றபின்", "நிற்க அதற்குத் தக."], [392, "எண்ணென்ப ஏனை எழுத்தென்ப இவ்விரண்டும்", "கண்ணென்ப வாழும் உயிர்க்கு."], [393, "கண்ணுடையர் என்பவர் கற்றோர் முகத்திரண்டு", "புண்ணுடையர் கல்லா தவர்."], [397, "யாதானும் நாடாமால் ஊராமால் என்னொருவன்", "சாந்துணையுங் கல்லா தவாறு."], [400, "கேடில் விழுச்செல்வம் கல்வி ஒருவற்கு", "மாடல்ல மற்றை யவை."], [423, "எப்பொருள் யார்யார்வாய்க் கேட்பினும் அப்பொருள்", "மெய்ப்பொருள் காண்பது அறிவு."], [435, "வருமுன்னர்க் காவாதான் வாழ்க்கை எரிமுன்னர்", "வைத்தூறு போலக் கெடும்."], [444, "தம்மில் பெரியார் தமரா ஒழுகுதல்", "வன்மையுள் எல்லாம் தலை."], [452, "நிலத்தியல்பால் நீர்திரிந் தற்றாகும் மாந்தர்க்கு", "இனத்தியல்ப தாகும் அறிவு."], [483, "அருவினை என்ப உளவோ கருவியால்", "காலம் அறிந்து செயின்."], [595, "வெள்ளத் தனைய மலர்நீட்டம் மாந்தர்தம்", "உள்ளத் தனையது உயர்வு."], [596, "உள்ளுவ தெல்லாம் உயர்வுள்ளல் மற்றது", "தள்ளினும் தள்ளாமை நீர்த்து."], [602, "மடியை மடியா ஒழுகல் குடியைக்", "குடியாக வேண்டு பவர்."], [605, "நெடுநீர் மறவி மடிதுயில் நான்கும்", "கெடுநீரார் காமக் கலன்."], [611, "அருமை உடைத்தென் றசாவாமை வேண்டும்", "பெருமை முயற்சி தரும்."], [616, "முயற்சி திருவினை ஆக்கும் முயலாமை", "இன்மை புகுத்தி விடும்."], [619, "தெய்வத்தான் ஆகா தெனினும் முயற்சிதன்", "மெய்வருத்தக் கூலி தரும்."], [620, "ஊழையும் உப்பக்கம் காண்பர் உலைவின்றித்", "தாழாது உஞற்று பவர்."], [621, "இடுக்கண் வருங்கால் நகுக அதனை", "அடுத்தூர்வது அஃதொப்பது இல்."], [643, "கேட்டாரைப் பிணிக்குந் தகையவாய்க் கேளாரும்", "வேட்ப மொழிவதாம் சொல்."], [786, "முகநக நட்பது நட்பன்று நெஞ்சத்", "தகநக நட்பது நட்பு."], [788, "உடுக்கை இழந்தவன் கைபோல ஆங்கே", "இடுக்கண் களைவதாம் நட்பு."], [1031, "சுழன்றும் ஏர்ப்பின்ன துலகம் அதனால்", "உழந்தும் உழவே தலை."]];
+let lastKural = -1;
+function renderKural(){
+  const d = new Date(), idx = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000) % KURALS.length;
+  const el = document.getElementById("kural"); if (!el) return;
+  if (idx !== lastKural){
+    const [n, a, b] = KURALS[idx]; lastKural = idx;
+    el.innerHTML = `${a}<br>${b}<span>— குறள் ${n}</span>`;
+  }
+  fitKural();
+}
+function fitKural(){
+  const el = document.getElementById("kural"); if (!el) return;
+  el.style.fontSize = ""; let fs = parseFloat(getComputedStyle(el).fontSize);
+  while (el.scrollWidth > el.clientWidth + 1 && fs > 9){ fs -= 0.5; el.style.fontSize = fs + "px"; }
+}
+window.addEventListener("resize", fitKural);
+const sname = n => lang === "ta" ? n : (STOPS_EN[STOPS.indexOf(n)] || pl(n));
 // Edit this list to add or change buses. Times are 24-hour "HH:MM".
 const BUSES = [
   {no:"11A", dir:"out", trip:1, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"05:30", arr:"06:20"},
@@ -284,7 +466,14 @@ async function resolveRemote(){
 let meta = {};
 const rfetch = (path, opts) => fetch(`${REMOTE}/${path}.json`, opts);
 const editingTime = () => { const a = document.activeElement; return a && a.type === "time"; };
-function setSync(ok){ const el = document.getElementById("sync"); if (el) el.textContent = REMOTE ? (ok ? "🟢 நேரலை" : "⚪ ஆஃப்லைன்") : ""; }
+let syncOk = null;
+function setSync(ok){
+  if (ok !== undefined) syncOk = ok;
+  const on = navigator.onLine && !(REMOTE && syncOk === false);   // offline if the phone has no internet or the shared database can't be reached
+  const el = document.getElementById("sync"); if (el) el.textContent = on ? tr("live") : tr("offline");
+}
+window.addEventListener("online", () => { setSync(); pull(); });
+window.addEventListener("offline", () => setSync());
 function fromRemote(obj){            // {busId:{s0:"05:30"}} -> {busId:{0:"05:30"}}
   const out = {};
   for (const id in (obj || {})){ out[id] = {}; for (const k in obj[id]) if (/^s\d+$/.test(k)) out[id][k.slice(1)] = obj[id][k]; }
@@ -310,11 +499,11 @@ function pushClear(id){
 }
 function lastEdit(id){
   if (!meta[id]) return "";
-  return " கடைசி மாற்றம்: " + new Date(meta[id]).toLocaleString("en-IN", {day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"});
+  return " " + tr("lastEdit") + " " + new Date(meta[id]).toLocaleString("en-IN", {day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"});
 }
 function listen(){
   if (!REMOTE || !window.EventSource) return;
-  try { const es = new EventSource(`${REMOTE}/stopTimes.json`); es.addEventListener("put", pull); es.addEventListener("patch", pull); es.onerror = () => setSync(false); } catch(e) {}
+  try { const es = new EventSource(`${REMOTE}/stopTimes.json`); es.addEventListener("put", pull); es.addEventListener("patch", pull); es.onerror = () => pull(); } catch(e) {}
 }
 const gm = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Tamil Nadu");
 const gdir = (a, b) => "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(a + ", Tamil Nadu") + "&destination=" + encodeURIComponent(b + ", Tamil Nadu") + "&travelmode=driving";
@@ -334,7 +523,7 @@ const IMG = {"11A": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQD
 const SEARCH_EXTRA = {out:"irayamangalam tiruchengode", back:"tiruchengode irayamangalam"};
 const mins = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
 const fmt = t => { let [h,m] = t.split(":").map(Number); const ap = h<12?"AM":"PM"; h = h%12||12; return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")} ${ap}`; };
-const human = d => { const h = Math.floor(d/60), m = d%60; return h ? `${h} மணி ${m} நிமிடம்` : `${m} நிமிடம்`; };
+const human = d => { const h = Math.floor(d/60), m = d%60; return h ? `${h} ${tr("hr")} ${m} ${tr("min")}` : `${m} ${tr("min")}`; };
 
 let dir = "all";
 const $ = id => document.getElementById(id);
@@ -353,17 +542,17 @@ function render(){
     const mine = sorted.filter(b => b.no === no), up = mine.find(b => mins(b.dep) >= cur);
     if (up){
       nextBy[no] = up;
-      return `<div class="nrow"><span class="nbadge">${no}</span><div><div class="nroute">${up.from} ➔ ${up.to}</div><div class="nmeta"><b>${fmt(up.dep)}</b> · ${human(mins(up.dep)-cur)} கழித்து</div></div></div>`;
+      return `<div class="nrow"><span class="nbadge">${no}</span><div><div class="nroute">${pl(up.from)} ➔ ${pl(up.to)}</div><div class="nmeta"><b>${fmt(up.dep)}</b> · ${tr("inT",{t:human(mins(up.dep)-cur)})}</div></div></div>`;
     }
     const f = mine[0];
-    return `<div class="nrow"><span class="nbadge">${no}</span><div><div class="nroute">இன்றைய பேருந்துகள் முடிந்தன</div><div class="nmeta">நாளை முதல்: <b>${fmt(f.dep)}</b> (${f.from} ➔ ${f.to})</div></div></div>`;
+    return `<div class="nrow"><span class="nbadge">${no}</span><div><div class="nroute">${tr("ended")}</div><div class="nmeta">${tr("tomFirst")} <b>${fmt(f.dep)}</b> (${pl(f.from)} ➔ ${pl(f.to)})</div></div></div>`;
   }).join("");
-  $("next").innerHTML = `<div class="nhead">அடுத்த பேருந்து</div>` + nextRows;
+  $("next").innerHTML = `<div class="nhead">${tr("nextBus")}</div>` + nextRows;
 
   const q = $("q").value.trim().toLowerCase();
   const rows = sorted.filter(b => {
     if (dir !== "all" && b.dir !== dir) return false;
-    const hay = `${b.no} ${b.from} ${b.to} ${SEARCH_EXTRA[b.dir]} ${STOPS.join(' ')}`.toLowerCase();
+    const hay = `${b.no} ${b.from} ${b.to} ${SEARCH_EXTRA[b.dir]} ${STOPS.join(' ')} ${STOPS_EN.join(' ')} ${Object.values(PLACE).flat().join(' ')}`.toLowerCase();
     return !q || hay.includes(q);
   });
 
@@ -371,18 +560,18 @@ function render(){
     const past = mins(b.dep) < cur;
     const isNext = nextBy[b.no] === b;
     const id = busId(b), isOpen = openSet.has(id), list = stopList(b);
-    const items = isOpen ? list.map((n,i)=>`<li><span class="sn">${i+1}</span><span class="nm">${n}</span><a class="mp" href="${ea(gm(n))}" data-map="${ea(gm(n))}" target="_blank" rel="noopener" aria-label="${n} வரைபடம்">📍</a><input type="time" data-bus="${id}" data-i="${i}" value="${stopTime(b,i)}" aria-label="${n} நேரம்"></li>`).join("") : "";
+    const items = isOpen ? list.map((n,i)=>`<li><span class="sn">${i+1}</span><span class="nm">${sname(n)}</span><a class="mp" href="${ea(gm(n))}" data-map="${ea(gm(n))}" target="_blank" rel="noopener" aria-label="${sname(n)} ${tr("mapAria")}">📍</a><input type="time" data-bus="${id}" data-i="${i}" value="${stopTime(b,i)}" aria-label="${sname(n)}"></li>`).join("") : "";
     return `<article class="card ${anim?"in":""} ${past?"past":""} ${isNext?"upnext":""}" style="--i:${Math.min(ix,8)}">
-      <img class="photo" src="${IMG[b.no]}" alt="பேருந்து ${b.no}" loading="lazy">
+      <img class="photo" src="${IMG[b.no]}" alt="${tr("busAlt")} ${b.no}" loading="lazy">
       <div class="num">${b.no}</div>
       <div>
-        <div class="route">${b.from} ➔ ${b.to}${isNext?'<span class="tag">அடுத்தது</span>':""}</div>
+        <div class="route">${pl(b.from)} ➔ ${pl(b.to)}${isNext?'<span class="tag">'+tr("tagNext")+'</span>':""}</div>
         <div class="times"><span>${fmt(b.dep)}</span><span class="arrow">➔</span><span>${fmt(b.arr)}</span></div>
-        <div class="meta">${b.trip?`பயணம் ${b.trip} · `:""}${STOPS.length} நிறுத்தங்கள் · பயண நேரம் ${human(mins(b.arr)-mins(b.dep))}</div>
+        <div class="meta">${b.trip?`${tr("trip")} ${b.trip} · `:""}${tr("nStops",{n:STOPS.length})} · ${tr("travel")} ${human(mins(b.arr)-mins(b.dep))}</div>
       </div>
       <div class="stopsbox">
-        <button class="tog" data-toggle="${id}" aria-expanded="${isOpen}">${isOpen?"▾":"▸"} நிறுத்தங்கள் &amp; நேரங்கள் (<span data-count="${id}">${filledCount(b)}</span>/${STOPS.length} நிரப்பப்பட்டது)</button>
-        ${isOpen?`<ul class="slist">${items}</ul><div class="hint">${REMOTE ? "மாற்றங்கள் அனைவருக்கும் உடனே தெரியும்." + lastEdit(id) : "மாற்றங்கள் இந்தச் சாதனத்தில் மட்டும் சேமிக்கப்படும்."}</div><a class="clr rt" href="${ea(gdir(list[0], list[list.length-1]))}" data-map="${ea(gdir(list[0], list[list.length-1]))}" target="_blank" rel="noopener">🗺️ முழு வழித்தடம் (Google Maps)</a> <button class="clr" data-clear="${id}">${REMOTE ? "இயல்புக்கு மீட்டமை (அனைவருக்கும்)" : "இயல்புக்கு மீட்டமை"}</button>`:""}
+        <button class="tog" data-toggle="${id}" aria-expanded="${isOpen}">${isOpen?"▾":"▸"} ${tr("stopsToggle")} (<span data-count="${id}">${filledCount(b)}</span>/${STOPS.length} ${tr("filledSfx")})</button>
+        ${isOpen?`<ul class="slist">${items}</ul><div class="hint">${REMOTE ? tr("hintShared") + lastEdit(id) : tr("hintLocal")}</div><a class="clr rt" href="${ea(gdir(list[0], list[list.length-1]))}" data-map="${ea(gdir(list[0], list[list.length-1]))}" target="_blank" rel="noopener">${tr("routeBtn")}</a> <button class="clr" data-clear="${id}">${REMOTE ? tr("reset") + " " + tr("resetEveryone") : tr("reset")}</button>`:""}
       </div>
     </article>`;
   }).join("");
@@ -397,19 +586,14 @@ $("chips").addEventListener("click", e => {
   animateNext = true; render();
 });
 const THEMES = ["auto", "light", "dark"], T_ICON = {auto:"🌓", light:"☀️", dark:"🌙"};
-const T_LABEL = {auto:"தானியங்கி (போனின் அமைப்பு)", light:"வெளிச்சம்", dark:"இருள்"};
+const T_KEY = {auto:"themeAuto", light:"themeLight", dark:"themeDark"};
 let theme = "auto"; try { theme = localStorage.getItem("theme:v1") || "auto"; } catch(e) {}
 function applyTheme(){
   const r = document.documentElement;
   if (theme === "auto") r.removeAttribute("data-theme"); else r.dataset.theme = theme;
-  const b = $("themeBtn"); b.textContent = T_ICON[theme];
-  b.title = "தீம்: " + T_LABEL[theme]; b.setAttribute("aria-label", b.title);
+  $("themeList").innerHTML = THEMES.map(v => `<button class="lm" data-theme-set="${v}" aria-current="${v === theme}">${T_ICON[v]} ${tr(T_KEY[v])}${v === theme ? " ✓" : ""}</button>`).join("");
+  $("accThemeV").textContent = T_ICON[theme];
 }
-$("themeBtn").addEventListener("click", () => {
-  theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
-  try { localStorage.setItem("theme:v1", theme); } catch(e) {}
-  applyTheme();
-});
 applyTheme();
 render();
 $("list").addEventListener("click", e => {
@@ -430,10 +614,9 @@ $("list").addEventListener("change", e => {
 setInterval(() => { const a = document.activeElement; if (!(a && a.type === "time")) render(); }, 30000);
 
 // ---- Date bar + Jan–Dec calendar ----
-const MONTHS=["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்"];
-const MSHORT=["ஜன","பிப்","மார்","ஏப்","மே","ஜூன்","ஜூலை","ஆக","செப்","அக்","நவ","டிச"];
-const DAYS=["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"];
-const DSHORT=["ஞா","தி","செ","பு","வி","வெ","ச"];
+let MONTHS, MSHORT, DAYS, DSHORT;
+function setDateNames(){ const d = DATE_L[lang]; MONTHS = d.m; MSHORT = d.ms; DAYS = d.d; DSHORT = d.ds; }
+setDateNames();
 const dkey = d => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
 const longDate = d => `${DAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 let sel = new Date(), viewY = sel.getFullYear(), viewM = sel.getMonth(), todayKey = dkey(sel);
@@ -450,15 +633,15 @@ if (bridge) { try { for (const k in notes) bridge.schedule(k, notes[k].time, not
 function renderNote(){
   const k = iso(sel), n = notes[k];
   $("notePanel").innerHTML = `<div class="nt-h">📝 ${longDate(sel)}</div>
-    <input id="ntText" class="ntin" maxlength="80" placeholder="குறிப்பு (எ.கா. ஊருக்குப் போகணும்)" value="${n ? esc(n.text) : ""}" aria-label="குறிப்பு">
-    <div class="ntrow"><label>⏰ நினைவூட்டல் நேரம் <input id="ntTime" type="time" value="${n ? n.time : "07:00"}"></label></div>
-    <div class="ntrow"><button class="clr" id="ntSave">சேமி</button>${n ? '<button class="clr" id="ntDel">நீக்கு</button>' : ""}</div>
-    <div class="hint">${bridge ? "அந்த நாளில் இந்த நேரத்தில் அறிவிப்பு (notification) வரும்." : "அறிவிப்பு வசதி APK ஆப்பில் மட்டும் வேலை செய்யும். இங்கே குறிப்பு மட்டும் சேமிக்கப்படும்."}</div>`;
+    <input id="ntText" class="ntin" maxlength="80" placeholder="${tr("notePh")}" value="${n ? esc(n.text) : ""}" aria-label="${tr("notePh")}">
+    <div class="ntrow"><label>${tr("noteTime")} <input id="ntTime" type="time" value="${n ? n.time : "07:00"}"></label></div>
+    <div class="ntrow"><button class="clr" id="ntSave">${tr("save")}</button>${n ? `<button class="clr" id="ntDel">${tr("del")}</button>` : ""}</div>
+    <div class="hint">${bridge ? tr("noteHintApp") : tr("noteHintWeb")}</div>`;
 }
 function renderNoteList(){
   const today = iso(new Date());
   const keys = Object.keys(notes).filter(k => k >= today).sort();
-  $("noteList").innerHTML = keys.length ? `<div class="nlh">வரவிருக்கும் குறிப்புகள்</div>` + keys.map(k => {
+  $("noteList").innerHTML = keys.length ? `<div class="nlh">${tr("upcoming")}</div>` + keys.map(k => {
     const [y,m,d] = k.split("-").map(Number);
     return `<button class="ni" data-nd="${k}"><b>${d} ${MONTHS[m-1]} ${y}</b> · ${esc(notes[k].text)} · ⏰ ${notes[k].time}</button>`;
   }).join("") : "";
@@ -468,7 +651,7 @@ function renderTodayNote(){
   const a = notes[iso(t)], b = notes[iso(tm)];
   const el = $("todayNote");
   el.hidden = !(a || b);
-  el.innerHTML = (a ? `📌 <b>இன்று:</b> ${esc(a.text)}` : "") + (a && b ? "<br>" : "") + (b ? `🔔 <b>நாளை:</b> ${esc(b.text)}` : "");
+  el.innerHTML = (a ? `📌 <b>${tr("today")}</b> ${esc(a.text)}` : "") + (a && b ? "<br>" : "") + (b ? `🔔 <b>${tr("tomorrow")}</b> ${esc(b.text)}` : "");
 }
 $("notePanel").addEventListener("click", e => {
   const k = iso(sel);
@@ -497,13 +680,13 @@ function renderCal(){
     g += `<button class="d ${dt.getDay()===0?"sun":""} ${k===todayKey?"today":""} ${k===dkey(sel)?"sel":""} ${notes[iso(dt)]?"has":""}" data-d="${d}" aria-label="${longDate(dt)}">${d}</button>`;
   }
   $("grid").innerHTML = g;
-  $("dateSel").textContent = dkey(sel)===todayKey ? "" : "தேர்ந்தெடுத்த தேதி: " + longDate(sel);
+  $("dateSel").textContent = dkey(sel)===todayKey ? "" : tr("selDate") + " " + longDate(sel);
   renderNote(); renderNoteList();
 }
 function tickDate(){
   const t = new Date(), k = dkey(t);
-  $("dateMain").textContent = "இன்று: " + longDate(t);
-  renderTodayNote();
+  $("dateMain").textContent = tr("today") + " " + longDate(t);
+  renderTodayNote(); renderKural();
   if (k !== todayKey){            // a new day started
     const wasToday = dkey(sel) === todayKey;
     todayKey = k;
@@ -522,6 +705,257 @@ setInterval(tickDate, 20000);
 renderCal(); tickDate();
 resolveRemote().then(ok => { if (ok){ render(); pull(); listen(); setInterval(pull, 30000); } });
 document.addEventListener("visibilitychange", () => { if (!document.hidden) pull(); });
+
+// ---- Language bar, profile & first-run sign-in ----
+const PKEY = "profile:v1";
+let profile = null; try { profile = JSON.parse(localStorage.getItem(PKEY)); } catch(e) {}
+const validMobile = m => /^[6-9]\d{9}$/.test(m || "");
+const langOptions = () => LANGS.map(([c, n]) => `<option value="${c}"${c === lang ? " selected" : ""}>${n}</option>`).join("");
+function renderLangMenu(){
+  $("langmenu").innerHTML = LANGS.map(([c, n]) => `<button class="lm" role="menuitem" data-lang="${c}" aria-current="${c === lang}">${n}${c === lang ? " ✓" : ""}</button>`).join("");
+  $("accLangV").textContent = LANGS.find(l => l[0] === lang)[1];
+}
+function openDrawer(){ $("drawer").classList.add("open"); $("drawer").setAttribute("aria-hidden", "false"); $("scrim").hidden = false; $("menuBtn").setAttribute("aria-expanded", "true"); }
+function closeDrawer(){ $("drawer").classList.remove("open"); $("drawer").setAttribute("aria-hidden", "true"); $("scrim").hidden = true; $("menuBtn").setAttribute("aria-expanded", "false"); document.querySelectorAll(".accbody.open").forEach(b => toggleAcc(document.querySelector(`[aria-controls="${b.id}"]`), false)); }
+function toggleAcc(btn, force){
+  const body = document.getElementById(btn.getAttribute("aria-controls"));
+  const open = force === undefined ? !body.classList.contains("open") : force;
+  body.classList.toggle("open", open); btn.setAttribute("aria-expanded", open);
+  body.style.maxHeight = open ? body.scrollHeight + 8 + "px" : "0px";
+}
+function updateAvatar(){
+  const n = ((profile && profile.name) || "").trim(), b = $("profBtn");
+  b.textContent = n ? Array.from(n)[0].toUpperCase() : "👤";
+}
+let sheetMode = null;
+function openSheet(mode, draft){
+  sheetMode = mode;
+  const gate = mode === "gate", p = draft || profile || {name:"", mobile:""};
+  $("sheet").innerHTML = `<div class="sbox" role="dialog" aria-modal="true">
+    <h2>${gate ? tr("gateTitle") : "👤 " + tr("profile")}</h2>
+    ${gate ? `<p>${tr("gateDesc")}</p>` : ""}
+    ${gate ? `<label for="gLang">🌐 ${tr("lang")}</label><select id="gLang">${langOptions()}</select>` : ""}
+    <label for="pName">${tr("pName")}</label><input id="pName" maxlength="40" autocomplete="name" value="${esc(p.name || "")}">
+    <label for="pMobile">${tr("pMobile")}</label><input id="pMobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="9XXXXXXXXX" value="${esc(p.mobile || "")}">
+    <div class="err" id="pErr"></div>
+    <div class="hint">${tr("privacy")}</div>
+    <button class="go" id="pSave">${gate ? tr("gateGo") : tr("save")}</button>
+    ${gate ? "" : `<button class="x" id="pClose">${tr("close")}</button>`}
+  </div>`;
+  $("sheet").hidden = false;
+}
+function applyLang(){
+  document.documentElement.lang = lang;
+  setDateNames();
+  document.title = tr("appTitle");
+  $("appH1").textContent = tr("appTitle");
+  if ($("sTitle")) $("sTitle").textContent = tr("appTitle");          // splash is removed after the first seconds
+  if ($("sSub")) $("sSub").textContent = pl(PLACE.ta[0]) + " ⇄ " + pl(PLACE.ta[1]);
+  $("calBtn").textContent = tr("calBtn");
+  $("todayBtn").textContent = tr("calGoToday");
+  $("q").placeholder = tr("searchPh"); $("q").setAttribute("aria-label", tr("searchPh"));
+  $("yPrev").setAttribute("aria-label", tr("prevYear")); $("yNext").setAttribute("aria-label", tr("nextYear"));
+  $("months").setAttribute("aria-label", tr("monthsAria")); $("chips").setAttribute("aria-label", tr("dirAria"));
+  document.querySelector('.chip[data-dir="all"]').textContent = tr("all");
+  document.querySelector('.chip[data-dir="out"]').textContent = pl(PLACE.ta[0]) + " ➔ " + pl(PLACE.ta[1]);
+  document.querySelector('.chip[data-dir="back"]').textContent = pl(PLACE.ta[1]) + " ➔ " + pl(PLACE.ta[0]);
+  $("empty").textContent = tr("empty");
+  $("ver").textContent = tr("version") + " v2026.10.17-ஒலி";
+  $("profBtn").title = tr("profile"); $("profBtn").setAttribute("aria-label", tr("profile"));
+  renderLangMenu(); updateAvatar();
+  $("dTitle").textContent = tr("appTitle"); $("accLangT").textContent = "🌐 " + tr("lang");
+  $("accThemeT").textContent = "🌓 " + tr("themeTip"); $("dProf").textContent = "👤 " + tr("profile"); $("dGame").textContent = "🎮 " + tr("game");
+  applyTheme();
+  setSync();
+  tickDate(); renderCal(); renderTodayNote(); render();
+}
+function setLang(c){
+  if (LI[c] === undefined) return;
+  lang = c; try { localStorage.setItem("lang:v1", c); } catch(e) {}
+  let draft = null;
+  if (!$("sheet").hidden && $("pMobile")) draft = {name: $("pName").value, mobile: $("pMobile").value};
+  applyLang();
+  if (!$("sheet").hidden) openSheet(sheetMode, draft);
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("#menuBtn")){ openDrawer(); return; }
+  if (e.target.closest("#scrim")){ closeDrawer(); return; }
+  const acc = e.target.closest(".acc"); if (acc){ toggleAcc(acc); return; }
+  const th = e.target.closest("[data-theme-set]");
+  if (th){ theme = th.dataset.themeSet; try { localStorage.setItem("theme:v1", theme); } catch(_) {} applyTheme(); return; }
+  const lb = e.target.closest("[data-lang]");
+  if (lb){ closeDrawer(); setLang(lb.dataset.lang); return; }
+  if (e.target.closest("#dGame")){ closeDrawer(); openGame(); return; }
+  if (e.target.closest("#dProf")){ closeDrawer(); openSheet("profile"); return; }
+  if (e.target.closest("#profBtn")){ openSheet("profile"); return; }
+  if (e.target.closest("#pClose")){ $("sheet").hidden = true; return; }
+  if (e.target.closest("#pSave")){
+    const mobile = $("pMobile").value.replace(/\D/g, ""), name = $("pName").value.trim();
+    if (!validMobile(mobile)){ $("pErr").textContent = tr("badMobile"); return; }
+    profile = {name, mobile}; try { localStorage.setItem(PKEY, JSON.stringify(profile)); } catch(e) {}
+    $("sheet").hidden = true; updateAvatar();
+  }
+});
+document.addEventListener("change", e => { if (e.target && e.target.id === "gLang") setLang(e.target.value); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+applyLang();
+setInterval(setSync, 10000);
+if (!profile || !validMobile(profile.mobile)) openSheet("gate");
+
+
+
+// ---- Game sound (synthesised in the browser, no files) ----
+let AC = null, gMute = false, engOsc = null, engGain = null;
+try { gMute = localStorage.getItem("game:mute") === "1"; } catch(e) {}
+function aud(){
+  if (!AC){ try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} }
+  if (AC && AC.state === "suspended") AC.resume();
+  return AC;
+}
+function tone(f, d, type, vol, to, delay){
+  if (gMute) return; const c = aud(); if (!c) return;
+  const t = c.currentTime + (delay || 0), o = c.createOscillator(), g = c.createGain();
+  o.type = type || "sine"; o.frequency.setValueAtTime(f, t);
+  if (to) o.frequency.exponentialRampToValueAtTime(to, t + d);
+  g.gain.setValueAtTime(vol || 0.12, t); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+  o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + d + 0.03);
+}
+function noise(d, vol, cutoff){
+  if (gMute) return; const c = aud(); if (!c) return;
+  const n = Math.floor(c.sampleRate * d), buf = c.createBuffer(1, n, c.sampleRate), data = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / n);
+  const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+  s.buffer = buf; f.type = "lowpass"; f.frequency.value = cutoff || 900; g.gain.value = vol || 0.3;
+  s.connect(f); f.connect(g); g.connect(c.destination); s.start();
+}
+const sfx = {
+  horn(){ tone(340, 0.5, "square", 0.07); tone(428, 0.5, "square", 0.07); },
+  move(){ tone(440, 0.08, "triangle", 0.07, 250); },
+  star(){ tone(880, 0.1, "sine", 0.14); tone(1320, 0.18, "sine", 0.14, 0, 0.09); },
+  crash(){ noise(0.55, 0.45, 1100); tone(170, 0.55, "sawtooth", 0.18, 40); }
+};
+function engStart(){
+  if (gMute || engOsc) return; const c = aud(); if (!c) return;
+  engOsc = c.createOscillator(); engGain = c.createGain(); const f = c.createBiquadFilter();
+  engOsc.type = "sawtooth"; engOsc.frequency.value = 70; f.type = "lowpass"; f.frequency.value = 260; engGain.gain.value = 0.045;
+  engOsc.connect(f); f.connect(engGain); engGain.connect(c.destination); engOsc.start();
+}
+function engStop(){ if (engOsc){ try { engOsc.stop(); } catch(e) {} engOsc = null; engGain = null; } }
+function engUpdate(){ if (engOsc && AC) engOsc.frequency.setTargetAtTime(62 + G.speed * 0.22, AC.currentTime, 0.1); }
+function gSteer(d){ const n = Math.max(0, Math.min(2, G.lane + d)); if (n !== G.lane){ G.lane = n; sfx.move(); } }
+function gMuteIcon(){ $("gMute").textContent = gMute ? "🔇" : "🔊"; }
+$("gMute").addEventListener("click", () => {
+  gMute = !gMute; try { localStorage.setItem("game:mute", gMute ? "1" : "0"); } catch(e) {}
+  gMuteIcon(); if (gMute) engStop(); else if (gOn && G && !G.over){ aud(); engStart(); }
+});
+
+// ---- Mini game: Bus Dash ----
+const GW = 300, GH = 500, GL = GW / 3, BUS_Y = GH - 115;
+let G = null, gRAF = 0, gLast = 0, gOn = false;
+const gBestGet = () => { try { return +localStorage.getItem("game:best") || 0; } catch(e) { return 0; } };
+const gScore = () => Math.floor(G.dist) + G.stars * 10;
+function gReset(){ G = {no:Math.random() < 0.5 ? "11A" : "11B", lane:1, x:GL * 1.5, objs:[], speed:230, dist:0, stars:0, spawn:0.5, over:false, t:0}; }
+function gSpawn(){
+  const L = Math.floor(Math.random() * 3), star = Math.random() < 0.3;
+  const emo = ["🐄","🚧","🐕","🛺"];
+  G.objs.push({lane:L, y:-50, kind:star ? "star" : "bad", e:star ? "⭐" : emo[Math.floor(Math.random() * emo.length)]});
+  if (!star && G.speed > 270 && Math.random() < 0.35){          // two blocked lanes, one always stays free
+    const M = (L + 1 + Math.floor(Math.random() * 2)) % 3;
+    G.objs.push({lane:M, y:-50, kind:"bad", e:emo[Math.floor(Math.random() * emo.length)]});
+  }
+}
+function gUpdate(dt){
+  G.t += dt; G.speed = 230 + Math.min(G.t * 6, 270); G.dist += G.speed * dt / 12;
+  G.spawn -= dt;
+  if (G.spawn <= 0){ gSpawn(); G.spawn = Math.max(0.45, 1.1 - G.speed / 750) * (0.8 + Math.random() * 0.5); }
+  G.x += (GL * (G.lane + 0.5) - G.x) * Math.min(1, dt * 14);
+  for (const o of G.objs){
+    o.y += G.speed * dt;
+    const ox = GL * (o.lane + 0.5);
+    if (!o.dead && Math.abs(ox - G.x) < 38 && Math.abs(o.y - BUS_Y) < 52){
+      if (o.kind === "star"){ G.stars++; o.dead = true; sfx.star(); } else { gOver(); return; }
+    }
+  }
+  G.objs = G.objs.filter(o => !o.dead && o.y < GH + 60);
+}
+function gBus(c, x, y){
+  const lean = (GL * (G.lane + 0.5) - x) * 0.0035, by = Math.sin(G.t * 22) * 0.8;
+  c.save(); c.translate(x, y + by); c.rotate(lean);
+  const rr = (X, Y, W, H, R, col) => { c.fillStyle = col; c.beginPath(); c.roundRect(X, Y, W, H, R); c.fill(); };
+  c.fillStyle = "rgba(0,0,0,.32)"; c.beginPath(); c.ellipse(0, 46, 38, 8, 0, 0, 7); c.fill();          // shadow
+  rr(-33, 12, 11, 24, 3, "#111815"); rr(22, 12, 11, 24, 3, "#111815");                                   // rear wheels
+  rr(-31, 14, 3, 20, 1, "#2a3530"); rr(28, 14, 3, 20, 1, "#2a3530");
+  c.fillStyle = "#ffd766"; c.beginPath(); c.moveTo(-23, -50); c.lineTo(23, -50); c.lineTo(30, -34); c.lineTo(-30, -34); c.closePath(); c.fill();   // roof
+  rr(-12, -46, 24, 8, 2, "#e0a52a"); rr(-4, -45, 8, 6, 1, "#f6c14a");                                    // roof hatch
+  rr(-30, -34, 60, 52, 6, "#f2b230");                                                                     // yellow body
+  rr(-24, -27, 48, 22, 4, "#16352e");                                                                     // rear window
+  c.fillStyle = "rgba(255,255,255,.22)"; c.beginPath(); c.moveTo(-20, -26); c.lineTo(-8, -26); c.lineTo(-16, -6); c.lineTo(-22, -6); c.fill();
+  rr(-11, -33, 22, 8, 2, "#0c120f");                                                                      // route board
+  c.fillStyle = "#ffcf5c"; c.font = "bold 8px system-ui, sans-serif"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(G.no, 0, -28.5);
+  rr(-30, 2, 60, 13, 0, "#d6342b"); rr(-30, 4, 60, 2, 0, "#f2b230");                                      // red band + stripe
+  rr(-9, 6, 18, 8, 1.5, "#f7f2dc"); rr(-6.5, 8, 13, 1.6, 0, "#333"); rr(-6.5, 11, 13, 1.6, 0, "#333");   // number plate
+  rr(-28, 2, 11, 9, 2, "#ff5a4d"); rr(17, 2, 11, 9, 2, "#ff5a4d");                                       // tail lights
+  c.fillStyle = "rgba(255,90,77,.35)"; c.beginPath(); c.arc(-22.5, 6, 11, 0, 7); c.arc(22.5, 6, 11, 0, 7); c.fill();
+  rr(-32, 15, 64, 7, 3, "#1c2420");                                                                       // bumper
+  rr(-37, -24, 5, 10, 2, "#161f1a"); rr(32, -24, 5, 10, 2, "#161f1a");                                    // mirrors
+  c.restore();
+}
+function gDraw(){
+  const c = $("gCanvas").getContext("2d");
+  c.setTransform(2, 0, 0, 2, 0, 0);
+  c.fillStyle = "#26332d"; c.fillRect(0, 0, GW, GH);
+  c.fillStyle = "#f2b230"; c.fillRect(0, 0, 5, GH); c.fillRect(GW - 5, 0, 5, GH);
+  c.strokeStyle = "rgba(255,255,255,.55)"; c.lineWidth = 3; c.setLineDash([24, 20]);
+  c.lineDashOffset = -((G.dist * 12) % 44);
+  for (let l = 1; l < 3; l++){ c.beginPath(); c.moveTo(GL * l, 0); c.lineTo(GL * l, GH); c.stroke(); }
+  c.setLineDash([]);
+  c.font = "40px system-ui, 'Noto Color Emoji', sans-serif"; c.textAlign = "center"; c.textBaseline = "middle";
+  for (const o of G.objs) c.fillText(o.e, GL * (o.lane + 0.5), o.y);
+  gBus(c, G.x, BUS_Y);
+  const s = gScore(); if ($("gScore").textContent != s) $("gScore").textContent = s;
+}
+function gLoop(ts){
+  if (!gOn || !G || G.over) return;
+  const dt = Math.min(0.05, (ts - gLast) / 1000); gLast = ts;
+  gUpdate(dt); if (G.over) return;
+  engUpdate(); gDraw(); gRAF = requestAnimationFrame(gLoop);
+}
+function gShowMsg(title, sub, btn){ $("gTitle").textContent = title; $("gSub").textContent = sub; $("gStart").textContent = btn; $("gMsg").hidden = false; }
+function gOver(){
+  G.over = true; cancelAnimationFrame(gRAF); engStop(); sfx.crash(); gDraw();
+  const s = gScore(); let best = gBestGet();
+  if (s > best){ best = s; try { localStorage.setItem("game:best", String(s)); } catch(e) {} }
+  $("gBest").textContent = best;
+  gShowMsg(tr("gameOver"), "⭐ " + s + "  ·  " + tr("best") + " " + best, tr("again"));
+}
+function gStart(){
+  gReset(); $("gScore").textContent = "0"; $("gMsg").hidden = true; gOn = true;
+  cancelAnimationFrame(gRAF); gLast = performance.now(); gRAF = requestAnimationFrame(gLoop);
+  aud(); sfx.horn(); engStart();
+}
+function openGame(){
+  $("game").hidden = false; gReset(); gOn = false; gDraw();
+  $("gBestL").textContent = tr("best"); $("gMute").setAttribute("aria-label", tr("sound")); gMuteIcon(); $("gBest").textContent = gBestGet(); $("gScore").textContent = "0";
+  gShowMsg("🚌 Bus Dash", tr("gHint"), tr("tapStart"));
+}
+function closeGame(){ gOn = false; cancelAnimationFrame(gRAF); engStop(); $("game").hidden = true; }
+$("gStart").addEventListener("click", gStart);
+$("gClose").addEventListener("click", closeGame);
+$("gStage").addEventListener("pointerdown", e => {
+  if (!gOn || !G || G.over || e.target.closest("#gMsg")) return;
+  const r = $("gCanvas").getBoundingClientRect();
+  gSteer(e.clientX < r.left + r.width / 2 ? -1 : 1);
+});
+document.addEventListener("keydown", e => {
+  if ($("game").hidden || !gOn || !G || G.over) return;
+  if (e.key === "ArrowLeft") gSteer(-1);
+  if (e.key === "ArrowRight") gSteer(1);
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden){ cancelAnimationFrame(gRAF); engStop(); }
+  else if (gOn && G && !G.over){ gLast = performance.now(); gRAF = requestAnimationFrame(gLoop); engStart(); }
+});
+
 // splash: show the logo briefly, then fade out
 setTimeout(() => { const s = $("splash"); s.classList.add("hide"); setTimeout(() => s.remove(), 700); }, 2000);
 </script>
