@@ -229,6 +229,34 @@ header{position:relative;z-index:70}
 #gMsg h2{margin:0;font-size:1.6rem}
 #gMsg p{margin:0;max-width:300px;line-height:1.6;opacity:.92}
 #gMsg .go{font:inherit;font-weight:700;font-size:1.05rem;padding:12px 30px;border:0;border-radius:14px;background:var(--amber);color:var(--on-amber);cursor:pointer}
+.page{position:fixed;inset:0;z-index:86;background:var(--bg);color:var(--ink);overflow-y:auto}
+.page[hidden]{display:none}
+.phead{display:flex;align-items:center;gap:6px;padding:max(env(safe-area-inset-top,0px),10px) 10px 78px;background:linear-gradient(135deg,#0f5c45,#1f9d74);color:#fff}
+.phead .ib{color:#fff}
+.phead h2{margin:0;font-size:1.25rem;font-weight:600}
+.pbody{max-width:560px;margin:-62px auto 0;padding:0 14px 40px;position:relative}
+.pavwrap{position:relative;width:118px;height:118px;margin:0 auto -50px;z-index:2}
+.pavwrap svg{width:118px;height:118px}
+.pav{position:absolute;inset:11px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:2.4rem;font-weight:700;color:var(--green);box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:60px 18px 22px;box-shadow:var(--gsh)}
+.pname{text-align:center;font-size:1.35rem;font-weight:700}
+.pmeta{text-align:center;color:var(--muted);margin-top:2px}
+.proute{text-align:center;color:var(--muted);margin-top:6px;font-size:.95rem}
+.pchips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0 4px}
+.pchips span{background:var(--soft);border-radius:999px;padding:4px 12px;font-size:.82rem}
+.pcard hr{border:0;border-top:1px dashed var(--line);margin:16px 0}
+.fsec{font-weight:700;margin:2px 0 10px;color:var(--green)}
+.fq{margin-bottom:16px}
+.fl{font-size:.95rem;margin-bottom:6px;line-height:1.5}
+.pcard select,.pcard input[type=text],.pcard input[type=tel],.pcard input[type=time],.fta{width:100%;font:inherit;font-size:1rem;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.fta{resize:vertical;min-height:72px}
+.fopts{display:flex;gap:8px;flex-wrap:wrap}
+.fopt{font:inherit;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer}
+.fopt[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--bg)}
+.pcard .go{width:100%;margin-top:6px;font:inherit;font-weight:700;padding:12px;border:0;border-radius:14px;background:var(--green);color:var(--bg);cursor:pointer}
+.pcard .err{color:#d14b3b;font-size:.85rem;min-height:1.2em;margin-top:6px}
+.pcard .ok{color:var(--green);font-weight:600;min-height:1.2em;margin-top:8px;text-align:center}
+.thanks{text-align:center;padding:10px 0 4px;font-size:1.05rem;line-height:1.7}
 </style>
 </head>
 <body>
@@ -279,7 +307,7 @@ header{position:relative;z-index:70}
 
   <div id="next" aria-live="polite"></div>
   <div id="list"></div>
-  <div id="ver" class="ver">பதிப்பு: v2026.10.17-ஒலி</div>
+  <div id="ver" class="ver">பதிப்பு: v2026.10.17-புள்ளி</div>
   <div id="empty" hidden>பொருந்தும் பேருந்து இல்லை. வேறு சொல்லில் தேடுங்கள்.</div>
 </div>
 
@@ -291,6 +319,7 @@ header{position:relative;z-index:70}
   <button class="acc" id="accTheme" aria-expanded="false" aria-controls="themeList"><span id="accThemeT"></span><span class="accv" id="accThemeV"></span><span class="chev">▾</span></button>
   <div class="accbody" id="themeList" role="menu"></div>
   <div class="dsec"></div>
+  <button class="lm" id="dFb"></button>
   <button class="lm" id="dGame"></button>
   <button class="lm" id="dProf"></button>
 </aside>
@@ -298,6 +327,10 @@ header{position:relative;z-index:70}
   <div class="gbar"><button id="gClose" class="ib" aria-label="Close">✕</button><button id="gMute" class="ib" aria-label="Sound">🔊</button><div class="ghud"><span>⭐ <b id="gScore">0</b></span><span><span id="gBestL"></span> <b id="gBest">0</b></span></div></div>
   <div id="gStage"><canvas id="gCanvas" width="600" height="1000"></canvas>
     <div id="gMsg"><h2 id="gTitle"></h2><p id="gSub"></p><button class="go" id="gStart"></button></div></div>
+</div>
+<div id="page" class="page" hidden>
+  <div class="phead"><button id="pgBack" class="ib" aria-label="Back"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button><h2 id="pgTitle"></h2></div>
+  <div class="pbody" id="pgBody"></div>
 </div>
 <div id="sheet" class="sheet" hidden></div>
 <script>
@@ -367,6 +400,41 @@ const K = {
  lang:["மொழி","Language","भाषा","భాష","ಭಾಷೆ","ഭാഷ"],
  game:["விளையாட்டு","Game","खेल","ఆట","ಆಟ","കളി"],
  sound:["ஒலி","Sound","ध्वनि","ధ్వని","ಧ್ವನಿ","ശബ്ദം"],
+ pGender:["பாலினம்","Gender","लिंग","లింగం","ಲಿಂಗ","ലിംഗം"],
+ pMale:["ஆண்","Male","पुरुष","పురుషుడు","ಪುರುಷ","പുരുഷൻ"],
+ pFemale:["பெண்","Female","महिला","స్త్రీ","ಮಹಿಳೆ","സ്ത്രീ"],
+ pOther:["மற்றவர்","Other","अन्य","ఇతరులు","ಇತರೆ","മറ്റുള്ളവർ"],
+ pMarital:["திருமண நிலை","Marital status","वैवाहिक स्थिति","వైవాహిక స్థితి","ವೈವಾಹಿಕ ಸ್ಥಿತಿ","വൈവാഹിക നില"],
+ pMarried:["திருமணமானவர்","Married","विवाहित","వివాహితులు","ವಿವಾಹಿತ","വിവാഹിതർ"],
+ pSingle:["திருமணம் ஆகாதவர்","Unmarried","अविवाहित","అవివాహితులు","ಅವಿವಾಹಿತ","അവിവാഹിതർ"],
+ pNoSay:["சொல்ல விரும்பவில்லை","Prefer not to say","बताना नहीं चाहते","చెప్పదలచుకోలేదు","ಹೇಳಲು ಇಷ್ಟವಿಲ್ಲ","പറയാൻ താല്പര്യമില്ല"],
+ pAge:["வயது","Age","उम्र","వయస్సు","ವಯಸ್ಸು","പ്രായം"],
+ badAge:["வயது 5 முதல் 100 வரை இருக்க வேண்டும்.","Age must be between 5 and 100.","उम्र 5 से 100 के बीच होनी चाहिए।","వయస్సు 5 నుండి 100 మధ్య ఉండాలి.","ವಯಸ್ಸು 5 ರಿಂದ 100 ರ ನಡುವೆ ಇರಬೇಕು.","പ്രായം 5 മുതൽ 100 വരെ ആയിരിക്കണം."],
+ statsNote:["இந்த விவரங்கள் உங்கள் பெயர், மொபைல் எண் இல்லாமல், ஆப் பயன்பாட்டுப் புள்ளிவிவரத்துக்காக மட்டும் அநாமதேயமாக அனுப்பப்படும்.","These details are sent anonymously, without your name or mobile number, only for app usage statistics.","ये जानकारी आपके नाम और मोबाइल नंबर के बिना, केवल ऐप उपयोग के आँकड़ों के लिए गुमनाम रूप से भेजी जाती है।","ఈ వివరాలు మీ పేరు, మొబైల్ నంబర్ లేకుండా, యాప్ వినియోగ గణాంకాల కోసం మాత్రమే అజ్ఞాతంగా పంపబడతాయి.","ಈ ವಿವರಗಳನ್ನು ನಿಮ್ಮ ಹೆಸರು, ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಇಲ್ಲದೆ, ಆ್ಯಪ್ ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳಿಗಾಗಿ ಮಾತ್ರ ಅನಾಮಧೇಯವಾಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.","ഈ വിവരങ്ങൾ നിങ്ങളുടെ പേരോ മൊബൈൽ നമ്പറോ ഇല്ലാതെ, ആപ്പ് ഉപയോഗ കണക്കുകൾക്കായി മാത്രം അജ്ഞാതമായി അയയ്ക്കുന്നു."],
+ gateNote:["ஆப்பை எத்தனை பேர் பயன்படுத்துகிறார்கள் என்று அறிய ஒரு அநாமதேய எண்ணிக்கை அனுப்பப்படும். உங்கள் எண் அனுப்பப்படாது.","An anonymous count is sent to know how many people use the app. Your number is not sent.","ऐप कितने लोग उपयोग करते हैं यह जानने के लिए एक गुमनाम गिनती भेजी जाती है। आपका नंबर नहीं भेजा जाता।","యాప్‌ను ఎంతమంది వాడుతున్నారో తెలుసుకోవడానికి ఒక అజ్ఞాత లెక్క పంపబడుతుంది. మీ నంబర్ పంపబడదు.","ಆ್ಯಪ್ ಅನ್ನು ಎಷ್ಟು ಜನ ಬಳಸುತ್ತಾರೆಂದು ತಿಳಿಯಲು ಅನಾಮಧೇಯ ಲೆಕ್ಕ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ನಿಮ್ಮ ಸಂಖ್ಯೆ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ.","ആപ്പ് എത്ര പേർ ഉപയോഗിക്കുന്നു എന്നറിയാൻ ഒരു അജ്ഞാത എണ്ണം അയയ്ക്കുന്നു. നിങ്ങളുടെ നമ്പർ അയയ്ക്കില്ല."],
+ pComplete:["பூர்த்தி","Complete","पूर्ण","పూర్తి","ಪೂರ್ಣ","പൂർത്തി"],
+ pTravel:["பயண விவரங்கள்","Travel details","यात्रा विवरण","ప్రయాణ వివరాలు","ಪ್ರಯಾಣ ವಿವರಗಳು","യാത്രാ വിവരങ്ങൾ"],
+ qFrom:["நீங்கள் எந்த ஊரிலிருந்து பயணம் செய்கிறீர்கள்?","Which town do you travel from?","आप किस गाँव/शहर से यात्रा करते हैं?","మీరు ఏ ఊరి నుండి ప్రయాణిస్తారు?","ನೀವು ಯಾವ ಊರಿನಿಂದ ಪ್ರಯಾಣಿಸುತ್ತೀರಿ?","നിങ്ങൾ ഏത് സ്ഥലത്തു നിന്നാണ് യാത്ര ചെയ്യുന്നത്?"],
+ qTo:["எந்த ஊருக்குச் செல்கிறீர்கள்?","Which town do you go to?","आप किस गाँव/शहर जाते हैं?","మీరు ఏ ఊరికి వెళ్తారు?","ನೀವು ಯಾವ ಊರಿಗೆ ಹೋಗುತ್ತೀರಿ?","നിങ്ങൾ ഏത് സ്ഥലത്തേക്കാണ് പോകുന്നത്?"],
+ qTime:["உங்களுக்கு எந்த நேரத்தில் பேருந்து தேவைப்படும்?","At what time do you need a bus?","आपको किस समय बस चाहिए?","మీకు ఏ సమయంలో బస్సు కావాలి?","ನಿಮಗೆ ಯಾವ ಸಮಯಕ್ಕೆ ಬಸ್ ಬೇಕು?","നിങ്ങൾക്ക് ഏത് സമയത്താണ് ബസ് വേണ്ടത്?"],
+ choose:["— தேர்ந்தெடுக்கவும் —","— Select —","— चुनें —","— ఎంచుకోండి —","— ಆಯ್ಕೆಮಾಡಿ —","— തിരഞ്ഞെടുക്കുക —"],
+ saved:["✔ சேமிக்கப்பட்டது","✔ Saved","✔ सहेजा गया","✔ సేవ్ అయింది","✔ ಉಳಿಸಲಾಗಿದೆ","✔ സേവ് ചെയ്തു"],
+ fbTitle:["கருத்து","Feedback","फ़ीडबैक","అభిప్రాయం","ಪ್ರತಿಕ್ರಿಯೆ","അഭിപ്രായം"],
+ fbAppQ:["ஆப் பயன்பாடு தொடர்பான கேள்விகள்","Questions about the app","ऐप के उपयोग से जुड़े सवाल","యాప్ వినియోగంపై ప్రశ్నలు","ಆ್ಯಪ್ ಬಳಕೆ ಕುರಿತ ಪ್ರಶ್ನೆಗಳು","ആപ്പ് ഉപയോഗത്തെക്കുറിച്ചുള്ള ചോദ്യങ്ങൾ"],
+ fbEasy:["இந்த ஆப்பைப் பயன்படுத்துவது எளிதாக இருக்கிறதா?","Is this app easy to use?","क्या इस ऐप का उपयोग करना आसान है?","ఈ యాప్ ఉపయోగించడం సులభంగా ఉందా?","ಈ ಆ್ಯಪ್ ಬಳಸಲು ಸುಲಭವಾಗಿದೆಯೇ?","ഈ ആപ്പ് ഉപയോഗിക്കാൻ എളുപ്പമാണോ?"],
+ fbTimes:["பேருந்து நேரங்கள் சரியாக உள்ளனவா?","Are the bus timings correct?","क्या बस के समय सही हैं?","బస్సు సమయాలు సరిగ్గా ఉన్నాయా?","ಬಸ್ ಸಮಯಗಳು ಸರಿಯಾಗಿವೆಯೇ?","ബസ് സമയങ്ങൾ ശരിയാണോ?"],
+ fbChange:["நேர அட்டவணையில் மாற்றம் செய்ய வேண்டுமா?","Should the timetable be changed?","क्या समय-सारणी में बदलाव होना चाहिए?","సమయ పట్టికలో మార్పు చేయాలా?","ಸಮಯ ಪಟ್ಟಿಯಲ್ಲಿ ಬದಲಾವಣೆ ಮಾಡಬೇಕೇ?","സമയപ്പട്ടികയിൽ മാറ്റം വരുത്തണോ?"],
+ fbChangeTxt:["என்ன மாற்றம்? (எந்த பேருந்து, எந்த நேரம்)","What change? (which bus, which time)","क्या बदलाव? (कौन सी बस, कौन सा समय)","ఏ మార్పు? (ఏ బస్సు, ఏ సమయం)","ಯಾವ ಬದಲಾವಣೆ? (ಯಾವ ಬಸ್, ಯಾವ ಸಮಯ)","എന്ത് മാറ്റം? (ഏത് ബസ്, ഏത് സമയം)"],
+ fbFeat:["புதிய வசதிகள் ஏதேனும் வேண்டுமா?","Do you want any new features?","क्या आप कोई नई सुविधा चाहते हैं?","ఏమైనా కొత్త సౌకర్యాలు కావాలా?","ಯಾವುದಾದರೂ ಹೊಸ ಸೌಲಭ್ಯ ಬೇಕೇ?","പുതിയ സൗകര്യങ്ങൾ വല്ലതും വേണോ?"],
+ fbOther:["வேறு ஏதேனும் கருத்துகள் உள்ளனவா?","Any other comments?","कोई और टिप्पणी?","ఇంకేమైనా అభిప్రాయాలు ఉన్నాయా?","ಬೇರೆ ಯಾವುದಾದರೂ ಅಭಿಪ್ರಾಯಗಳಿವೆಯೇ?","മറ്റ് അഭിപ്രായങ്ങൾ ഉണ്ടോ?"],
+ yes:["ஆம்","Yes","हाँ","అవును","ಹೌದು","അതെ"],
+ no:["இல்லை","No","नहीं","కాదు","ಇಲ್ಲ","ഇല്ല"],
+ partly:["ஓரளவு","Somewhat","कुछ हद तक","కొంతవరకు","ಸ್ವಲ್ಪ ಮಟ್ಟಿಗೆ","ഒരു പരിധി വരെ"],
+ fbSend:["அனுப்பு","Send","भेजें","పంపు","ಕಳುಹಿಸಿ","അയയ്ക്കുക"],
+ fbThanks:["நன்றி! உங்கள் கருத்து அனுப்பப்பட்டது.","Thank you! Your feedback was sent.","धन्यवाद! आपकी प्रतिक्रिया भेज दी गई।","ధన్యవాదాలు! మీ అభిప్రాయం పంపబడింది.","ಧನ್ಯವಾದ! ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸಲಾಗಿದೆ.","നന്ദി! നിങ്ങളുടെ അഭിപ്രായം അയച്ചു."],
+ fbQueued:["இணையம் இல்லை. இணையம் வந்ததும் தானாக அனுப்பப்படும்.","No internet. It will be sent automatically when you are online.","इंटरनेट नहीं है। ऑनलाइन होते ही अपने आप भेजा जाएगा।","ఇంటర్నెట్ లేదు. ఆన్‌లైన్ వచ్చాక ఆటోమేటిక్‌గా పంపబడుతుంది.","ಇಂಟರ್ನೆಟ್ ಇಲ್ಲ. ಆನ್‌ಲೈನ್ ಬಂದಾಗ ತಾನಾಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.","ഇന്റർനെറ്റ് ഇല്ല. ഓൺലൈൻ ആകുമ്പോൾ സ്വയം അയയ്ക്കും."],
+ fbEmpty:["குறைந்தது ஒரு கேள்விக்காவது பதில் அளியுங்கள்.","Please answer at least one question.","कृपया कम से कम एक सवाल का जवाब दें।","దయచేసి కనీసం ఒక ప్రశ్నకు సమాధానం ఇవ్వండి.","ದಯವಿಟ್ಟು ಕನಿಷ್ಠ ಒಂದು ಪ್ರಶ್ನೆಗೆ ಉತ್ತರಿಸಿ.","ദയവായി ഒരു ചോദ്യത്തിനെങ്കിലും ഉത്തരം നൽകുക."],
+ fbPrivacy:["உங்கள் மொபைல் எண் அனுப்பப்படாது.","Your mobile number is not sent.","आपका मोबाइल नंबर नहीं भेजा जाता।","మీ మొబైల్ నంబర్ పంపబడదు.","ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ.","നിങ്ങളുടെ മൊബൈൽ നമ്പർ അയയ്ക്കില്ല."],
  best:["சிறந்தது","Best","सर्वश्रेष्ठ","ఉత్తమం","ಅತ್ಯುತ್ತಮ","മികച്ചത്"],
  tapStart:["தொடங்கு","Start","शुरू करें","ప్రారంభించు","ಪ್ರಾರಂಭಿಸಿ","തുടങ്ങുക"],
  gameOver:["ஆட்டம் முடிந்தது","Game over","खेल खत्म","ఆట ముగిసింది","ಆಟ ಮುಗಿಯಿತು","കളി കഴിഞ്ഞു"],
@@ -485,7 +553,7 @@ async function pull(){
     const [a, b] = await Promise.all([rfetch("stopTimes").then(r => r.json()), rfetch("meta").then(r => r.json())]);
     const next = fromRemote(a); meta = b || {};
     if (JSON.stringify(next) !== JSON.stringify(store)){ store = next; persist(); if (!editingTime()) render(); }
-    setSync(true);
+    setSync(true); flushFb(); flushUser();
   } catch(e) { setSync(false); }
 }
 const stamp = id => rfetch(`meta/${encodeURIComponent(id)}`, {method:"PUT", body:JSON.stringify(Date.now())});
@@ -738,7 +806,7 @@ function openSheet(mode, draft){
     <label for="pName">${tr("pName")}</label><input id="pName" maxlength="40" autocomplete="name" value="${esc(p.name || "")}">
     <label for="pMobile">${tr("pMobile")}</label><input id="pMobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="9XXXXXXXXX" value="${esc(p.mobile || "")}">
     <div class="err" id="pErr"></div>
-    <div class="hint">${tr("privacy")}</div>
+    <div class="hint">${tr("privacy")}</div>${gate ? `<div class="hint" style="margin-top:6px">${tr("gateNote")}</div>` : ""}
     <button class="go" id="pSave">${gate ? tr("gateGo") : tr("save")}</button>
     ${gate ? "" : `<button class="x" id="pClose">${tr("close")}</button>`}
   </div>`;
@@ -760,11 +828,12 @@ function applyLang(){
   document.querySelector('.chip[data-dir="out"]').textContent = pl(PLACE.ta[0]) + " ➔ " + pl(PLACE.ta[1]);
   document.querySelector('.chip[data-dir="back"]').textContent = pl(PLACE.ta[1]) + " ➔ " + pl(PLACE.ta[0]);
   $("empty").textContent = tr("empty");
-  $("ver").textContent = tr("version") + " v2026.10.17-ஒலி";
+  $("ver").textContent = tr("version") + " v2026.10.17-புள்ளி";
   $("profBtn").title = tr("profile"); $("profBtn").setAttribute("aria-label", tr("profile"));
   renderLangMenu(); updateAvatar();
   $("dTitle").textContent = tr("appTitle"); $("accLangT").textContent = "🌐 " + tr("lang");
-  $("accThemeT").textContent = "🌓 " + tr("themeTip"); $("dProf").textContent = "👤 " + tr("profile"); $("dGame").textContent = "🎮 " + tr("game");
+  $("accThemeT").textContent = "🌓 " + tr("themeTip"); $("dProf").textContent = "👤 " + tr("profile"); $("dGame").textContent = "🎮 " + tr("game"); $("dFb").textContent = "💬 " + tr("fbTitle");
+  if (!$("page").hidden) renderPage();
   applyTheme();
   setSync();
   tickDate(); renderCal(); renderTodayNote(); render();
@@ -786,18 +855,139 @@ document.addEventListener("click", e => {
   const lb = e.target.closest("[data-lang]");
   if (lb){ closeDrawer(); setLang(lb.dataset.lang); return; }
   if (e.target.closest("#dGame")){ closeDrawer(); openGame(); return; }
-  if (e.target.closest("#dProf")){ closeDrawer(); openSheet("profile"); return; }
-  if (e.target.closest("#profBtn")){ openSheet("profile"); return; }
+  if (e.target.closest("#dFb")){ closeDrawer(); openPage("feedback"); return; }
+  if (e.target.closest("#dProf")){ closeDrawer(); openPage("profile"); return; }
+  if (e.target.closest("#profBtn")){ openPage("profile"); return; }
   if (e.target.closest("#pClose")){ $("sheet").hidden = true; return; }
   if (e.target.closest("#pSave")){
     const mobile = $("pMobile").value.replace(/\D/g, ""), name = $("pName").value.trim();
     if (!validMobile(mobile)){ $("pErr").textContent = tr("badMobile"); return; }
     profile = {name, mobile}; try { localStorage.setItem(PKEY, JSON.stringify(profile)); } catch(e) {}
+    markUserDirty();
     $("sheet").hidden = true; updateAvatar();
   }
 });
 document.addEventListener("change", e => { if (e.target && e.target.id === "gLang") setLang(e.target.value); });
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeDrawer(); if (!$("page").hidden) closePage(); } });
+
+// ---- Profile & Feedback pages ----
+let pageKind = null, fb = {easy:"", times:"", change:"", changeTxt:"", feat:"", other:""}, fbDone = "";
+const FB_Q = "fbq:v1";
+function openPage(kind){ pageKind = kind; fbDone = ""; $("page").hidden = false; $("page").scrollTop = 0; renderPage(); }
+function closePage(){ $("page").hidden = true; pageKind = null; }
+function renderPage(){
+  if (pageKind === "feedback"){ $("pgTitle").textContent = "💬 " + tr("fbTitle"); renderFeedback(); }
+  else { $("pgTitle").textContent = tr("profile"); renderProfile(); }
+}
+function renderProfile(msg){
+  const p = profile || {}, parts = [p.name, p.mobile, p.gender, p.marital, p.age, p.from, p.to, p.time], pct = Math.round(parts.filter(Boolean).length * 100 / 8);
+  const C = 2 * Math.PI * 52, nm = (p.name || "").trim();
+  const mob = p.mobile ? "+91 " + p.mobile.slice(0, 2) + "••••" + p.mobile.slice(-4) : "";
+  const opts = v => `<option value="">${tr("choose")}</option>` + STOPS.map(n => `<option value="${n}"${v === n ? " selected" : ""}>${sname(n)}</option>`).join("");
+  $("pgBody").innerHTML = `
+    <div class="pavwrap"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#d5dfd7" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C * pct / 100} ${C}" transform="rotate(-90 60 60)"/></svg><div class="pav">${nm ? esc(Array.from(nm)[0].toUpperCase()) : "👤"}</div></div>
+    <div class="pcard">
+      <div class="pname">${nm ? esc(nm) : "—"}</div>
+      <div class="pmeta">${mob}</div>
+      ${p.from || p.to ? `<div class="proute">${p.from ? sname(p.from) : "…"} ➔ ${p.to ? sname(p.to) : "…"}</div>` : ""}
+      <div class="pchips"><span>${tr("pComplete")} ${pct}%</span>${p.time ? `<span>⏰ ${fmt(p.time)}</span>` : ""}</div>
+      ${p.gender || p.marital || p.age ? `<div class="pchips">${p.gender ? `<span>${{m:"🚹 " + tr("pMale"), f:"🚺 " + tr("pFemale"), o:"⚧ " + tr("pOther")}[p.gender]}</span>` : ""}${p.marital ? `<span>💍 ${tr(p.marital === "married" ? "pMarried" : "pSingle")}</span>` : ""}${p.age ? `<span>🎂 ${esc(p.age)}</span>` : ""}</div>` : ""}
+      <hr>
+      <label class="fl" for="pgName">${tr("pName")}</label><input id="pgName" type="text" maxlength="40" value="${esc(p.name || "")}">
+      <label class="fl" for="pgMobile" style="display:block;margin-top:12px">${tr("pMobile")}</label><input id="pgMobile" type="tel" inputmode="numeric" maxlength="10" value="${esc(p.mobile || "")}">
+      <div class="fq" style="margin-top:12px"><div class="fl">${tr("pGender")}</div><select id="pgGender"><option value="">${tr("pNoSay")}</option><option value="m"${p.gender === "m" ? " selected" : ""}>${tr("pMale")}</option><option value="f"${p.gender === "f" ? " selected" : ""}>${tr("pFemale")}</option><option value="o"${p.gender === "o" ? " selected" : ""}>${tr("pOther")}</option></select></div>
+      <div class="fq"><div class="fl">${tr("pMarital")}</div><select id="pgMarital"><option value="">${tr("pNoSay")}</option><option value="single"${p.marital === "single" ? " selected" : ""}>${tr("pSingle")}</option><option value="married"${p.marital === "married" ? " selected" : ""}>${tr("pMarried")}</option></select></div>
+      <div class="fq"><div class="fl">${tr("pAge")}</div><input id="pgAge" type="number" inputmode="numeric" min="5" max="100" value="${esc(p.age || "")}"></div>
+      <div class="hint">${tr("statsNote")}</div>
+      <div class="fsec" style="margin-top:20px">${tr("pTravel")}</div>
+      <div class="fq"><div class="fl">${tr("qFrom")}</div><select id="pgFrom">${opts(p.from)}</select></div>
+      <div class="fq"><div class="fl">${tr("qTo")}</div><select id="pgTo">${opts(p.to)}</select></div>
+      <div class="fq"><div class="fl">${tr("qTime")}</div><input id="pgTime" type="time" value="${esc(p.time || "")}"></div>
+      <div class="err" id="pgErr"></div>
+      <button class="go" id="pgSave">${tr("save")}</button>
+      <div class="ok">${msg || ""}</div>
+    </div>`;
+}
+function renderFeedback(){
+  const q = (k, label, o) => `<div class="fq"><div class="fl">${label}</div><div class="fopts">${o.map(v => `<button class="fopt" data-fq="${k}" data-v="${v}" aria-pressed="${fb[k] === v}">${tr(v)}</button>`).join("")}</div></div>`;
+  const ta = (k, label) => `<div class="fq"><div class="fl">${label}</div><textarea class="fta" data-ft="${k}" rows="3" maxlength="300">${esc(fb[k])}</textarea></div>`;
+  if (fbDone){
+    $("pgBody").innerHTML = `<div class="pcard" style="padding-top:22px"><div class="thanks">${fbDone}</div><button class="go" id="pgBack2">${tr("close")}</button></div>`; return;
+  }
+  $("pgBody").innerHTML = `<div class="pcard" style="padding-top:22px">
+    <div class="fsec">${tr("fbAppQ")}</div>
+    ${q("easy", tr("fbEasy"), ["yes", "partly", "no"])}
+    ${q("times", tr("fbTimes"), ["yes", "partly", "no"])}
+    ${q("change", tr("fbChange"), ["yes", "no"])}
+    ${fb.change === "yes" ? ta("changeTxt", tr("fbChangeTxt")) : ""}
+    ${ta("feat", tr("fbFeat"))}
+    ${ta("other", tr("fbOther"))}
+    <div class="hint">${tr("fbPrivacy")}</div>
+    <div class="err" id="fbErr"></div>
+    <button class="go" id="fbSend">${tr("fbSend")}</button>
+  </div>`;
+}
+function fbQueue(){ try { return JSON.parse(localStorage.getItem(FB_Q)) || []; } catch(e) { return []; } }
+function fbQueueSave(a){ try { localStorage.setItem(FB_Q, JSON.stringify(a)); } catch(e) {} }
+async function fbPost(item){
+  const r = await rfetch("feedback", {method:"POST", body:JSON.stringify(item)});
+  if (!r.ok) throw new Error("http " + r.status);
+}
+let fbFlushing = false;
+async function flushFb(){
+  if (fbFlushing || !REMOTE || !navigator.onLine) return;
+  fbFlushing = true;
+  try { let q = fbQueue(); while (q.length){ await fbPost(q[0]); q.shift(); fbQueueSave(q); } } catch(e) {}
+  fbFlushing = false;
+}
+async function sendFeedback(){
+  const item = {ts:Date.now(), lang, ver:"v2026.10.17-புள்ளி"};
+  for (const k in fb) if (fb[k] && !(k === "changeTxt" && fb.change !== "yes")) item[k] = fb[k].trim();
+  if (Object.keys(item).length <= 3){ $("fbErr").textContent = tr("fbEmpty"); return; }
+  let sent = false;
+  try { if (REMOTE && navigator.onLine){ await fbPost(item); sent = true; } } catch(e) {}
+  if (!sent){ const q = fbQueue(); q.push(item); fbQueueSave(q); }
+  fb = {easy:"", times:"", change:"", changeTxt:"", feat:"", other:""};
+  fbDone = sent ? tr("fbThanks") : "🙏 " + tr("fbQueued");
+  renderFeedback();
+}
+$("pgBack").addEventListener("click", closePage);
+$("pgBody").addEventListener("click", e => {
+  if (e.target.closest("#pgBack2")){ closePage(); return; }
+  const o = e.target.closest(".fopt");
+  if (o){ fb[o.dataset.fq] = fb[o.dataset.fq] === o.dataset.v ? "" : o.dataset.v; renderFeedback(); return; }
+  if (e.target.closest("#fbSend")){ sendFeedback(); return; }
+  if (e.target.closest("#pgSave")){
+    const mobile = $("pgMobile").value.replace(/\D/g, "");
+    if (!validMobile(mobile)){ $("pgErr").textContent = tr("badMobile"); return; }
+    const age = $("pgAge").value.trim();
+    if (age && !(+age >= 5 && +age <= 100)){ $("pgErr").textContent = tr("badAge"); return; }
+    profile = {...(profile || {}), name:$("pgName").value.trim(), mobile, gender:$("pgGender").value, marital:$("pgMarital").value, age:age ? String(Math.round(+age)) : "", from:$("pgFrom").value, to:$("pgTo").value, time:$("pgTime").value};
+    try { localStorage.setItem(PKEY, JSON.stringify(profile)); } catch(_) {}
+    updateAvatar(); markUserDirty(); renderProfile(tr("saved"));
+  }
+});
+$("pgBody").addEventListener("input", e => { const t = e.target.closest("[data-ft]"); if (t) fb[t.dataset.ft] = t.value; });
+// anonymous usage record (no name, no mobile number)
+const rid = () => { try { if (crypto && crypto.randomUUID) return crypto.randomUUID().replace(/-/g, ""); } catch(e) {} return Math.random().toString(36).slice(2) + Date.now().toString(36) + Math.random().toString(36).slice(2); };
+function lsGet(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : v; } catch(e) { return d; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e) {} }
+const INSTALL = (() => { let v = lsGet("install:v1", ""); if (!v){ v = rid(); lsSet("install:v1", v); lsSet("install:ts", String(Date.now())); } return v; })();
+const todayStr = () => new Date().toISOString().slice(0, 10);
+function markUserDirty(){ lsSet("user:dirty", "1"); flushUser(); }
+async function flushUser(){
+  if (!REMOTE || !navigator.onLine || !profile || !validMobile(profile.mobile)) return;
+  if (lsGet("user:dirty", "0") !== "1" && lsGet("user:day", "") === todayStr()) return;
+  const p = profile, r = {ts:+lsGet("install:ts", String(Date.now())), seen:Date.now(), lang, ver:"v2026.10.17-புள்ளி"};
+  if (p.gender) r.g = p.gender; if (p.marital) r.ms = p.marital; if (p.age) r.age = +p.age;
+  if (p.from) r.from = p.from; if (p.to) r.to = p.to; if (p.time) r.time = p.time;
+  try {
+    const res = await rfetch("users/" + INSTALL, {method:"PUT", body:JSON.stringify(r)});
+    if (res.ok){ lsSet("user:dirty", "0"); lsSet("user:day", todayStr()); }
+  } catch(e) {}
+}
+window.addEventListener("online", () => { flushFb(); flushUser(); });
+
 applyLang();
 setInterval(setSync, 10000);
 if (!profile || !validMobile(profile.mobile)) openSheet("gate");
