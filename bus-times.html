@@ -257,6 +257,43 @@ header{position:relative;z-index:70}
 .pcard .err{color:#d14b3b;font-size:.85rem;min-height:1.2em;margin-top:6px}
 .pcard .ok{color:var(--green);font-weight:600;min-height:1.2em;margin-top:8px;text-align:center}
 .thanks{text-align:center;padding:10px 0 4px;font-size:1.05rem;line-height:1.7}
+.runtag{color:var(--green);font-weight:700;font-size:.78rem;margin-right:4px}
+.nxt{background:var(--soft);border-radius:6px;padding:0 7px;font-size:.78rem;margin-right:4px}
+.tag.run2{background:#22c55e;color:#06210f}
+.passbtn{display:block;margin:8px 0 0}
+#notice{z-index:92}
+#next{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;margin:12px 0 4px}
+.ncard{background:var(--glass);border:1px solid var(--gbrd);border-radius:18px;padding:12px 14px;margin-bottom:12px;box-shadow:var(--gsh);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.ncard .nhead{font-weight:700;font-size:.98rem;color:var(--ink);margin-bottom:4px}
+button.nrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;color:inherit;font:inherit;padding:9px 0;cursor:pointer;border-radius:10px}
+button.nrow:active{background:var(--soft)}
+.ninfo{flex:1;min-width:0}
+.chev2{font-size:1.7rem;color:var(--muted);line-height:1}
+.nempty{color:var(--muted);padding:6px 0 4px}
+.nhint{text-align:center;color:var(--muted);font-size:.8rem;margin-bottom:10px}
+.daybar{display:flex;gap:8px;align-items:center;margin:0 0 10px}
+.dayl{flex:1;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--gbrd);background:var(--glass);border-radius:12px}
+.dayl input{flex:1;font:inherit;border:0;background:transparent;color:var(--ink);min-width:0}
+.daynote{font-size:.85rem;color:var(--muted);margin:-2px 0 10px}
+.tinfo,.num[data-trip]{cursor:pointer}
+.tstat{font-weight:700;color:var(--green);text-align:center;margin-top:10px}
+.tbig{font-size:1.6rem;font-weight:700;text-align:center;margin:4px 0 8px}
+.tprog{height:10px;background:var(--soft);border-radius:6px;overflow:hidden;margin:6px 0 10px}
+.tprog i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#22c55e)}
+.tnow{text-align:center;margin:4px 0;font-size:.95rem}
+.tline{list-style:none;margin:14px 0 0 8px;padding:0;border-left:3px solid var(--line)}
+.tline li{display:flex;align-items:center;gap:8px;padding:7px 0 7px 16px;position:relative}
+.tline li::before{content:"";position:absolute;left:-9px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.tline li.done{opacity:.55}
+.tline li.done::before{background:var(--green);border-color:var(--green)}
+.tline li.here{font-weight:700}
+.tline li.here::before{background:#22c55e;border-color:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.25)}
+.tline li.next::before{border-color:var(--amber)}
+.tn{flex:1}
+.tt{font-variant-numeric:tabular-nums;color:var(--muted)}
+.seenbox{background:var(--soft);border-radius:14px;padding:12px;margin-top:14px}
+.seenbox select{width:100%;margin:6px 0 8px}
+.seenbox .go{margin-top:0}
 </style>
 </head>
 <body>
@@ -305,9 +342,11 @@ header{position:relative;z-index:70}
     <button class="chip" data-dir="back" aria-pressed="false">திருச்செங்கோடு ➔ இறையமங்கலம்</button>
   </div>
 
+  <div class="daybar"><label class="dayl"><span aria-hidden="true">📅</span><input type="date" id="dayPick" aria-label="Date"></label><button class="chip" id="dayYest"></button><button class="chip" id="dayToday" hidden></button></div>
+  <div id="dayNote" class="daynote" hidden></div>
   <div id="next" aria-live="polite"></div>
   <div id="list"></div>
-  <div id="ver" class="ver">பதிப்பு: v2026.10.17-புள்ளி</div>
+  <div id="ver" class="ver">பதிப்பு: v2026.10.18-பதிவு</div>
   <div id="empty" hidden>பொருந்தும் பேருந்து இல்லை. வேறு சொல்லில் தேடுங்கள்.</div>
 </div>
 
@@ -319,6 +358,7 @@ header{position:relative;z-index:70}
   <button class="acc" id="accTheme" aria-expanded="false" aria-controls="themeList"><span id="accThemeT"></span><span class="accv" id="accThemeV"></span><span class="chev">▾</span></button>
   <div class="accbody" id="themeList" role="menu"></div>
   <div class="dsec"></div>
+  <button class="lm" id="dHist"></button>
   <button class="lm" id="dFb"></button>
   <button class="lm" id="dGame"></button>
   <button class="lm" id="dProf"></button>
@@ -332,13 +372,41 @@ header{position:relative;z-index:70}
   <div class="phead"><button id="pgBack" class="ib" aria-label="Back"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button><h2 id="pgTitle"></h2></div>
   <div class="pbody" id="pgBody"></div>
 </div>
+<div id="notice" class="sheet" hidden></div>
 <div id="sheet" class="sheet" hidden></div>
 <script>
+// Storage: inside the Android app everything is kept in the app's own storage, so page updates never wipe it.
+const localStorage = (() => {
+  let real = null; try { real = window.localStorage; real.getItem("x"); } catch(e) { real = null; }
+  const B = window.AndroidBridge;
+  if (!(B && B.loadAll && B.saveAll)){
+    if (real) return real;
+    const m = {};
+    return { getItem:k => k in m ? m[k] : null, setItem:(k, v) => { m[k] = String(v); }, removeItem:k => { delete m[k]; }, clear:() => { for (const k in m) delete m[k]; }, key:i => Object.keys(m)[i] ?? null, get length(){ return Object.keys(m).length; } };
+  }
+  let data = {}; try { data = JSON.parse(B.loadAll() || "{}"); } catch(e) {}
+  try { if (real) for (let i = 0; i < real.length; i++){ const k = real.key(i); if (!(k in data)) data[k] = real.getItem(k); } } catch(e) {}
+  let t = 0;
+  const flush = () => { clearTimeout(t); try { B.saveAll(JSON.stringify(data)); } catch(e) {} };
+  const sched = () => { clearTimeout(t); t = setTimeout(flush, 250); };
+  window.addEventListener("pagehide", flush); document.addEventListener("visibilitychange", () => { if (document.hidden) flush(); });
+  if (Object.keys(data).length) sched();
+  return {
+    getItem:k => k in data ? data[k] : null,
+    setItem:(k, v) => { data[k] = String(v); sched(); },
+    removeItem:k => { delete data[k]; sched(); },
+    clear:() => { data = {}; sched(); },
+    key:i => Object.keys(data)[i] ?? null,
+    get length(){ return Object.keys(data).length; }
+  };
+})();
 
 // ---- Languages ----
 const LANGS = [["ta","தமிழ்"],["en","English"],["hi","हिन्दी"],["te","తెలుగు"],["kn","ಕನ್ನಡ"],["ml","മലയാളം"]];
 const LI = {ta:0, en:1, hi:2, te:3, kn:4, ml:5};
 let lang = "ta"; try { const s = localStorage.getItem("lang:v1"); if (s && LI[s] !== undefined) lang = s; } catch(e) {}
+const PKEY = "profile:v1";
+let profile = null; try { profile = JSON.parse(localStorage.getItem(PKEY)); } catch(e) {}
 // order: ta, en, hi, te, kn, ml
 const K = {
  appTitle:["பேருந்து நேரங்கள்","Bus Timings","बस समय","బస్సు సమయాలు","ಬಸ್ ಸಮಯಗಳು","ബസ് സമയങ്ങൾ"],
@@ -412,6 +480,34 @@ const K = {
  badAge:["வயது 5 முதல் 100 வரை இருக்க வேண்டும்.","Age must be between 5 and 100.","उम्र 5 से 100 के बीच होनी चाहिए।","వయస్సు 5 నుండి 100 మధ్య ఉండాలి.","ವಯಸ್ಸು 5 ರಿಂದ 100 ರ ನಡುವೆ ಇರಬೇಕು.","പ്രായം 5 മുതൽ 100 വരെ ആയിരിക്കണം."],
  statsNote:["இந்த விவரங்கள் உங்கள் பெயர், மொபைல் எண் இல்லாமல், ஆப் பயன்பாட்டுப் புள்ளிவிவரத்துக்காக மட்டும் அநாமதேயமாக அனுப்பப்படும்.","These details are sent anonymously, without your name or mobile number, only for app usage statistics.","ये जानकारी आपके नाम और मोबाइल नंबर के बिना, केवल ऐप उपयोग के आँकड़ों के लिए गुमनाम रूप से भेजी जाती है।","ఈ వివరాలు మీ పేరు, మొబైల్ నంబర్ లేకుండా, యాప్ వినియోగ గణాంకాల కోసం మాత్రమే అజ్ఞాతంగా పంపబడతాయి.","ಈ ವಿವರಗಳನ್ನು ನಿಮ್ಮ ಹೆಸರು, ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಇಲ್ಲದೆ, ಆ್ಯಪ್ ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳಿಗಾಗಿ ಮಾತ್ರ ಅನಾಮಧೇಯವಾಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.","ഈ വിവരങ്ങൾ നിങ്ങളുടെ പേരോ മൊബൈൽ നമ്പറോ ഇല്ലാതെ, ആപ്പ് ഉപയോഗ കണക്കുകൾക്കായി മാത്രം അജ്ഞാതമായി അയയ്ക്കുന്നു."],
  gateNote:["ஆப்பை எத்தனை பேர் பயன்படுத்துகிறார்கள் என்று அறிய ஒரு அநாமதேய எண்ணிக்கை அனுப்பப்படும். உங்கள் எண் அனுப்பப்படாது.","An anonymous count is sent to know how many people use the app. Your number is not sent.","ऐप कितने लोग उपयोग करते हैं यह जानने के लिए एक गुमनाम गिनती भेजी जाती है। आपका नंबर नहीं भेजा जाता।","యాప్‌ను ఎంతమంది వాడుతున్నారో తెలుసుకోవడానికి ఒక అజ్ఞాత లెక్క పంపబడుతుంది. మీ నంబర్ పంపబడదు.","ಆ್ಯಪ್ ಅನ್ನು ಎಷ್ಟು ಜನ ಬಳಸುತ್ತಾರೆಂದು ತಿಳಿಯಲು ಅನಾಮಧೇಯ ಲೆಕ್ಕ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ನಿಮ್ಮ ಸಂಖ್ಯೆ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ.","ആപ്പ് എത്ര പേർ ഉപയോഗിക്കുന്നു എന്നറിയാൻ ഒരു അജ്ഞാത എണ്ണം അയയ്ക്കുന്നു. നിങ്ങളുടെ നമ്പർ അയയ്ക്കില്ല."],
+ nextHead:["ஓடும் & அடுத்த பேருந்துகள்","Running &amp; next buses","चल रही और अगली बसें","నడుస్తున్న &amp; తదుపరి బస్సులు","ಓಡುತ್ತಿರುವ &amp; ಮುಂದಿನ ಬಸ್‌ಗಳು","ഓടുന്നതും അടുത്തതുമായ ബസുകൾ"],
+ running:["இப்போது ஓடுகிறது","Running now","अभी चल रही है","ఇప్పుడు నడుస్తోంది","ಈಗ ಓಡುತ್ತಿದೆ","ഇപ്പോൾ ഓടുന്നു"],
+ nearStop:["≈ {s} அருகில்","≈ near {s}","≈ {s} के पास","≈ {s} దగ్గర","≈ {s} ಬಳಿ","≈ {s} സമീപം"],
+ nextStopAt:["அடுத்த நிறுத்தம்: {s} ≈ {t}","Next stop: {s} ≈ {t}","अगला स्टॉप: {s} ≈ {t}","తదుపరి స్టాప్: {s} ≈ {t}","ಮುಂದಿನ ನಿಲ್ದಾಣ: {s} ≈ {t}","അടുത്ത സ്റ്റോപ്പ്: {s} ≈ {t}"],
+ myStopEta:["உங்கள் நிறுத்தம் {s}: ≈ {t}","Your stop {s}: ≈ {t}","आपका स्टॉप {s}: ≈ {t}","మీ స్టాప్ {s}: ≈ {t}","ನಿಮ್ಮ ನಿಲ್ದಾಣ {s}: ≈ {t}","നിങ്ങളുടെ സ്റ്റോപ്പ് {s}: ≈ {t}"],
+ passedBtn:["கடந்த {n} நிறுத்தங்கள்","{n} stops already passed","{n} स्टॉप गुज़र चुके","{n} స్టాప్‌లు దాటాయి","{n} ನಿಲ್ದಾಣಗಳು ದಾಟಿವೆ","{n} സ്റ്റോപ്പുകൾ കടന്നു"],
+ tripDone:["இந்தப் பயணம் முடிந்தது.","This trip has finished.","यह फेरा पूरा हो गया।","ఈ ట్రిప్ ముగిసింది.","ಈ ಟ್ರಿಪ್ ಮುಗಿದಿದೆ.","ഈ ട്രിപ്പ് കഴിഞ്ഞു."],
+ noticeTitle:["⚠️ முக்கிய அறிவிப்பு","⚠️ Important notice","⚠️ महत्वपूर्ण सूचना","⚠️ ముఖ్య గమనిక","⚠️ ಪ್ರಮುಖ ಸೂಚನೆ","⚠️ പ്രധാന അറിയിപ്പ്"],
+ noticeTimes:["இங்குள்ள நேரங்கள் முழுமையான, உறுதியான நேரங்கள் அல்ல. சில நேரங்களில் பேருந்து நேரங்கள் மாறலாம். அதே சமயம், இந்த நேரத்தில் பேருந்து வராது என்றும் உறுதியாகச் சொல்ல முடியாது.","The times shown here are not exact or guaranteed. Bus times can change at times. At the same time, we cannot say the bus will not come at these times.","यहाँ दिए गए समय पूरी तरह सटीक या पक्के नहीं हैं। कभी-कभी बस के समय बदल सकते हैं। साथ ही, यह भी नहीं कह सकते कि इन समयों पर बस नहीं आएगी।","ఇక్కడ ఇచ్చిన సమయాలు పూర్తిగా కచ్చితమైనవి కావు. కొన్నిసార్లు బస్సు సమయాలు మారవచ్చు. అలాగే ఈ సమయాల్లో బస్సు రాదని కూడా చెప్పలేము.","ಇಲ್ಲಿ ನೀಡಿರುವ ಸಮಯಗಳು ಪೂರ್ಣ ನಿಖರವಲ್ಲ. ಕೆಲವೊಮ್ಮೆ ಬಸ್ ಸಮಯಗಳು ಬದಲಾಗಬಹುದು. ಹಾಗೆಯೇ ಈ ಸಮಯಕ್ಕೆ ಬಸ್ ಬರುವುದಿಲ್ಲ ಎಂದೂ ಹೇಳಲಾಗದು.","ഇവിടെ നൽകിയിരിക്കുന്ന സമയങ്ങൾ പൂർണ്ണമായും കൃത്യമല്ല. ചിലപ്പോൾ ബസ് സമയങ്ങൾ മാറാം. അതേസമയം ഈ സമയത്ത് ബസ് വരില്ലെന്നും പറയാനാവില്ല."],
+ noticeEarly:["எனவே குறிப்பிட்ட நேரத்தை மட்டும் நம்பாமல், கொடுக்கப்பட்ட நேரத்துக்கு 10 நிமிடம் முன்பாகவே நிறுத்தத்துக்குச் செல்லுங்கள்.","So please do not rely only on the exact time. Reach the stop 10 minutes before the time shown.","इसलिए केवल दिए गए समय पर भरोसा न करें। दिखाए गए समय से 10 मिनट पहले ही स्टॉप पर पहुँचें।","కాబట్టి ఇచ్చిన సమయాన్ని మాత్రమే నమ్మకండి. చూపిన సమయానికి 10 నిమిషాల ముందే స్టాప్‌కు చేరుకోండి.","ಆದ್ದರಿಂದ ನೀಡಿದ ಸಮಯವನ್ನು ಮಾತ್ರ ನಂಬಬೇಡಿ. ತೋರಿಸಿದ ಸಮಯಕ್ಕಿಂತ 10 ನಿಮಿಷ ಮುಂಚೆಯೇ ನಿಲ್ದಾಣ ತಲುಪಿ.","അതിനാൽ നൽകിയ സമയത്തെ മാത്രം വിശ്വസിക്കരുത്. കാണിച്ച സമയത്തിന് 10 മിനിറ്റ് മുൻപേ സ്റ്റോപ്പിൽ എത്തുക."],
+ noticePrivacy:["உங்கள் பெயரும் மொபைல் எண்ணும் உங்கள் போனில் மட்டுமே சேமிக்கப்படும்; எங்கள் சர்வருக்கு அனுப்பப்படாது. தயங்காமல் உள்ளிடலாம். வயது, பாலினம், திருமண நிலை, பயண ஊர்கள் ஆகியவை பெயர், எண் இல்லாமல் அநாமதேயப் புள்ளிவிவரத்துக்காக மட்டும் அனுப்பப்படும்.","Your name and mobile number are saved only on your phone and are never sent to our server, so feel free to enter them. Age, gender, marital status and travel towns are sent anonymously (without name or number) for usage statistics only.","आपका नाम और मोबाइल नंबर केवल आपके फ़ोन में सहेजे जाते हैं और हमारे सर्वर पर नहीं भेजे जाते, इसलिए बेझिझक दर्ज करें। उम्र, लिंग, वैवाहिक स्थिति और यात्रा के शहर बिना नाम/नंबर के, केवल उपयोग के आँकड़ों के लिए गुमनाम रूप से भेजे जाते हैं।","మీ పేరు, మొబైల్ నంబర్ మీ ఫోన్‌లో మాత్రమే సేవ్ అవుతాయి, మా సర్వర్‌కు పంపబడవు, కాబట్టి నిస్సంకోచంగా నమోదు చేయండి. వయస్సు, లింగం, వైవాహిక స్థితి, ప్రయాణ ఊర్లు పేరు/నంబర్ లేకుండా, వినియోగ గణాంకాల కోసం మాత్రమే అజ్ఞాతంగా పంపబడతాయి.","ನಿಮ್ಮ ಹೆಸರು, ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ಮಾತ್ರ ಉಳಿಯುತ್ತದೆ, ನಮ್ಮ ಸರ್ವರ್‌ಗೆ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಹಿಂಜರಿಯದೆ ನಮೂದಿಸಿ. ವಯಸ್ಸು, ಲಿಂಗ, ವೈವಾಹಿಕ ಸ್ಥಿತಿ, ಪ್ರಯಾಣ ಊರುಗಳನ್ನು ಹೆಸರು/ಸಂಖ್ಯೆ ಇಲ್ಲದೆ, ಬಳಕೆಯ ಅಂಕಿಅಂಶಕ್ಕಾಗಿ ಮಾತ್ರ ಅನಾಮಧೇಯವಾಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.","നിങ്ങളുടെ പേരും മൊബൈൽ നമ്പറും നിങ്ങളുടെ ഫോണിൽ മാത്രം സേവ് ചെയ്യും, ഞങ്ങളുടെ സെർവറിലേക്ക് അയയ്ക്കില്ല, അതിനാൽ മടിക്കാതെ നൽകാം. പ്രായം, ലിംഗം, വൈവാഹിക നില, യാത്രാ സ്ഥലങ്ങൾ എന്നിവ പേരോ നമ്പറോ ഇല്ലാതെ, ഉപയോഗ കണക്കുകൾക്കായി മാത്രം അജ്ഞാതമായി അയയ്ക്കും."],
+ noticeOk:["சரி, புரிந்தது","OK, understood","ठीक है, समझ गया","సరే, అర్థమైంది","ಸರಿ, ಅರ್ಥವಾಯಿತು","ശരി, മനസ്സിലായി"],
+ runCard:["இப்போது ஓடும் பேருந்துகள்","Buses running now","अभी चल रही बसें","ఇప్పుడు నడుస్తున్న బస్సులు","ಈಗ ಓಡುತ್ತಿರುವ ಬಸ್‌ಗಳು","ഇപ്പോൾ ഓടുന്ന ബസുകൾ"],
+ nextCard:["அடுத்து வரும் பேருந்துகள்","Next buses","अगली बसें","తదుపరి బస్సులు","ಮುಂದಿನ ಬಸ್‌ಗಳು","അടുത്ത ബസുകൾ"],
+ noRunning:["இப்போது ஓடும் பேருந்து இல்லை","No bus is running right now","अभी कोई बस नहीं चल रही","ఇప్పుడు నడుస్తున్న బస్సు లేదు","ಈಗ ಓಡುತ್ತಿರುವ ಬಸ್ ಇಲ್ಲ","ഇപ്പോൾ ഓടുന്ന ബസ് ഇല്ല"],
+ tapHint:["பேருந்தைத் தொட்டால் முழு விவரம் தெரியும்","Tap a bus to see full details","पूरी जानकारी के लिए बस पर टैप करें","పూర్తి వివరాల కోసం బస్సును నొక్కండి","ಪೂರ್ಣ ವಿವರಕ್ಕಾಗಿ ಬಸ್ ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ","പൂർണ്ണ വിവരങ്ങൾക്ക് ബസിൽ ടാപ്പ് ചെയ്യുക"],
+ later:["இனி வரும் பயணம்","Upcoming trip","आने वाला फेरा","రాబోయే ట్రిప్","ಬರಲಿರುವ ಟ್ರಿಪ್","വരാനിരിക്കുന്ന ട്രിപ്പ്"],
+ approx:["≈ என்பது தோராய நேரம். 10 நிமிடம் முன்பாகவே நிறுத்தத்துக்குச் செல்லுங்கள்.","≈ means an estimated time. Be at the stop 10 minutes early.","≈ का मतलब अनुमानित समय है। 10 मिनट पहले स्टॉप पर पहुँचें।","≈ అంటే అంచనా సమయం. 10 నిమిషాల ముందే స్టాప్‌కు చేరుకోండి.","≈ ಎಂದರೆ ಅಂದಾಜು ಸಮಯ. 10 ನಿಮಿಷ ಮುಂಚೆಯೇ ನಿಲ್ದಾಣ ತಲುಪಿ.","≈ എന്നാൽ ഏകദേശ സമയം. 10 മിനിറ്റ് മുൻപേ സ്റ്റോപ്പിൽ എത്തുക."],
+ dayToday:["இன்று","Today","आज","ఈరోజు","ಇಂದು","ഇന്ന്"],
+ dayPastNote:["📅 {d} அன்றைய நேரங்கள்","📅 Timings for {d}","📅 {d} के समय","📅 {d} నాటి సమయాలు","📅 {d} ರ ಸಮಯಗಳು","📅 {d} ലെ സമയങ്ങൾ"],
+ dayFutureNote:["📅 {d} – வரவிருக்கும் நாளின் அட்டவணை","📅 {d} – timetable for an upcoming day","📅 {d} – आने वाले दिन की समय-सारणी","📅 {d} – రాబోయే రోజు సమయ పట్టిక","📅 {d} – ಮುಂಬರುವ ದಿನದ ಸಮಯ ಪಟ್ಟಿ","📅 {d} – വരാനിരിക്കുന്ന ദിവസത്തെ സമയപ്പട്ടിക"],
+ noHist:["இந்த நாளுக்குப் பதிவு இல்லை; வழக்கமான அட்டவணை.","No record for this day; usual timetable shown.","इस दिन का कोई रिकॉर्ड नहीं; सामान्य समय-सारणी दिखाई गई है।","ఈ రోజుకు రికార్డు లేదు; సాధారణ సమయ పట్టిక చూపబడింది.","ಈ ದಿನಕ್ಕೆ ದಾಖಲೆ ಇಲ್ಲ; ಸಾಮಾನ್ಯ ಸಮಯ ಪಟ್ಟಿ ತೋರಿಸಲಾಗಿದೆ.","ഈ ദിവസത്തെ രേഖയില്ല; സാധാരണ സമയപ്പട്ടിക കാണിക്കുന്നു."],
+ histMenu:["பழைய நேரங்கள் (தேதி தேடல்)","Past timings (date search)","पुराने समय (तारीख खोज)","పాత సమయాలు (తేదీ శోధన)","ಹಳೆಯ ಸಮಯಗಳು (ದಿನಾಂಕ ಹುಡುಕಾಟ)","പഴയ സമയങ്ങൾ (തീയതി തിരയൽ)"],
+ dayYesterday:["நேற்று","Yesterday","बीता कल","నిన్న","ನಿನ್ನೆ","ഇന്നലെ"],
+ seenQ:["பேருந்து எந்த நிறுத்தத்தில் உள்ளது?","At which stop is the bus?","बस किस स्टॉप पर है?","బస్సు ఏ స్టాప్‌లో ఉంది?","ಬಸ್ ಯಾವ ನಿಲ್ದಾಣದಲ್ಲಿದೆ?","ബസ് ഏത് സ്റ്റോപ്പിലാണ്?"],
+ seenBtn:["✅ இங்கே பேருந்து இப்போது வந்தது","✅ The bus is here now","✅ बस अभी यहाँ है","✅ బస్సు ఇప్పుడు ఇక్కడ ఉంది","✅ ಬಸ್ ಈಗ ಇಲ್ಲಿದೆ","✅ ബസ് ഇപ്പോൾ ഇവിടെയുണ്ട്"],
+ seenThanks:["✔ நன்றி! {t} மணிக்குப் பதிவு செய்யப்பட்டது.","✔ Thanks! Recorded at {t}.","✔ धन्यवाद! {t} पर दर्ज किया गया।","✔ ధన్యవాదాలు! {t} కి నమోదైంది.","✔ ಧನ್ಯವಾದ! {t} ಕ್ಕೆ ದಾಖಲಾಗಿದೆ.","✔ നന്ദി! {t} ന് രേഖപ്പെടുത്തി."],
+ seenNote:["உண்மையில் வந்த நேரம் அந்த நாளின் வரலாற்றில் சேமிக்கப்படும்; எல்லோருக்கும் தெரியும்.","The real time is saved in that day's history and visible to everyone.","असली समय उस दिन के इतिहास में सहेजा जाता है और सबको दिखता है।","నిజమైన సమయం ఆ రోజు చరిత్రలో సేవ్ అయి అందరికీ కనిపిస్తుంది.","ನಿಜವಾದ ಸಮಯ ಆ ದಿನದ ಇತಿಹಾಸದಲ್ಲಿ ಉಳಿದು ಎಲ್ಲರಿಗೂ ಕಾಣುತ್ತದೆ.","യഥാർത്ഥ സമയം ആ ദിവസത്തെ ചരിത്രത്തിൽ സേവ് ആകും, എല്ലാവർക്കും കാണാം."],
  pComplete:["பூர்த்தி","Complete","पूर्ण","పూర్తి","ಪೂರ್ಣ","പൂർത്തി"],
  pTravel:["பயண விவரங்கள்","Travel details","यात्रा विवरण","ప్రయాణ వివరాలు","ಪ್ರಯಾಣ ವಿವರಗಳು","യാത്രാ വിവരങ്ങൾ"],
  qFrom:["நீங்கள் எந்த ஊரிலிருந்து பயணம் செய்கிறீர்கள்?","Which town do you travel from?","आप किस गाँव/शहर से यात्रा करते हैं?","మీరు ఏ ఊరి నుండి ప్రయాణిస్తారు?","ನೀವು ಯಾವ ಊರಿನಿಂದ ಪ್ರಯಾಣಿಸುತ್ತೀರಿ?","നിങ്ങൾ ഏത് സ്ഥലത്തു നിന്നാണ് യാത്ര ചെയ്യുന്നത്?"],
@@ -553,14 +649,16 @@ async function pull(){
     const [a, b] = await Promise.all([rfetch("stopTimes").then(r => r.json()), rfetch("meta").then(r => r.json())]);
     const next = fromRemote(a); meta = b || {};
     if (JSON.stringify(next) !== JSON.stringify(store)){ store = next; persist(); if (!editingTime()) render(); }
-    setSync(true); flushFb(); flushUser();
+    setSync(true); flushFb(); flushUser(); refreshToday();
   } catch(e) { setSync(false); }
 }
 const stamp = id => rfetch(`meta/${encodeURIComponent(id)}`, {method:"PUT", body:JSON.stringify(Date.now())});
 function pushStop(id, i, v){
   if (!REMOTE) return;
   rfetch(`stopTimes/${encodeURIComponent(id)}/s${i}`, {method:"PUT", body:JSON.stringify(v)}).then(() => stamp(id)).then(() => setSync(true)).catch(() => setSync(false));
+  rfetch(`stopHist/${isoOf(new Date())}/${encodeURIComponent(id)}/s${i}`, {method:"PUT", body:JSON.stringify(v)}).catch(() => {});
 }
+function pushHist(id, i, v){ if (REMOTE) rfetch(`stopHist/${isoOf(new Date())}/${encodeURIComponent(id)}/s${i}`, {method:"PUT", body:JSON.stringify(v)}).catch(() => {}); }
 function pushClear(id){
   if (!REMOTE) return;
   rfetch(`stopTimes/${encodeURIComponent(id)}`, {method:"DELETE"}).then(() => stamp(id)).then(() => setSync(true)).catch(() => setSync(false));
@@ -576,11 +674,27 @@ function listen(){
 const gm = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Tamil Nadu");
 const gdir = (a, b) => "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(a + ", Tamil Nadu") + "&destination=" + encodeURIComponent(b + ", Tamil Nadu") + "&travelmode=driving";
 const ea = u => u.replace(/&/g, "&amp;");
-const openSet = new Set();
+const openSet = new Set(), pastOpen = new Set();
+const m2t = m => String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0");
+const OBS = b => viewIsToday() ? (histFor(isoOf(new Date()))[busId(b)] || {}) : {};   // real times reported today
+function stopMins(b){                       // estimated minute-of-day at every stop (uses the times filled in, else spreads evenly)
+  const n = STOPS.length, known = []; let last = -1;
+  for (let i = 0; i < n; i++){ const t = OBS(b)[i] || stopTime(b, i); if (!t) continue; const m = mins(t); if (m >= last){ known.push([i, m]); last = m; } }
+  if (!known.length || known[0][0] !== 0) known.unshift([0, mins(b.dep)]);
+  if (known[known.length - 1][0] !== n - 1) known.push([n - 1, Math.max(mins(b.arr), known[known.length - 1][1])]);
+  const out = []; let k = 0;
+  for (let i = 0; i < n; i++){
+    while (k < known.length - 2 && i > known[k + 1][0]) k++;
+    const [i0, m0] = known[k], [i1, m1] = known[k + 1];
+    out.push(Math.round(m0 + (m1 - m0) * (i - i0) / Math.max(1, i1 - i0)));
+  }
+  return out;
+}
+const tripState = (b, cur) => cur < mins(b.dep) ? "future" : cur < mins(b.arr) ? "running" : "done";
 const busId = b => `${b.no}-${b.dir}-${b.dep}`;
 const stopList = b => b.dir === "out" ? STOPS : [...STOPS].reverse();
 function stopTime(b, i){
-  const s = store[busId(b)];
+  const src = viewIsToday() ? store : histFor(viewDate), s = src && src[busId(b)];
   if (s && s[i] !== undefined) return s[i];
   if (i === 0) return b.dep;
   if (i === STOPS.length-1) return b.arr;
@@ -593,29 +707,51 @@ const mins = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
 const fmt = t => { let [h,m] = t.split(":").map(Number); const ap = h<12?"AM":"PM"; h = h%12||12; return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")} ${ap}`; };
 const human = d => { const h = Math.floor(d/60), m = d%60; return h ? `${h} ${tr("hr")} ${m} ${tr("min")}` : `${m} ${tr("min")}`; };
 
+const isoOf = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+let viewDate = isoOf(new Date());
+const viewIsToday = () => viewDate === isoOf(new Date());
+const curFor = real => viewIsToday() ? real : (viewDate < isoOf(new Date()) ? 99999 : -1);
+let HL = {}; try { HL = JSON.parse(localStorage.getItem("hist:v1")) || {}; } catch(e) {}      // times people entered, by date (this phone)
+const HR = {};                                                                                 // same, fetched from the shared database
+function histFor(d){ const out = {}; for (const src of [HR[d], HL[d]]) for (const id in (src || {})) out[id] = Object.assign(out[id] || {}, src[id]); return out; }
+function recordHist(id, i, v){
+  const d = isoOf(new Date()); HL[d] = HL[d] || {}; HL[d][id] = HL[d][id] || {}; HL[d][id][i] = v;
+  const keep = Object.keys(HL).sort().slice(-90); for (const k in HL) if (!keep.includes(k)) delete HL[k];
+  try { localStorage.setItem("hist:v1", JSON.stringify(HL)); } catch(e) {}
+}
 let dir = "all";
 const $ = id => document.getElementById(id);
 
 let animateNext = true;
 function render(){
   const anim = animateNext; animateNext = false;
-  const now = new Date(), cur = now.getHours()*60 + now.getMinutes();
+  const now = new Date(), realCur = now.getHours()*60 + now.getMinutes(), cur = curFor(realCur);
   $("clock").textContent = now.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
 
   // next upcoming bus across all buses
   const sorted = [...BUSES].sort((a,b)=>mins(a.dep)-mins(b.dep));
-  // next bus for EACH bus number (11A and 11B)
-  const nums = [...new Set(BUSES.map(b => b.no))], nextBy = {};
-  const nextRows = nums.map(no => {
-    const mine = sorted.filter(b => b.no === no), up = mine.find(b => mins(b.dep) >= cur);
-    if (up){
-      nextBy[no] = up;
-      return `<div class="nrow"><span class="nbadge">${no}</span><div><div class="nroute">${pl(up.from)} ➔ ${pl(up.to)}</div><div class="nmeta"><b>${fmt(up.dep)}</b> · ${tr("inT",{t:human(mins(up.dep)-cur)})}</div></div></div>`;
-    }
-    const f = mine[0];
-    return `<div class="nrow"><span class="nbadge">${no}</span><div><div class="nroute">${tr("ended")}</div><div class="nmeta">${tr("tomFirst")} <b>${fmt(f.dep)}</b> (${pl(f.from)} ➔ ${pl(f.to)})</div></div></div>`;
-  }).join("");
-  $("next").innerHTML = `<div class="nhead">${tr("nextBus")}</div>` + nextRows;
+  // day bar (look up any date)
+  $("dayPick").value = viewDate; $("dayToday").textContent = tr("dayToday"); $("dayYest").textContent = tr("dayYesterday"); $("dayToday").hidden = viewIsToday();
+  const today = viewIsToday(), dn = $("dayNote");
+  if (today) dn.hidden = true;
+  else { const [yy, mm, dd] = viewDate.split("-").map(Number); dn.hidden = false; dn.textContent = tr(viewDate < isoOf(new Date()) ? "dayPastNote" : "dayFutureNote", {d:longDate(new Date(yy, mm - 1, dd))}) + (viewDate < isoOf(new Date()) && !Object.keys(histFor(viewDate)).length ? " · " + tr("noHist") : ""); }
+
+  // two separate cards: buses running now, and below them the next buses (today only)
+  const nextBy = {};
+  if (!today) $("next").innerHTML = "";
+  else {
+    const row = (b, meta) => `<button class="nrow" data-trip="${busId(b)}"><span class="nbadge">${b.no}</span><div class="ninfo"><div class="nroute">${pl(b.from)} ➔ ${pl(b.to)}</div><div class="nmeta">${meta}</div></div><span class="chev2">›</span></button>`;
+    const runRows = sorted.filter(b => tripState(b, cur) === "running").map(r => {
+      const sm = stopMins(r), list = stopList(r); let li = 0;
+      for (let i = 0; i < sm.length; i++) if (sm[i] <= cur) li = i;
+      return row(r, tr("nearStop", {s:sname(list[li])}));
+    }).join("");
+    const ups = [...new Set(BUSES.map(b => b.no))].map(no => ({no, up:sorted.find(b => b.no === no && mins(b.dep) > cur)}));
+    ups.forEach(u => { if (u.up) nextBy[u.no] = u.up; });
+    const nextRows = ups.filter(u => u.up).sort((x, y) => mins(x.up.dep) - mins(y.up.dep)).map(u => row(u.up, `<b>${fmt(u.up.dep)}</b> · ${tr("inT", {t:human(mins(u.up.dep) - cur)})}`)).join("")
+      + ups.filter(u => !u.up).map(u => { const f = sorted.find(b => b.no === u.no); return `<div class="nrow"><span class="nbadge">${u.no}</span><div class="ninfo"><div class="nroute">${tr("ended")}</div><div class="nmeta">${tr("tomFirst")} <b>${fmt(f.dep)}</b></div></div></div>`; }).join("");
+    $("next").innerHTML = `<div class="ncard"><div class="nhead">🟢 ${tr("runCard")}</div>${runRows || `<div class="nempty">${tr("noRunning")}</div>`}</div><div class="ncard"><div class="nhead">⏭ ${tr("nextCard")}</div>${nextRows}</div><div class="nhint">${tr("tapHint")}</div>`;
+  }
 
   const q = $("q").value.trim().toLowerCase();
   const rows = sorted.filter(b => {
@@ -625,21 +761,23 @@ function render(){
   });
 
   $("list").innerHTML = rows.map((b, ix) => {
-    const past = mins(b.dep) < cur;
+    const st = tripState(b, cur), past = st === "done";
     const isNext = nextBy[b.no] === b;
     const id = busId(b), isOpen = openSet.has(id), list = stopList(b);
-    const items = isOpen ? list.map((n,i)=>`<li><span class="sn">${i+1}</span><span class="nm">${sname(n)}</span><a class="mp" href="${ea(gm(n))}" data-map="${ea(gm(n))}" target="_blank" rel="noopener" aria-label="${sname(n)} ${tr("mapAria")}">📍</a><input type="time" data-bus="${id}" data-i="${i}" value="${stopTime(b,i)}" aria-label="${sname(n)}"></li>`).join("") : "";
+    const sm = stopMins(b), passed = today ? sm.filter(m => m <= cur).length : 0, showPast = pastOpen.has(id);
+    const passBtn = isOpen && passed > 0 ? `<button class="clr passbtn" data-showpast="${id}">${showPast ? "▾" : "▸"} ${tr("passedBtn", {n:passed})}</button>${passed === STOPS.length && !showPast ? `<div class="hint">${tr("tripDone")}</div>` : ""}` : "";
+    const items = isOpen ? list.map((n,i)=> i < (showPast ? 0 : passed) ? "" : `<li><span class="sn">${i+1}</span><span class="nm">${sname(n)}</span><a class="mp" href="${ea(gm(n))}" data-map="${ea(gm(n))}" target="_blank" rel="noopener" aria-label="${sname(n)} ${tr("mapAria")}">📍</a><input type="time" data-bus="${id}" data-i="${i}" value="${stopTime(b,i)}" ${today ? "" : "disabled"} aria-label="${sname(n)}"></li>`).join("") : "";
     return `<article class="card ${anim?"in":""} ${past?"past":""} ${isNext?"upnext":""}" style="--i:${Math.min(ix,8)}">
       <img class="photo" src="${IMG[b.no]}" alt="${tr("busAlt")} ${b.no}" loading="lazy">
-      <div class="num">${b.no}</div>
-      <div>
-        <div class="route">${pl(b.from)} ➔ ${pl(b.to)}${isNext?'<span class="tag">'+tr("tagNext")+'</span>':""}</div>
+      <div class="num" data-trip="${id}">${b.no}</div>
+      <div class="tinfo" data-trip="${id}">
+        <div class="route">${pl(b.from)} ➔ ${pl(b.to)}${isNext?'<span class="tag">'+tr("tagNext")+'</span>':""}${st === "running" ? '<span class="tag run2">🟢 ' + tr("running") + '</span>' : ""}</div>
         <div class="times"><span>${fmt(b.dep)}</span><span class="arrow">➔</span><span>${fmt(b.arr)}</span></div>
         <div class="meta">${b.trip?`${tr("trip")} ${b.trip} · `:""}${tr("nStops",{n:STOPS.length})} · ${tr("travel")} ${human(mins(b.arr)-mins(b.dep))}</div>
       </div>
       <div class="stopsbox">
         <button class="tog" data-toggle="${id}" aria-expanded="${isOpen}">${isOpen?"▾":"▸"} ${tr("stopsToggle")} (<span data-count="${id}">${filledCount(b)}</span>/${STOPS.length} ${tr("filledSfx")})</button>
-        ${isOpen?`<ul class="slist">${items}</ul><div class="hint">${REMOTE ? tr("hintShared") + lastEdit(id) : tr("hintLocal")}</div><a class="clr rt" href="${ea(gdir(list[0], list[list.length-1]))}" data-map="${ea(gdir(list[0], list[list.length-1]))}" target="_blank" rel="noopener">${tr("routeBtn")}</a> <button class="clr" data-clear="${id}">${REMOTE ? tr("reset") + " " + tr("resetEveryone") : tr("reset")}</button>`:""}
+        ${isOpen?`${passBtn}<ul class="slist">${items}</ul><div class="hint">${REMOTE ? tr("hintShared") + lastEdit(id) : tr("hintLocal")}</div><a class="clr rt" href="${ea(gdir(list[0], list[list.length-1]))}" data-map="${ea(gdir(list[0], list[list.length-1]))}" target="_blank" rel="noopener">${tr("routeBtn")}</a> <button class="clr" data-clear="${id}">${REMOTE ? tr("reset") + " " + tr("resetEveryone") : tr("reset")}</button>`:""}
       </div>
     </article>`;
   }).join("");
@@ -665,6 +803,9 @@ function applyTheme(){
 applyTheme();
 render();
 $("list").addEventListener("click", e => {
+  const tp = e.target.closest("[data-trip]"); if (tp){ openPage("trip", tp.dataset.trip); return; }
+  const sp = e.target.closest("[data-showpast]");
+  if (sp){ const id = sp.dataset.showpast; pastOpen.has(id) ? pastOpen.delete(id) : pastOpen.add(id); render(); return; }
   const mp = e.target.closest("a[data-map]");
   if (mp && bridge && bridge.openUrl){ e.preventDefault(); bridge.openUrl(mp.dataset.map); return; }
   const t = e.target.closest("[data-toggle]");
@@ -675,7 +816,7 @@ $("list").addEventListener("click", e => {
 $("list").addEventListener("change", e => {
   const inp = e.target.closest("input[data-bus]"); if (!inp) return;
   const s = store[inp.dataset.bus] || (store[inp.dataset.bus] = {});
-  s[inp.dataset.i] = inp.value; persist(); pushStop(inp.dataset.bus, inp.dataset.i, inp.value);
+  s[inp.dataset.i] = inp.value; persist(); recordHist(inp.dataset.bus, inp.dataset.i, inp.value); pushStop(inp.dataset.bus, inp.dataset.i, inp.value);
   const b = BUSES.find(x => busId(x) === inp.dataset.bus), el = document.querySelector(`[data-count="${inp.dataset.bus}"]`);
   if (b && el) el.textContent = filledCount(b);
 });
@@ -755,6 +896,7 @@ function tickDate(){
   const t = new Date(), k = dkey(t);
   $("dateMain").textContent = tr("today") + " " + longDate(t);
   renderTodayNote(); renderKural();
+  try { if (pageKind === "trip" && !$("page").hidden && document.activeElement !== $("seenStop")) renderTrip(); } catch(_) {}
   if (k !== todayKey){            // a new day started
     const wasToday = dkey(sel) === todayKey;
     todayKey = k;
@@ -775,8 +917,6 @@ resolveRemote().then(ok => { if (ok){ render(); pull(); listen(); setInterval(pu
 document.addEventListener("visibilitychange", () => { if (!document.hidden) pull(); });
 
 // ---- Language bar, profile & first-run sign-in ----
-const PKEY = "profile:v1";
-let profile = null; try { profile = JSON.parse(localStorage.getItem(PKEY)); } catch(e) {}
 const validMobile = m => /^[6-9]\d{9}$/.test(m || "");
 const langOptions = () => LANGS.map(([c, n]) => `<option value="${c}"${c === lang ? " selected" : ""}>${n}</option>`).join("");
 function renderLangMenu(){
@@ -828,12 +968,13 @@ function applyLang(){
   document.querySelector('.chip[data-dir="out"]').textContent = pl(PLACE.ta[0]) + " ➔ " + pl(PLACE.ta[1]);
   document.querySelector('.chip[data-dir="back"]').textContent = pl(PLACE.ta[1]) + " ➔ " + pl(PLACE.ta[0]);
   $("empty").textContent = tr("empty");
-  $("ver").textContent = tr("version") + " v2026.10.17-புள்ளி";
+  $("ver").textContent = tr("version") + " v2026.10.18-பதிவு";
   $("profBtn").title = tr("profile"); $("profBtn").setAttribute("aria-label", tr("profile"));
   renderLangMenu(); updateAvatar();
   $("dTitle").textContent = tr("appTitle"); $("accLangT").textContent = "🌐 " + tr("lang");
-  $("accThemeT").textContent = "🌓 " + tr("themeTip"); $("dProf").textContent = "👤 " + tr("profile"); $("dGame").textContent = "🎮 " + tr("game"); $("dFb").textContent = "💬 " + tr("fbTitle");
+  $("accThemeT").textContent = "🌓 " + tr("themeTip"); $("dProf").textContent = "👤 " + tr("profile"); $("dGame").textContent = "🎮 " + tr("game"); $("dFb").textContent = "💬 " + tr("fbTitle"); $("dHist").textContent = "🕘 " + tr("histMenu");
   if (!$("page").hidden) renderPage();
+  if (!$("notice").hidden) renderNotice();
   applyTheme();
   setSync();
   tickDate(); renderCal(); renderTodayNote(); render();
@@ -847,6 +988,7 @@ function setLang(c){
   if (!$("sheet").hidden) openSheet(sheetMode, draft);
 }
 document.addEventListener("click", e => {
+  if (e.target.closest("#noticeOk")){ $("notice").hidden = true; return; }
   if (e.target.closest("#menuBtn")){ openDrawer(); return; }
   if (e.target.closest("#scrim")){ closeDrawer(); return; }
   const acc = e.target.closest(".acc"); if (acc){ toggleAcc(acc); return; }
@@ -856,6 +998,7 @@ document.addEventListener("click", e => {
   if (lb){ closeDrawer(); setLang(lb.dataset.lang); return; }
   if (e.target.closest("#dGame")){ closeDrawer(); openGame(); return; }
   if (e.target.closest("#dFb")){ closeDrawer(); openPage("feedback"); return; }
+  if (e.target.closest("#dHist")){ closeDrawer(); const p = $("dayPick"); p.scrollIntoView({block:"center", behavior:"smooth"}); try { p.showPicker(); } catch(_) { p.focus(); } return; }
   if (e.target.closest("#dProf")){ closeDrawer(); openPage("profile"); return; }
   if (e.target.closest("#profBtn")){ openPage("profile"); return; }
   if (e.target.closest("#pClose")){ $("sheet").hidden = true; return; }
@@ -863,20 +1006,30 @@ document.addEventListener("click", e => {
     const mobile = $("pMobile").value.replace(/\D/g, ""), name = $("pName").value.trim();
     if (!validMobile(mobile)){ $("pErr").textContent = tr("badMobile"); return; }
     profile = {name, mobile}; try { localStorage.setItem(PKEY, JSON.stringify(profile)); } catch(e) {}
-    markUserDirty();
+    markUserDirty(); showNotice();
     $("sheet").hidden = true; updateAvatar();
   }
 });
 document.addEventListener("change", e => { if (e.target && e.target.id === "gLang") setLang(e.target.value); });
 document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeDrawer(); if (!$("page").hidden) closePage(); } });
 
+// ---- "Times are approximate" notice: shown every time the app is opened ----
+let noticeShown = false;
+function renderNotice(){
+  $("notice").innerHTML = `<div class="sbox" role="alertdialog" aria-modal="true"><h2>${tr("noticeTitle")}</h2><p>${tr("noticeTimes")}</p><p><b>${tr("noticeEarly")}</b></p><p>${tr("noticePrivacy")}</p><button class="go" id="noticeOk">${tr("noticeOk")}</button></div>`;
+}
+function showNotice(){
+  if (noticeShown || !profile || !validMobile(profile.mobile)) return;   // first run: shown right after sign-in
+  noticeShown = true; renderNotice(); $("notice").hidden = false;
+}
 // ---- Profile & Feedback pages ----
-let pageKind = null, fb = {easy:"", times:"", change:"", changeTxt:"", feat:"", other:""}, fbDone = "";
+let seenMsg = "", pageArg = null, pageKind = null, fb = {easy:"", times:"", change:"", changeTxt:"", feat:"", other:""}, fbDone = "";
 const FB_Q = "fbq:v1";
-function openPage(kind){ pageKind = kind; fbDone = ""; $("page").hidden = false; $("page").scrollTop = 0; renderPage(); }
+function openPage(kind, arg){ pageKind = kind; pageArg = arg; seenMsg = ""; fbDone = ""; $("page").hidden = false; $("page").scrollTop = 0; renderPage(); }
 function closePage(){ $("page").hidden = true; pageKind = null; }
 function renderPage(){
-  if (pageKind === "feedback"){ $("pgTitle").textContent = "💬 " + tr("fbTitle"); renderFeedback(); }
+  if (pageKind === "trip") renderTrip();
+  else if (pageKind === "feedback"){ $("pgTitle").textContent = "💬 " + tr("fbTitle"); renderFeedback(); }
   else { $("pgTitle").textContent = tr("profile"); renderProfile(); }
 }
 function renderProfile(msg){
@@ -908,6 +1061,51 @@ function renderProfile(msg){
       <div class="ok">${msg || ""}</div>
     </div>`;
 }
+function renderTrip(){
+  const b = BUSES.find(x => busId(x) === pageArg); if (!b){ closePage(); return; }
+  const now = new Date(), cur = curFor(now.getHours() * 60 + now.getMinutes());
+  const st = tripState(b, cur), sm = stopMins(b), list = stopList(b);
+  let li = -1; for (let i = 0; i < sm.length; i++) if (sm[i] <= cur) li = i;
+  const label = st === "running" ? "🟢 " + tr("running") : st === "done" ? "✔ " + tr("tripDone") : "⏳ " + tr("later");
+  const pct = st === "running" ? Math.round((cur - mins(b.dep)) * 100 / Math.max(1, mins(b.arr) - mins(b.dep))) : 0;
+  const my = profile && profile.from ? list.indexOf(profile.from) : -1;
+  const eta = st !== "done" && my >= 0 && my > li ? `<div class="tnow">📍 ${tr("myStopEta", {s:sname(profile.from), t:fmt(m2t(sm[my]))})}</div>` : "";
+  const obs = histFor(viewDate)[busId(b)] || {};
+  const defIdx = my >= 0 ? my : Math.max(li, 0);
+  const seen = viewIsToday() && st !== "future" ? `<div class="seenbox"><div class="fl">${tr("seenQ")}</div><select id="seenStop">${list.map((n, i) => `<option value="${i}"${i === defIdx ? " selected" : ""}>${sname(n)}</option>`).join("")}</select><button class="go" id="seenBtn">${tr("seenBtn")}</button><div class="ok">${seenMsg}</div><div class="hint">${tr("seenNote")}</div></div>` : "";
+  const rows = list.map((n, i) => {
+    const cls = st === "future" ? "" : i < li ? "done" : i === li ? (st === "running" ? "here" : "done") : (st === "running" && i === li + 1 ? "next" : "");
+    return `<li class="${cls}"><span class="tn">${sname(n)}</span><span class="tt">${obs[i] ? "✔ " : stopTime(b, i) ? "" : "≈ "}${fmt(m2t(sm[i]))}</span><a class="mp" href="${ea(gm(n))}" data-map="${ea(gm(n))}" target="_blank" rel="noopener" aria-label="${sname(n)} ${tr("mapAria")}">📍</a></li>`;
+  }).join("");
+  $("pgTitle").textContent = b.no + " · " + pl(b.from) + " ➔ " + pl(b.to);
+  $("pgBody").innerHTML = `<div class="pcard" style="padding-top:22px">
+    <img class="photo" src="${IMG[b.no]}" alt="${tr("busAlt")} ${b.no}">
+    <div class="tstat">${label}${b.trip ? " · " + tr("trip") + " " + b.trip : ""}</div>
+    <div class="tbig">${fmt(b.dep)} ➔ ${fmt(b.arr)}</div>
+    ${st === "running" ? `<div class="tprog"><i style="width:${pct}%"></i></div><div class="tnow">${tr("nearStop", {s:sname(list[Math.max(li, 0)])})}${li + 1 < list.length ? " · " + tr("nextStopAt", {s:sname(list[li + 1]), t:fmt(m2t(sm[li + 1]))}) : ""}</div>` : ""}
+    ${eta}
+    <div class="hint" style="margin-top:10px">${tr("approx")}</div>
+    ${seen}
+    <ul class="tline">${rows}</ul>
+    <a class="clr rt" style="margin-top:14px" href="${ea(gdir(list[0], list[list.length - 1]))}" data-map="${ea(gdir(list[0], list[list.length - 1]))}" target="_blank" rel="noopener">${tr("routeBtn")}</a>
+  </div>`;
+}
+async function refreshToday(){
+  if (!REMOTE) return; const d = isoOf(new Date());
+  try { const r = await rfetch("stopHist/" + d); HR[d] = fromRemote(await r.json()); if (!editingTime()) render(); if (pageKind === "trip" && !$("page").hidden && document.activeElement !== $("seenStop")) renderTrip(); } catch(e) {}
+}
+async function ensureHist(d){
+  if (!REMOTE || HR[d]) return;
+  try { const r = await rfetch("stopHist/" + d); HR[d] = fromRemote(await r.json()); render(); if (pageKind === "trip" && !$("page").hidden) renderTrip(); } catch(e) {}
+}
+function onViewDate(){
+  $("dayPick").value = viewDate; animateNext = true; if (!viewIsToday()) ensureHist(viewDate);
+  render(); if (pageKind === "trip" && !$("page").hidden) renderTrip();
+}
+$("dayPick").addEventListener("change", e => { viewDate = e.target.value || isoOf(new Date()); onViewDate(); });
+$("dayToday").addEventListener("click", () => { viewDate = isoOf(new Date()); onViewDate(); });
+$("dayYest").addEventListener("click", () => { const d = new Date(); d.setDate(d.getDate() - 1); viewDate = isoOf(d); onViewDate(); });
+$("next").addEventListener("click", e => { const t = e.target.closest("[data-trip]"); if (t) openPage("trip", t.dataset.trip); });
 function renderFeedback(){
   const q = (k, label, o) => `<div class="fq"><div class="fl">${label}</div><div class="fopts">${o.map(v => `<button class="fopt" data-fq="${k}" data-v="${v}" aria-pressed="${fb[k] === v}">${tr(v)}</button>`).join("")}</div></div>`;
   const ta = (k, label) => `<div class="fq"><div class="fl">${label}</div><textarea class="fta" data-ft="${k}" rows="3" maxlength="300">${esc(fb[k])}</textarea></div>`;
@@ -941,7 +1139,7 @@ async function flushFb(){
   fbFlushing = false;
 }
 async function sendFeedback(){
-  const item = {ts:Date.now(), lang, ver:"v2026.10.17-புள்ளி"};
+  const item = {ts:Date.now(), lang, ver:"v2026.10.18-பதிவு"};
   for (const k in fb) if (fb[k] && !(k === "changeTxt" && fb.change !== "yes")) item[k] = fb[k].trim();
   if (Object.keys(item).length <= 3){ $("fbErr").textContent = tr("fbEmpty"); return; }
   let sent = false;
@@ -953,7 +1151,14 @@ async function sendFeedback(){
 }
 $("pgBack").addEventListener("click", closePage);
 $("pgBody").addEventListener("click", e => {
+  const mp = e.target.closest("a[data-map]"); if (mp && bridge && bridge.openUrl){ e.preventDefault(); bridge.openUrl(mp.dataset.map); return; }
   if (e.target.closest("#pgBack2")){ closePage(); return; }
+  if (e.target.closest("#seenBtn")){
+    const b = BUSES.find(x => busId(x) === pageArg); if (!b) return;
+    const n = new Date(), t = m2t(n.getHours() * 60 + n.getMinutes()), i = +$("seenStop").value;
+    recordHist(busId(b), i, t); pushHist(busId(b), i, t);
+    seenMsg = tr("seenThanks", {t:fmt(t)}); render(); renderTrip(); return;
+  }
   const o = e.target.closest(".fopt");
   if (o){ fb[o.dataset.fq] = fb[o.dataset.fq] === o.dataset.v ? "" : o.dataset.v; renderFeedback(); return; }
   if (e.target.closest("#fbSend")){ sendFeedback(); return; }
@@ -974,11 +1179,12 @@ function lsGet(k, d){ try { const v = localStorage.getItem(k); return v === null
 function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e) {} }
 const INSTALL = (() => { let v = lsGet("install:v1", ""); if (!v){ v = rid(); lsSet("install:v1", v); lsSet("install:ts", String(Date.now())); } return v; })();
 const todayStr = () => new Date().toISOString().slice(0, 10);
+const SEND_STATS = true;   // set to false to stop sending the anonymous statistics record
 function markUserDirty(){ lsSet("user:dirty", "1"); flushUser(); }
 async function flushUser(){
-  if (!REMOTE || !navigator.onLine || !profile || !validMobile(profile.mobile)) return;
+  if (!SEND_STATS || !REMOTE || !navigator.onLine || !profile || !validMobile(profile.mobile)) return;
   if (lsGet("user:dirty", "0") !== "1" && lsGet("user:day", "") === todayStr()) return;
-  const p = profile, r = {ts:+lsGet("install:ts", String(Date.now())), seen:Date.now(), lang, ver:"v2026.10.17-புள்ளி"};
+  const p = profile, r = {ts:+lsGet("install:ts", String(Date.now())), seen:Date.now(), lang, ver:"v2026.10.18-பதிவு"};
   if (p.gender) r.g = p.gender; if (p.marital) r.ms = p.marital; if (p.age) r.age = +p.age;
   if (p.from) r.from = p.from; if (p.to) r.to = p.to; if (p.time) r.time = p.time;
   try {
@@ -987,6 +1193,7 @@ async function flushUser(){
   } catch(e) {}
 }
 window.addEventListener("online", () => { flushFb(); flushUser(); });
+
 
 applyLang();
 setInterval(setSync, 10000);
@@ -1147,7 +1354,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 // splash: show the logo briefly, then fade out
-setTimeout(() => { const s = $("splash"); s.classList.add("hide"); setTimeout(() => s.remove(), 700); }, 2000);
+setTimeout(() => { const s = $("splash"); s.classList.add("hide"); setTimeout(() => s.remove(), 700); showNotice(); }, 2000);
 </script>
 </body>
 </html>
