@@ -573,36 +573,36 @@ window.addEventListener("resize", fitKural);
 const sname = n => lang === "ta" ? n : (STOPS_EN[STOPS.indexOf(n)] || pl(n));
 // Edit this list to add or change buses. Times are 24-hour "HH:MM".
 const BUSES = [
-  {no:"11A", dir:"out", trip:1, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"05:30", arr:"06:20"},
-  {no:"11A", dir:"out", trip:2, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"07:40", arr:"08:30"},
-  {no:"11A", dir:"out", trip:3, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"09:50", arr:"10:30"},
-  {no:"11A", dir:"out", trip:4, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"11:50", arr:"12:30"},
-  {no:"11A", dir:"out", trip:5, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"13:50", arr:"14:30"},
-  {no:"11A", dir:"out", trip:6, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"15:40", arr:"16:30"},
-  {no:"11A", dir:"out", trip:7, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"17:40", arr:"18:20"},
-  {no:"11A", dir:"out", trip:8, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"20:40", arr:"21:20"},
-  {no:"11A", dir:"back", trip:1, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"06:30", arr:"07:10"},
-  {no:"11A", dir:"back", trip:2, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"08:40", arr:"09:20"},
-  {no:"11A", dir:"back", trip:3, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"10:40", arr:"11:20"},
-  {no:"11A", dir:"back", trip:4, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"12:40", arr:"13:20"},
-  {no:"11A", dir:"back", trip:5, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"14:40", arr:"15:20"},
-  {no:"11A", dir:"back", trip:6, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"16:40", arr:"17:20"},
-  {no:"11A", dir:"back", trip:7, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"18:30", arr:"19:20"},
-  {no:"11A", dir:"back", trip:8, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"21:20", arr:"22:10"},
-  {no:"11B", dir:"out", trip:1, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"06:30", arr:"07:30"},
-  {no:"11B", dir:"out", trip:2, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"08:40", arr:"09:30"},
-  {no:"11B", dir:"out", trip:3, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"10:40", arr:"11:30"},
-  {no:"11B", dir:"out", trip:4, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"12:40", arr:"13:30"},
-  {no:"11B", dir:"out", trip:5, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"14:40", arr:"15:30"},
-  {no:"11B", dir:"out", trip:6, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"16:40", arr:"17:30"},
-  {no:"11B", dir:"out", trip:7, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"18:30", arr:"19:20"},
-  {no:"11B", dir:"back", trip:1, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"07:40", arr:"08:20"},
-  {no:"11B", dir:"back", trip:2, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"09:40", arr:"10:20"},
-  {no:"11B", dir:"back", trip:3, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"11:40", arr:"12:20"},
-  {no:"11B", dir:"back", trip:4, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"13:40", arr:"14:20"},
-  {no:"11B", dir:"back", trip:5, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"15:40", arr:"16:20"},
-  {no:"11B", dir:"back", trip:6, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"17:40", arr:"18:20"},
-  {no:"11B", dir:"back", trip:7, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"20:20", arr:"21:10"}
+  {no:"11A", id:"11A-out-05:30", dir:"out", trip:1, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"05:20", arr:"06:30"},
+  {no:"11A", id:"11A-out-07:40", dir:"out", trip:2, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"07:30", arr:"08:40"},
+  {no:"11A", id:"11A-out-09:50", dir:"out", trip:3, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"09:40", arr:"10:40"},
+  {no:"11A", id:"11A-out-11:50", dir:"out", trip:4, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"11:40", arr:"12:40"},
+  {no:"11A", id:"11A-out-13:50", dir:"out", trip:5, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"13:40", arr:"14:40"},
+  {no:"11A", id:"11A-out-15:40", dir:"out", trip:6, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"15:30", arr:"16:40"},
+  {no:"11A", id:"11A-out-17:40", dir:"out", trip:7, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"17:30", arr:"18:30"},
+  {no:"11A", id:"11A-out-20:40", dir:"out", trip:8, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"20:30", arr:"21:30"},
+  {no:"11A", id:"11A-back-06:30", dir:"back", trip:1, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"06:20", arr:"07:20"},
+  {no:"11A", id:"11A-back-08:40", dir:"back", trip:2, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"08:30", arr:"09:30"},
+  {no:"11A", id:"11A-back-10:40", dir:"back", trip:3, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"10:30", arr:"11:30"},
+  {no:"11A", id:"11A-back-12:40", dir:"back", trip:4, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"12:30", arr:"13:30"},
+  {no:"11A", id:"11A-back-14:40", dir:"back", trip:5, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"14:30", arr:"15:30"},
+  {no:"11A", id:"11A-back-16:40", dir:"back", trip:6, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"16:30", arr:"17:30"},
+  {no:"11A", id:"11A-back-18:30", dir:"back", trip:7, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"18:20", arr:"19:30"},
+  {no:"11A", id:"11A-back-21:20", dir:"back", trip:8, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"21:10", arr:"22:20"},
+  {no:"11B", id:"11B-out-06:30", dir:"out", trip:1, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"06:20", arr:"07:40"},
+  {no:"11B", id:"11B-out-08:40", dir:"out", trip:2, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"08:30", arr:"09:40"},
+  {no:"11B", id:"11B-out-10:40", dir:"out", trip:3, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"10:30", arr:"11:40"},
+  {no:"11B", id:"11B-out-12:40", dir:"out", trip:4, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"12:30", arr:"13:40"},
+  {no:"11B", id:"11B-out-14:40", dir:"out", trip:5, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"14:30", arr:"15:40"},
+  {no:"11B", id:"11B-out-16:40", dir:"out", trip:6, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"16:30", arr:"17:40"},
+  {no:"11B", id:"11B-out-18:30", dir:"out", trip:7, from:"இறையமங்கலம்", to:"திருச்செங்கோடு", dep:"18:20", arr:"19:30"},
+  {no:"11B", id:"11B-back-07:40", dir:"back", trip:1, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"07:30", arr:"08:30"},
+  {no:"11B", id:"11B-back-09:40", dir:"back", trip:2, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"09:30", arr:"10:30"},
+  {no:"11B", id:"11B-back-11:40", dir:"back", trip:3, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"11:30", arr:"12:30"},
+  {no:"11B", id:"11B-back-13:40", dir:"back", trip:4, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"13:30", arr:"14:30"},
+  {no:"11B", id:"11B-back-15:40", dir:"back", trip:5, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"15:30", arr:"16:30"},
+  {no:"11B", id:"11B-back-17:40", dir:"back", trip:6, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"17:30", arr:"18:30"},
+  {no:"11B", id:"11B-back-20:20", dir:"back", trip:7, from:"திருச்செங்கோடு", to:"இறையமங்கலம்", dep:"20:10", arr:"21:20"}
 ];
 const STOPS = ["இறையமங்கலம்","முனியப்பன் பாளையம்","மொளசி","அரசின் உயர்நிலைப் பள்ளி, மொளசி","வக்கீல் தோட்டம்","முதலப்பாளையம்","ராயக்காவலசு","ஆண்டிவலசு","பிரிதி","பன்னீர்குத்திபாளையம்","ரைஸ்மில்","புளியங்காடு","வேட்டுவபாளையம்","சிறுமொளசி","சமத்துவபுரம்","நாடார்காலனி","சுண்டமேடு","காந்திநகர்","கரட்டப்பாளையம் போலீஸ் ஸ்டேஷன்","கரட்டப்பாளையம்","வால்டர் கேட்","CHP காலனி","கிருஷ்ணா Hospital","ஈரோடு Road","பழைய பஸ் ஸ்டாண்ட்","திருச்செங்கோடு பஸ் ஸ்டாண்ட்"];
 const KEY = "stopTimes:v1";
@@ -659,6 +659,24 @@ function pushStop(id, i, v){
   rfetch(`stopHist/${isoOf(new Date())}/${encodeURIComponent(id)}/s${i}`, {method:"PUT", body:JSON.stringify(v)}).catch(() => {});
 }
 function pushHist(id, i, v){ if (REMOTE) rfetch(`stopHist/${isoOf(new Date())}/${encodeURIComponent(id)}/s${i}`, {method:"PUT", body:JSON.stringify(v)}).catch(() => {}); }
+// ---- Auto-shift: when a stop's time is changed/reported, shift every later stop of that trip by the same difference ----
+function pushBatch(id, obj){
+  if (!REMOTE) return;
+  rfetch(`stopTimes/${encodeURIComponent(id)}`, {method:"PATCH", body:JSON.stringify(obj)}).then(() => stamp(id)).then(() => setSync(true)).catch(() => setSync(false));
+}
+function shiftLater(b, i, newT, oldSm){
+  if (!b || !newT || !oldSm) return;
+  const delta = mins(newT) - oldSm[i];
+  if (!delta) return;
+  const id = busId(b), obsNow = OBS(b), s = store[id] || (store[id] = {}), patch = {};
+  for (let j = i + 1; j < oldSm.length; j++){
+    if (obsNow[j]) continue;                                  // a stop whose real time was already reported keeps it
+    const m = Math.max(0, Math.min(1439, oldSm[j] + delta)), t = m2t(m);
+    s[j] = t; patch["s" + j] = t;
+  }
+  persist();
+  if (Object.keys(patch).length) pushBatch(id, patch);
+}
 function pushClear(id){
   if (!REMOTE) return;
   rfetch(`stopTimes/${encodeURIComponent(id)}`, {method:"DELETE"}).then(() => stamp(id)).then(() => setSync(true)).catch(() => setSync(false));
@@ -691,7 +709,7 @@ function stopMins(b){                       // estimated minute-of-day at every 
   return out;
 }
 const tripState = (b, cur) => cur < mins(b.dep) ? "future" : cur < mins(b.arr) ? "running" : "done";
-const busId = b => `${b.no}-${b.dir}-${b.dep}`;
+const busId = b => b.id || `${b.no}-${b.dir}-${b.dep}`;
 const stopList = b => b.dir === "out" ? STOPS : [...STOPS].reverse();
 function stopTime(b, i){
   const src = viewIsToday() ? store : histFor(viewDate), s = src && src[busId(b)];
@@ -815,10 +833,13 @@ $("list").addEventListener("click", e => {
 });
 $("list").addEventListener("change", e => {
   const inp = e.target.closest("input[data-bus]"); if (!inp) return;
+  const b = BUSES.find(x => busId(x) === inp.dataset.bus), idx = +inp.dataset.i;
+  if (!inp.value) return;
+  const oldSm = b ? stopMins(b) : null;                        // estimate at every stop BEFORE this change
   const s = store[inp.dataset.bus] || (store[inp.dataset.bus] = {});
   s[inp.dataset.i] = inp.value; persist(); recordHist(inp.dataset.bus, inp.dataset.i, inp.value); pushStop(inp.dataset.bus, inp.dataset.i, inp.value);
-  const b = BUSES.find(x => busId(x) === inp.dataset.bus), el = document.querySelector(`[data-count="${inp.dataset.bus}"]`);
-  if (b && el) el.textContent = filledCount(b);
+  shiftLater(b, idx, inp.value, oldSm);                         // all later stops move by the same difference
+  render();
 });
 setInterval(() => { const a = document.activeElement; if (!(a && a.type === "time")) render(); }, 30000);
 
@@ -1156,7 +1177,9 @@ $("pgBody").addEventListener("click", e => {
   if (e.target.closest("#seenBtn")){
     const b = BUSES.find(x => busId(x) === pageArg); if (!b) return;
     const n = new Date(), t = m2t(n.getHours() * 60 + n.getMinutes()), i = +$("seenStop").value;
+    const oldSm = stopMins(b);
     recordHist(busId(b), i, t); pushHist(busId(b), i, t);
+    shiftLater(b, i, t, oldSm);
     seenMsg = tr("seenThanks", {t:fmt(t)}); render(); renderTrip(); return;
   }
   const o = e.target.closest(".fopt");
@@ -1355,6 +1378,553 @@ document.addEventListener("visibilitychange", () => {
 
 // splash: show the logo briefly, then fade out
 setTimeout(() => { const s = $("splash"); s.classList.add("hide"); setTimeout(() => s.remove(), 700); showNotice(); }, 2000);
+</script>
+<script>
+/* Deepavali festive mode — active only 6–9 Nov 2026 (4 days), then switches itself off.
+   Includes: splash-screen/logo decoration, 🪔 beside the header title, garland + colourful fireworks that burst wherever a finger touches while using the app,
+   and the greeting pop-up (max 3 times a day). Add ?diwali=1 to the page address to force everything on for testing. */
+(function(){
+  try {
+    var d = new Date(), iso = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    var force = /[?&]diwali=1/.test(location.search);
+    if (!force && (iso < "2026-11-06" || iso > "2026-11-09")) return;
+    var endTs = new Date(2026, 10, 10).getTime();                       // 10 Nov 2026, 00:00 local — everything stops here
+    var key = "diwali26:" + iso, shown = 0;
+    try { shown = +localStorage.getItem(key) || 0; } catch (e) {}
+
+    var T = {
+      ta: ["தீபாவளி நல்வாழ்த்துக்கள்!", "பேருந்து நேரங்கள் ஆப்பைப் பயன்படுத்தும் அனைவருக்கும் இனிய தீபாவளி வாழ்த்துகள். பாதுகாப்பாகப் பயணம் செய்யுங்கள், பட்டாசு வெடிக்கும்போது கவனமாக இருங்கள்.", "நன்றி 🙏"],
+      en: ["Happy Deepavali!", "Warm Deepavali wishes to everyone who uses this app. Travel safe and be careful with firecrackers.", "Thank you 🙏"],
+      hi: ["दीपावली की हार्दिक शुभकामनाएँ!", "इस ऐप का उपयोग करने वाले सभी को दीपावली की शुभकामनाएँ। सुरक्षित यात्रा करें और पटाखे जलाते समय सावधान रहें।", "धन्यवाद 🙏"],
+      te: ["దీపావళి శుభాకాంక్షలు!", "ఈ యాప్ వాడే అందరికీ దీపావళి శుభాకాంక్షలు. సురక్షితంగా ప్రయాణించండి, టపాసులు కాల్చేటప్పుడు జాగ్రత్తగా ఉండండి.", "ధన్యవాదాలు 🙏"],
+      kn: ["ದೀಪಾವಳಿ ಶುಭಾಶಯಗಳು!", "ಈ ಆ್ಯಪ್ ಬಳಸುವ ಎಲ್ಲರಿಗೂ ದೀಪಾವಳಿ ಶುಭಾಶಯಗಳು. ಸುರಕ್ಷಿತವಾಗಿ ಪ್ರಯಾಣಿಸಿ, ಪಟಾಕಿ ಹಚ್ಚುವಾಗ ಎಚ್ಚರಿಕೆಯಿಂದಿರಿ.", "ಧನ್ಯವಾದಗಳು 🙏"],
+      ml: ["ദീപാവലി ആശംസകൾ!", "ഈ ആപ്പ് ഉപയോഗിക്കുന്ന എല്ലാവർക്കും ദീപാവലി ആശംസകൾ. സുരക്ഷിതമായി യാത്ര ചെയ്യൂ, പടക്കം പൊട്ടിക്കുമ്പോൾ ശ്രദ്ധിക്കൂ.", "നന്ദി 🙏"]
+    };
+    var l = "ta"; try { l = localStorage.getItem("lang:v1") || "ta"; } catch (e) {}
+    var t = T[l] || T.ta;
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.documentElement.classList.add("dw-on");
+
+    /* ---------- styles ---------- */
+    var css = document.createElement("style"); css.id = "dwStyle";
+    css.textContent =
+      /* greeting pop-up */
+      "#dwali{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;overscroll-behavior:contain;" +
+        "background:radial-gradient(ellipse at 50% 38%,#4d1347 0%,#1c0a30 55%,#0a0413 100%);animation:dwIn .6s ease both;transition:opacity .5s ease}" +
+      "#dwali.out{opacity:0;pointer-events:none}" +
+      "#dwali canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}" +
+      ".dw-box{position:relative;width:min(92vw,420px);padding:24px 18px;text-align:center;color:#ffe9b8;font-family:'Noto Sans Tamil','Latha','Nirmala UI',system-ui,sans-serif}" +
+      ".dw-diyas{display:flex;justify-content:center;align-items:flex-end;gap:6px;margin-bottom:14px}" +
+      ".dw-diyas svg{width:96px;height:auto;overflow:visible;animation:dwRise .9s cubic-bezier(.2,1.2,.3,1) both}" +
+      ".dw-diyas svg:nth-child(1){animation-delay:.35s;width:78px}.dw-diyas svg:nth-child(2){animation-delay:.15s;width:112px}.dw-diyas svg:nth-child(3){animation-delay:.55s;width:78px}" +
+      ".dw-title{margin:6px 0 10px;font-size:clamp(1.7rem,8.4vw,2.5rem);font-weight:800;line-height:1.25;" +
+        "background:linear-gradient(90deg,#ffd76a,#fff4b8,#ffb300,#fff4b8,#ffd76a);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;" +
+        "filter:drop-shadow(0 0 14px rgba(255,170,0,.45));animation:dwPop .9s .7s cubic-bezier(.2,1.3,.3,1) both,dwShine 3s linear infinite}" +
+      ".dw-msg{margin:0 auto 22px;max-width:34ch;font-size:1.02rem;line-height:1.6;color:#f6dcc0;animation:dwFade .8s 1.3s both}" +
+      ".dw-btn{font:inherit;font-weight:700;font-size:1.05rem;padding:12px 34px;border:0;border-radius:999px;cursor:pointer;color:#3b1204;" +
+        "background:linear-gradient(180deg,#ffe082,#ffb300);box-shadow:0 6px 22px rgba(255,179,0,.45);animation:dwFade .8s 1.7s both}" +
+      /* shared bits */
+      ".dw-lights{position:absolute;left:0;right:0;top:0;height:60px;pointer-events:none;z-index:2}" +
+      ".dw-lights i{position:absolute;width:11px;height:15px;border-radius:50% 50% 55% 55%;background:var(--c);box-shadow:0 0 10px 3px var(--c);animation:dwTwk 1.2s ease-in-out infinite alternate;animation-delay:var(--d)}" +
+      ".dw-flame{transform-box:fill-box;transform-origin:50% 100%;animation:dwFlick .5s ease-in-out infinite alternate}" +
+      ".dw-glow{animation:dwGlow 1.1s ease-in-out infinite alternate}" +
+      /* header title: 🪔 on both sides */
+      ".dw-on .appbar h1::before,.dw-on .appbar h1::after{content:'\\1FA94';display:inline-block;margin:0 .3em;font-size:.95em;animation:dwEmo 1.1s ease-in-out infinite alternate}" +
+      ".dw-on .appbar h1::after{animation-delay:.45s}" +
+      /* while using the app: garland + gentle fireworks */
+      ".dw-amb{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:24px;z-index:71;pointer-events:none}" +
+      ".dw-amb .dw-lights{height:24px}.dw-amb .dw-lights i{width:7px;height:10px;box-shadow:0 0 7px 2px var(--c)}" +
+      ".dw-fxamb{position:fixed;left:0;top:0;width:100%;height:100%;z-index:66;pointer-events:none}" +
+      /* splash screen / logo */
+      "#splash.dw-splash>*:not(canvas):not(.dw-lights){position:relative;z-index:1}" +
+      ".dw-fxs{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}" +
+      "#splash.dw-splash .s-logo{animation:logoIn 1s cubic-bezier(.2,1.3,.3,1) both,dwRing 1.2s ease-in-out 1s infinite alternate}" +
+      ".dw-lf{position:absolute;left:50%;top:-34px;width:34px;margin-left:-17px;pointer-events:none;animation:dwFade .6s .9s both}" +
+      ".dw-lf svg{display:block;width:100%;height:auto;overflow:visible}" +
+      ".dw-sline{font-size:1.15rem;font-weight:800;text-align:center;background:linear-gradient(90deg,#fff1b0,#ffd54a,#ffffff,#ffd54a,#fff1b0);background-size:220% 100%;" +
+        "-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px rgba(255,200,0,.55));animation:up .7s 1s both,dwShine 2.2s linear infinite}" +
+      "@keyframes dwRing{from{box-shadow:0 18px 50px rgba(0,0,0,.28),0 0 14px 2px rgba(255,200,60,.55),inset 0 2px 0 rgba(255,255,255,.6)}to{box-shadow:0 18px 50px rgba(0,0,0,.28),0 0 42px 10px rgba(255,205,70,.9),inset 0 2px 0 rgba(255,255,255,.6)}}" +
+      "@keyframes dwEmo{from{transform:scale(.92);filter:drop-shadow(0 0 2px #ffb300)}to{transform:scale(1.14);filter:drop-shadow(0 0 9px #ffd54f)}}" +
+      "@keyframes dwIn{from{opacity:0}to{opacity:1}}" +
+      "@keyframes dwTwk{from{opacity:.35;transform:scale(.85)}to{opacity:1;transform:scale(1.1)}}" +
+      "@keyframes dwRise{from{opacity:0;transform:translateY(60px) scale(.5)}to{opacity:1;transform:none}}" +
+      "@keyframes dwFlick{from{transform:scale(1,1) skewX(-3deg)}to{transform:scale(.88,1.14) skewX(4deg)}}" +
+      "@keyframes dwGlow{from{opacity:.45;transform:scale(.85)}to{opacity:.95;transform:scale(1.15)}}" +
+      "@keyframes dwPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}" +
+      "@keyframes dwShine{to{background-position:-220% 0}}" +
+      "@keyframes dwFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}" +
+      "@media (prefers-reduced-motion:reduce){.dw-lights i,.dw-flame,.dw-glow,.dw-title,.dw-sline,.dw-on .appbar h1::before,.dw-on .appbar h1::after{animation:none}.dw-diyas svg,.dw-msg,.dw-btn{animation-duration:.01s;animation-delay:0s}}";
+    document.head.appendChild(css);
+
+    /* ---------- helpers ---------- */
+    var lc = ["#ff5252", "#ffd740", "#69f0ae", "#40c4ff", "#e040fb", "#ff9100"];
+    function garland(n, base, amp) {
+      var g = document.createElement("div"); g.className = "dw-lights";
+      for (var i = 0; i < n; i++) {
+        var b = document.createElement("i");
+        b.style.left = (i * 100 / (n - 1) - 1.5) + "%"; b.style.top = (base + amp * Math.abs(Math.sin(i * .9))) + "px";
+        b.style.setProperty("--c", lc[i % lc.length]); b.style.setProperty("--d", (i % 5) * .22 + "s");
+        g.appendChild(b);
+      }
+      return g;
+    }
+    function diya(n) {
+      return '<svg viewBox="0 0 100 80" aria-hidden="true"><defs>' +
+        '<linearGradient id="dwB' + n + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb74d"/><stop offset="1" stop-color="#a14a0b"/></linearGradient>' +
+        '<linearGradient id="dwF' + n + '" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff8f00"/><stop offset=".6" stop-color="#ffd54f"/><stop offset="1" stop-color="#fffde7"/></linearGradient>' +
+        '<radialGradient id="dwG' + n + '"><stop offset="0" stop-color="#ffc107" stop-opacity=".85"/><stop offset="1" stop-color="#ffc107" stop-opacity="0"/></radialGradient></defs>' +
+        '<circle class="dw-glow" cx="50" cy="30" r="34" fill="url(#dwG' + n + ')"/>' +
+        '<path class="dw-flame" d="M50 4C61 20 64 31 50 42C36 31 39 20 50 4Z" fill="url(#dwF' + n + ')"/>' +
+        '<path d="M50 20C55 28 55 34 50 39C45 34 45 28 50 20Z" fill="#fff8e1" opacity=".9"/>' +
+        '<path d="M6 42Q50 92 94 42Q50 54 6 42Z" fill="url(#dwB' + n + ')"/>' +
+        '<ellipse cx="50" cy="42" rx="44" ry="7" fill="#ffcc80"/><ellipse cx="50" cy="42.5" rx="38" ry="4.6" fill="#6d3305"/>' +
+        '<path d="M30 58Q50 70 70 58" stroke="#ffe0b2" stroke-width="2.2" fill="none" opacity=".55" stroke-linecap="round"/></svg>';
+    }
+    /* fireworks engine. o: {area, gap:[min,max], scale, direct, stopAfter, until, onStop} */
+    function FX(c, o) {
+      var ctx = c.getContext("2d"), dpr = Math.min(2, window.devicePixelRatio || 1), W = 0, H = 0, alive = true, raf = 0, t0 = 0, next = 0,
+          rockets = [], parts = [], sc = o.scale || 1, cols = ["#ffd54a", "#ff7043", "#ff4081", "#7c4dff", "#40c4ff", "#69f0ae", "#ffffff"];
+      function size() { W = c.width = Math.round(innerWidth * dpr); H = c.height = Math.round(innerHeight * dpr); }
+      size(); addEventListener("resize", size);
+      var vivid = ["#ff1744", "#ff9100", "#ffea00", "#00e676", "#00b0ff", "#d500f9", "#ff4081", "#ffffff"];
+      function burst(x, y, col) {
+        if (parts.length > 900) return;
+        var rainbow = col === "rainbow", pat = rainbow ? Math.random() : 0, ring = rainbow && pat > .4, dbl = rainbow && pat > .75,
+            n = rainbow ? (ring ? 40 : 56) : Math.round((46 + Math.random() * 24) * (o.direct ? .7 : 1));
+        for (var i = 0; i < n; i++) {
+          var a = Math.PI * 2 * i / n + (ring ? 0 : Math.random() * .2),
+              s = (ring ? (dbl && i % 2 ? 2.1 : 3.4) : 1.4 + Math.random() * 3.2) * dpr * sc;
+          parts.push({ x: x, y: y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, l: 1, dec: .011 + Math.random() * .012,
+            c: rainbow ? vivid[(dbl ? i % 2 * 3 + (i >> 3) : Math.random() * vivid.length) % vivid.length | 0] : (Math.random() < .3 ? "#ffffff" : col) });
+        }
+      }
+      var idle = 0;
+      function stop() {
+        if (!alive) return; alive = false; cancelAnimationFrame(raf); removeEventListener("resize", size);
+        if (o.onStop) o.onStop();
+      }
+      function frame(ts) {
+        if (!alive) return;
+        if (!t0) t0 = ts;
+        if ((o.stopAfter && ts - t0 > o.stopAfter) || (o.until && !force && Date.now() > o.until)) { stop(); return; }
+        if (document.hidden) { raf = requestAnimationFrame(frame); return; }
+        if (o.manual) { idle = (parts.length || rockets.length) ? 0 : idle + 1; if (idle > 40) { raf = requestAnimationFrame(frame); return; } }
+        ctx.globalCompositeOperation = "destination-out"; ctx.fillStyle = "rgba(0,0,0,.2)"; ctx.fillRect(0, 0, W, H);
+        ctx.globalCompositeOperation = "lighter";
+        if (!o.manual && ts > next) {
+          var col = cols[Math.random() * cols.length | 0];
+          if (o.direct) burst((.1 + Math.random() * .8) * W, (.1 + Math.random() * (o.area || .35)) * H, col);
+          else {
+            rockets.push({ x: (.12 + Math.random() * .76) * W, y: H, vx: (Math.random() - .5) * dpr, vy: -(10 + Math.random() * 4) * dpr,
+              ty: (.1 + Math.random() * (o.area || .38)) * H, c: col });
+            if (Math.random() < .5) rockets.push({ x: (.12 + Math.random() * .76) * W, y: H, vx: (Math.random() - .5) * dpr, vy: -(10 + Math.random() * 4) * dpr,
+              ty: (.1 + Math.random() * (o.area || .38)) * H, c: cols[Math.random() * cols.length | 0] });
+          }
+          var g = o.gap || [550, 1200]; next = ts + g[0] + Math.random() * (g[1] - g[0]);
+        }
+        for (var i = rockets.length - 1; i >= 0; i--) {
+          var r = rockets[i]; r.x += r.vx; r.y += r.vy; r.vy *= .985;
+          ctx.fillStyle = r.c; ctx.beginPath(); ctx.arc(r.x, r.y, 2.4 * dpr, 0, 6.283); ctx.fill();
+          if (r.y <= r.ty || r.vy > -2.2 * dpr) { burst(r.x, r.y, r.c); rockets.splice(i, 1); }
+        }
+        for (var j = parts.length - 1; j >= 0; j--) {
+          var p = parts[j]; p.x += p.vx; p.y += p.vy; p.vy += .05 * dpr * sc; p.vx *= .985; p.l -= p.dec;
+          if (p.l <= 0) { parts.splice(j, 1); continue; }
+          ctx.globalAlpha = p.l; ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x, p.y, (1 + 1.6 * p.l) * dpr * sc, 0, 6.283); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        raf = requestAnimationFrame(frame);
+      }
+      raf = requestAnimationFrame(frame);
+      return {
+        stop: stop,
+        pop: function (cx, cy) { idle = 0; burst(cx * dpr, cy * dpr, "rainbow"); },                 // full colourful burst where the finger touches
+        spark: function (cx, cy) {                                                                   // small sparkler trail while the finger moves
+          idle = 0; if (parts.length > 900) return;
+          for (var i = 0; i < 3; i++) parts.push({ x: cx * dpr, y: cy * dpr, vx: (Math.random() - .5) * 1.8 * dpr, vy: (Math.random() - .8) * 1.8 * dpr, l: .85,
+            dec: .03 + Math.random() * .03, c: vivid[Math.random() * vivid.length | 0] });
+        }
+      };
+    }
+
+    /* ---------- 1) splash screen + logo ---------- */
+    var sp = document.getElementById("splash");
+    if (sp) {
+      sp.classList.add("dw-splash");
+      var logo = sp.querySelector(".s-logo");
+      if (logo) {
+        var lf = document.createElement("div"); lf.className = "dw-lf"; lf.setAttribute("aria-hidden", "true");
+        lf.innerHTML = '<svg viewBox="0 0 40 52"><defs><linearGradient id="dwLfF" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff8f00"/><stop offset=".6" stop-color="#ffd54f"/><stop offset="1" stop-color="#fffde7"/></linearGradient>' +
+          '<radialGradient id="dwLfG"><stop offset="0" stop-color="#ffc107" stop-opacity=".9"/><stop offset="1" stop-color="#ffc107" stop-opacity="0"/></radialGradient></defs>' +
+          '<circle class="dw-glow" cx="20" cy="30" r="22" fill="url(#dwLfG)"/>' +
+          '<path class="dw-flame" d="M20 2C29 16 31 27 20 38C9 27 11 16 20 2Z" fill="url(#dwLfF)"/><path d="M20 17C24 24 24 29 20 34C16 29 16 24 20 17Z" fill="#fff8e1" opacity=".9"/></svg>';
+        logo.appendChild(lf);
+      }
+      var line = document.createElement("div"); line.className = "dw-sline"; line.textContent = "🪔 " + t[0] + " 🪔";
+      var road = sp.querySelector(".s-road"); if (road) sp.insertBefore(line, road); else sp.appendChild(line);
+      sp.appendChild(garland(16, 8, 12));
+      if (!reduce) {
+        var sc = document.createElement("canvas"); sc.className = "dw-fxs"; sp.insertBefore(sc, sp.firstChild);
+        FX(sc, { area: .42, gap: [280, 520], scale: 1, stopAfter: 3000, onStop: function () { sc.remove(); } });
+      }
+    }
+
+    /* ---------- 2) while using the app: garland + gentle fireworks ---------- */
+    function ambient() {
+      if (document.getElementById("dwAmb")) return;
+      var w = document.createElement("div"); w.id = "dwAmb"; w.className = "dw-amb"; w.setAttribute("aria-hidden", "true");
+      w.appendChild(garland(18, 2, 8)); document.body.appendChild(w);
+      if (reduce) return;
+      var c = document.createElement("canvas"); c.className = "dw-fxamb"; document.body.appendChild(c);
+      var fx, lastT = 0, lx = 0, ly = 0;
+      function blocked() { return !!(document.getElementById("dgame") || document.getElementById("dwali")); }
+      function trail(x, y) { var n = Date.now(); if (n - lastT < 28 || Math.abs(x - lx) + Math.abs(y - ly) < 8) return; lastT = n; lx = x; ly = y; fx.spark(x, y); }
+      function down(e) { if (blocked()) return; lx = e.clientX; ly = e.clientY; fx.pop(e.clientX, e.clientY); }
+      function tmove(e) { if (blocked() || !e.touches || !e.touches[0]) return; trail(e.touches[0].clientX, e.touches[0].clientY); }
+      function mmove(e) { if (blocked() || !e.buttons) return; trail(e.clientX, e.clientY); }
+      document.addEventListener("pointerdown", down, { passive: true });
+      document.addEventListener("touchmove", tmove, { passive: true });
+      document.addEventListener("mousemove", mmove, { passive: true });
+      fx = FX(c, { manual: true, scale: .95, until: endTs, onStop: function () {
+        w.remove(); c.remove();
+        document.removeEventListener("pointerdown", down); document.removeEventListener("touchmove", tmove); document.removeEventListener("mousemove", mmove);
+      } });
+    }
+    setTimeout(ambient, 2800);
+
+    /* ---------- 3) greeting pop-up ---------- */
+    if (force || shown < 3) setTimeout(greet, 3000);
+    function greet() {
+      try { localStorage.setItem(key, String(shown + 1)); } catch (e) {}
+      var o = document.createElement("div");
+      o.id = "dwali"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", t[0]);
+      o.innerHTML = '<canvas></canvas><div class="dw-box"><div class="dw-diyas">' + diya(1) + diya(2) + diya(3) +
+        '</div><h2 class="dw-title"></h2><p class="dw-msg"></p><button class="dw-btn" type="button"></button></div>';
+      o.querySelector(".dw-title").textContent = t[0];
+      o.querySelector(".dw-msg").textContent = t[1];
+      o.querySelector(".dw-btn").textContent = t[2];
+      o.insertBefore(garland(16, 8, 12), o.querySelector(".dw-box"));
+      document.body.appendChild(o);
+
+      var fx = null, ready = false, closed = false;
+      function close() {
+        if (closed) return; closed = true; if (fx) fx.stop();
+        o.classList.add("out"); setTimeout(function () { o.remove(); }, 600);
+      }
+      setTimeout(function () { ready = true; }, 1200);
+      o.addEventListener("click", function () { if (ready) close(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+      if (!reduce) fx = FX(o.querySelector("canvas"), { area: .38, gap: [550, 1200], scale: 1 });
+      o.addEventListener("pointerdown", function (e) { if (fx) fx.pop(e.clientX, e.clientY); });
+    }
+  } catch (e) {}
+})();
+</script>
+<script>
+/* Deepavali game "Bus Dash" — appears with the festive mode only (6–9 Nov 2026), then disappears by itself.
+   Add ?diwali=1 to the page address to force it on for testing. */
+(function(){
+  try {
+    var d = new Date(), iso = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    var force = /[?&]diwali=1/.test(location.search);
+    if (!force && (iso < "2026-11-06" || iso > "2026-11-09")) return;
+    var G = {
+      ta: { title: "தீபாவளி பஸ் ஓட்டம்", how: "இடப்பக்கம் / வலப்பக்கம் தட்டி அல்லது இழுத்து பஸ்ஸை நகர்த்துங்கள். அகல் விளக்கு 🪔, லட்டு 🍬 சேகரியுங்கள். பட்டாசை 🧨 தவிர்க்கவும்! தங்க விளக்கு கூடுதல் உயிர் தரும்.", start: "தொடங்கு", score: "மதிப்பெண்", best: "சிறந்தது", over: "ஆட்டம் முடிந்தது", retry: "மீண்டும் விளையாடு", close: "மூடு", nb: "புதிய சாதனை! 🎉" },
+      en: { title: "Diwali Bus Dash", how: "Tap left/right or swipe to steer the bus. Collect diyas 🪔 and laddus 🍬. Dodge the crackers 🧨! A golden diya gives an extra life.", start: "Start", score: "Score", best: "Best", over: "Game over", retry: "Play again", close: "Close", nb: "New best! 🎉" },
+      hi: { title: "दिवाली बस दौड़", how: "बस को चलाने के लिए बाएँ/दाएँ टैप करें या स्वाइप करें। दीये 🪔 और लड्डू 🍬 इकट्ठा करें। पटाखों 🧨 से बचें! सुनहरा दीया एक अतिरिक्त जीवन देता है।", start: "शुरू करें", score: "स्कोर", best: "सर्वश्रेष्ठ", over: "खेल खत्म", retry: "फिर खेलें", close: "बंद करें", nb: "नया रिकॉर्ड! 🎉" },
+      te: { title: "దీపావళి బస్ డాష్", how: "బస్సును నడపడానికి ఎడమ/కుడివైపు తాకండి లేదా స్వైప్ చేయండి. దీపాలు 🪔, లడ్డూలు 🍬 సేకరించండి. టపాసులను 🧨 తప్పించుకోండి! బంగారు దీపం అదనపు ప్రాణం ఇస్తుంది.", start: "ప్రారంభించు", score: "స్కోర్", best: "అత్యుత్తమం", over: "ఆట ముగిసింది", retry: "మళ్లీ ఆడు", close: "మూసివేయి", nb: "కొత్త రికార్డు! 🎉" },
+      kn: { title: "ದೀಪಾವಳಿ ಬಸ್ ಡ್ಯಾಶ್", how: "ಬಸ್ ಓಡಿಸಲು ಎಡ/ಬಲಕ್ಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ ಅಥವಾ ಸ್ವೈಪ್ ಮಾಡಿ. ದೀಪಗಳು 🪔, ಲಡ್ಡುಗಳು 🍬 ಸಂಗ್ರಹಿಸಿ. ಪಟಾಕಿಗಳನ್ನು 🧨 ತಪ್ಪಿಸಿ! ಚಿನ್ನದ ದೀಪ ಹೆಚ್ಚುವರಿ ಜೀವ ನೀಡುತ್ತದೆ.", start: "ಪ್ರಾರಂಭಿಸಿ", score: "ಸ್ಕೋರ್", best: "ಅತ್ಯುತ್ತಮ", over: "ಆಟ ಮುಗಿಯಿತು", retry: "ಮತ್ತೆ ಆಡಿ", close: "ಮುಚ್ಚಿ", nb: "ಹೊಸ ದಾಖಲೆ! 🎉" },
+      ml: { title: "ദീപാവലി ബസ് ഡാഷ്", how: "ബസ് നയിക്കാൻ ഇടത്/വലത് ടാപ്പ് ചെയ്യുക അല്ലെങ്കിൽ സ്വൈപ്പ് ചെയ്യുക. ദീപങ്ങൾ 🪔, ലഡ്ഡുകൾ 🍬 ശേഖരിക്കുക. പടക്കങ്ങൾ 🧨 ഒഴിവാക്കുക! സ്വർണ്ണ ദീപം ഒരു അധിക ജീവൻ നൽകും.", start: "തുടങ്ങുക", score: "സ്കോർ", best: "മികച്ചത്", over: "കളി കഴിഞ്ഞു", retry: "വീണ്ടും കളിക്കുക", close: "അടയ്ക്കുക", nb: "പുതിയ റെക്കോർഡ്! 🎉" }
+    };
+    var l = "ta"; try { l = localStorage.getItem("lang:v1") || "ta"; } catch (e) {}
+    var g = G[l] || G.ta;
+    var BEST = "dwgame:best";
+
+    var css = document.createElement("style"); css.id = "dgStyle";
+    css.textContent =
+      ".dg-fab{position:fixed;right:14px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:72;width:58px;height:58px;border:0;border-radius:50%;font-size:28px;line-height:1;cursor:pointer;" +
+        "display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#ffe082,#ff9800 72%);box-shadow:0 6px 18px rgba(255,152,0,.55),0 0 0 3px rgba(255,255,255,.75);animation:dgBob 1.6s ease-in-out infinite}" +
+      ".dg-fab i{position:absolute;inset:-5px;border-radius:50%;border:2px solid #ffb300;animation:dgPing 1.6s ease-out infinite;pointer-events:none}" +
+      ".dg-tip{position:fixed;right:82px;bottom:calc(32px + env(safe-area-inset-bottom,0px));z-index:72;max-width:60vw;padding:7px 12px;border-radius:14px;background:#2b1030;color:#ffe9b8;font:700 .85rem 'Noto Sans Tamil','Latha','Nirmala UI',system-ui,sans-serif;" +
+        "box-shadow:0 4px 14px rgba(0,0,0,.35);pointer-events:none;animation:dgTip 7s ease both}" +
+      "#dgame{position:fixed;inset:0;z-index:210;background:#12061f;touch-action:none;-webkit-user-select:none;user-select:none;overscroll-behavior:contain;animation:dgIn .35s ease both;" +
+        "font-family:'Noto Sans Tamil','Latha','Nirmala UI',system-ui,sans-serif}" +
+      "#dgame canvas{position:absolute;left:0;top:0;display:block}" +
+      ".dg-hud{position:absolute;top:max(12px,env(safe-area-inset-top,0px));left:14px;right:108px;display:flex;align-items:center;gap:12px;color:#ffe9b8;font-weight:800;pointer-events:none;text-shadow:0 2px 6px rgba(0,0,0,.65)}" +
+      ".dg-score{font-size:1.9rem;line-height:1;color:#ffd54a;min-width:2.2ch}.dg-combo{font-size:1.1rem;color:#69f0ae}" +
+      ".dg-lives{margin-left:auto;font-size:1.2rem;color:#ff5252;letter-spacing:2px}" +
+      ".dg-x,.dg-snd{position:absolute;top:max(10px,env(safe-area-inset-top,0px));width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:1.05rem;cursor:pointer}" +
+      ".dg-x{right:10px}.dg-snd{right:58px}" +
+      ".dg-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(88vw,360px);padding:22px 18px;border-radius:22px;text-align:center;color:#ffe9b8;" +
+        "background:linear-gradient(180deg,rgba(77,19,71,.95),rgba(28,10,48,.97));border:1px solid rgba(255,213,74,.45);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(255,170,0,.25);animation:dgPop .5s cubic-bezier(.2,1.3,.3,1) both}" +
+      ".dg-card[hidden]{display:none}" +
+      ".dg-card h2{margin:0 0 10px;font-size:1.6rem;font-weight:800;background:linear-gradient(90deg,#ffd76a,#fff4b8,#ffb300);-webkit-background-clip:text;background-clip:text;color:transparent}" +
+      ".dg-card p{margin:0 0 14px;line-height:1.6;font-size:.97rem;color:#f6dcc0}" +
+      ".dg-stat{font-size:1.05rem;margin:4px 0}.dg-big{font-size:2.6rem;font-weight:800;color:#ffd54a;line-height:1.1}.dg-nb{color:#69f0ae;font-weight:800;margin:6px 0}" +
+      ".dg-btn{font:inherit;font-weight:800;font-size:1.05rem;padding:12px 28px;border:0;border-radius:999px;color:#3b1204;background:linear-gradient(180deg,#ffe082,#ffb300);box-shadow:0 6px 20px rgba(255,179,0,.45);cursor:pointer;margin:6px 4px 0}" +
+      ".dg-btn.alt{background:rgba(255,255,255,.14);color:#ffe9b8;box-shadow:none}" +
+      "@keyframes dgBob{50%{transform:translateY(-5px)}}@keyframes dgPing{from{opacity:.9;transform:scale(.9)}to{opacity:0;transform:scale(1.5)}}" +
+      "@keyframes dgTip{0%,8%{opacity:0;transform:translateX(10px)}14%,80%{opacity:1;transform:none}100%{opacity:0}}" +
+      "@keyframes dgIn{from{opacity:0}to{opacity:1}}@keyframes dgPop{from{opacity:0;transform:translate(-50%,-50%) scale(.6)}to{opacity:1;transform:translate(-50%,-50%)}}" +
+      "@media (prefers-reduced-motion:reduce){.dg-fab,.dg-fab i{animation:none}}";
+    document.head.appendChild(css);
+
+    setTimeout(function () {
+      var b = document.createElement("button"); b.className = "dg-fab"; b.type = "button"; b.setAttribute("aria-label", g.title);
+      b.innerHTML = '<span aria-hidden="true">🪔</span><i></i>';
+      var tip = document.createElement("div"); tip.className = "dg-tip"; tip.textContent = "🎮 " + g.title;
+      b.addEventListener("click", function () { tip.remove(); openGame(); });
+      document.body.appendChild(tip); document.body.appendChild(b);
+      setTimeout(function () { tip.remove(); }, 7200);
+    }, 3400);
+
+    function openGame() {
+      if (document.getElementById("dgame")) return;
+      var o = document.createElement("div"); o.id = "dgame"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", g.title);
+      o.innerHTML = '<canvas></canvas><div class="dg-hud"><b class="dg-score">0</b><span class="dg-combo"></span><span class="dg-lives"></span></div>' +
+        '<button class="dg-snd" type="button" aria-label="Sound">🔊</button><button class="dg-x" type="button" aria-label="Close">✕</button>' +
+        '<div class="dg-card dg-intro"><h2></h2><p></p><div class="dg-stat dg-bestl"></div><button class="dg-btn dg-go" type="button"></button></div>' +
+        '<div class="dg-card dg-end" hidden><h2></h2><div class="dg-big">0</div><div class="dg-nb" hidden></div><div class="dg-stat dg-bestl2"></div>' +
+        '<button class="dg-btn dg-again" type="button"></button><button class="dg-btn alt dg-quit" type="button"></button></div>';
+      var $ = function (s) { return o.querySelector(s); };
+      $(".dg-intro h2").textContent = g.title; $(".dg-intro p").textContent = g.how; $(".dg-go").textContent = g.start;
+      $(".dg-end h2").textContent = g.over; $(".dg-again").textContent = g.retry; $(".dg-quit").textContent = g.close;
+      document.body.appendChild(o);
+
+      var best = 0; try { best = +localStorage.getItem(BEST) || 0; } catch (e) {}
+      function bestText() { return g.best + ": " + best; }
+      $(".dg-bestl").textContent = bestText();
+
+      var c = $("canvas"), ctx = c.getContext("2d"), dpr = Math.min(2, window.devicePixelRatio || 1);
+      var W = 0, H = 0, roadW = 0, roadX = 0, laneW = 0, busW = 0, busH = 0, busY = 0;
+      var state = "ready", score = 0, lives = 3, streak = 0, lane = 1, busX = 0, invul = 0, shake = 0, flash = 0, scroll = 0, spawnT = 1, tm = 0, celebrate = 0, celT = 0, lastHaz = 0;
+      var items = [], parts = [], floats = [], stars = [], mute = false, ac = null, alive = true, raf = 0, last = 0;
+      for (var i = 0; i < 70; i++) stars.push({ x: Math.random(), y: Math.random() * .75, r: .6 + Math.random() * 1.4, p: Math.random() * 6.283 });
+
+      function laneX(n) { return roadX + laneW * (n + .5); }
+      function size() {
+        W = innerWidth; H = innerHeight; c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); c.style.width = W + "px"; c.style.height = H + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        roadW = Math.min(W * .9, 380); roadX = (W - roadW) / 2; laneW = roadW / 3; busW = Math.min(laneW * .6, 70); busH = busW * 1.9;
+        busY = H - busH / 2 - Math.max(56, H * .1); busX = laneX(lane);
+      }
+      size(); addEventListener("resize", size);
+
+      function hud() {
+        $(".dg-score").textContent = score;
+        var m = mult(); $(".dg-combo").textContent = m > 1 ? "×" + m : "";
+        $(".dg-lives").textContent = "❤".repeat(Math.max(0, lives)) + "♡".repeat(Math.max(0, 3 - lives));
+      }
+      function mult() { return Math.min(5, 1 + Math.floor(streak / 5)); }
+
+      /* ---- sound ---- */
+      function beep(f, dur, type, vol, f2) {
+        if (mute) return;
+        try {
+          ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+          var t0 = ac.currentTime, os = ac.createOscillator(), gn = ac.createGain();
+          os.type = type || "sine"; os.frequency.setValueAtTime(f, t0); if (f2) os.frequency.exponentialRampToValueAtTime(f2, t0 + dur);
+          gn.gain.setValueAtTime(vol || .07, t0); gn.gain.exponentialRampToValueAtTime(.0001, t0 + dur);
+          os.connect(gn); gn.connect(ac.destination); os.start(t0); os.stop(t0 + dur);
+        } catch (e) {}
+      }
+
+      /* ---- particles ---- */
+      function burst(x, y, col, n, spd) {
+        for (var i = 0; i < n; i++) {
+          var a = Math.random() * 6.283, s = (.3 + Math.random()) * spd;
+          parts.push({ x: x, y: y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, l: 1, dec: .9 + Math.random() * .9, c: Array.isArray(col) ? col[i % col.length] : col, r: 1.5 + Math.random() * 2.5 });
+        }
+      }
+
+      /* ---- game flow ---- */
+      function reset() {
+        score = 0; lives = 3; streak = 0; lane = 1; busX = laneX(1); invul = 0; shake = 0; flash = 0; spawnT = .8; lastHaz = 0; celebrate = 0;
+        items.length = 0; floats.length = 0; hud();
+      }
+      function start() {
+        try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) {}
+        reset(); state = "play"; $(".dg-intro").hidden = true; $(".dg-end").hidden = true; beep(520, .12, "triangle", .06, 780);
+      }
+      function gameOver() {
+        state = "over";
+        var nb = score > best; if (nb) { best = score; try { localStorage.setItem(BEST, String(best)); } catch (e) {} celebrate = 3; }
+        setTimeout(function () {
+          if (!alive) return;
+          $(".dg-end .dg-big").textContent = score; $(".dg-end .dg-nb").hidden = !nb; $(".dg-end .dg-nb").textContent = g.nb;
+          $(".dg-bestl2").textContent = bestText(); $(".dg-bestl").textContent = bestText(); $(".dg-end").hidden = false;
+        }, 700);
+      }
+      function move(dir) { if (state !== "play") return; lane = Math.max(0, Math.min(2, lane + dir)); }
+
+      function spawn() {
+        var hazP = Math.min(.42, .26 + score / 6000), n = Math.random() < .22 ? 2 : 1, used = [], haz = 0;
+        for (var k = 0; k < n; k++) {
+          var ln; do { ln = Math.random() * 3 | 0; } while (used.indexOf(ln) >= 0); used.push(ln);
+          var p = Math.random(), type;
+          if (lastHaz >= 2 || p >= hazP) { var q = Math.random(); type = q < .03 ? "gold" : q < .17 ? "laddu" : "diya"; } else type = "cracker";
+          if (type === "cracker") haz++;
+          items.push({ lane: ln, y: -40, type: type, seed: Math.random() * 6.283 });
+        }
+        lastHaz = haz;
+      }
+
+      function update(dt) {
+        tm += dt;
+        var spd = H * (.45 + Math.min(.55, score / 2600));
+        if (state === "ready") spd = H * .22;
+        if (state === "over") spd = H * .08;
+        scroll += spd * dt;
+        busX += (laneX(lane) - busX) * Math.min(1, dt * 14);
+        if (state === "play") {
+          spawnT -= dt; if (spawnT <= 0) { spawn(); spawnT = Math.max(.42, .95 - score / 3000) * (.8 + Math.random() * .4); }
+          if (invul > 0) invul -= dt;
+          for (var i = items.length - 1; i >= 0; i--) {
+            var it = items[i]; it.y += spd * dt;
+            var r = laneW * .26;
+            if (Math.abs(laneX(it.lane) - busX) < laneW * .4 && Math.abs(it.y - busY) < busH / 2 + r * .6) {
+              var x = laneX(it.lane), y = it.y;
+              if (it.type === "cracker") {
+                if (invul <= 0) {
+                  lives--; streak = 0; invul = 1.4; shake = .35; flash = .45;
+                  burst(x, y, ["#ff5252", "#ff9800", "#ffeb3b"], 34, 260); beep(140, .35, "sawtooth", .12, 50); hud();
+                  items.splice(i, 1);
+                  if (lives <= 0) gameOver();
+                }
+              } else {
+                var pts = it.type === "diya" ? 10 : it.type === "laddu" ? 25 : 50;
+                if (it.type === "gold") { if (lives < 3) lives++; else pts = 100; beep(660, .12, "triangle", .07, 990); setTimeout(function () { beep(990, .15, "triangle", .06, 1320); }, 90); }
+                else if (it.type === "laddu") beep(700, .1, "triangle", .07, 1050);
+                else beep(880, .08, "sine", .07, 1320);
+                streak++; var gain = pts * mult(); score += gain;
+                burst(x, y, it.type === "laddu" ? ["#ffb74d", "#fff3b0"] : ["#ffd54a", "#fff8e1", "#ffb300"], 12, 150);
+                floats.push({ x: x, y: y - 10, t: "+" + gain, l: 1 });
+                items.splice(i, 1); hud();
+              }
+            } else if (it.y > H + 50) items.splice(i, 1);
+          }
+        } else for (var j = items.length - 1; j >= 0; j--) { items[j].y += spd * dt; if (items[j].y > H + 50) items.splice(j, 1); }
+        if (shake > 0) shake -= dt; if (flash > 0) flash -= dt;
+        for (var p = parts.length - 1; p >= 0; p--) {
+          var q = parts[p]; q.x += q.vx * dt; q.y += q.vy * dt; q.vy += 260 * dt; q.l -= q.dec * dt; if (q.l <= 0) parts.splice(p, 1);
+        }
+        for (var f = floats.length - 1; f >= 0; f--) { floats[f].y -= 60 * dt; floats[f].l -= dt * 1.1; if (floats[f].l <= 0) floats.splice(f, 1); }
+        if (celebrate > 0) { celebrate -= dt; celT -= dt; if (celT <= 0) { celT = .28; burst(W * (.15 + Math.random() * .7), H * (.12 + Math.random() * .3), ["#ffd54a", "#ff4081", "#40c4ff", "#69f0ae", "#fff"], 38, 230); beep(300 + Math.random() * 300, .15, "sine", .04, 90); } }
+      }
+
+      /* ---- drawing ---- */
+      function rr(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+      function glow(x, y, rad, col) { var gl = ctx.createRadialGradient(x, y, 0, x, y, rad); gl.addColorStop(0, col); gl.addColorStop(1, "rgba(255,193,7,0)"); ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.283); ctx.fill(); }
+      function drawDiya(x, y, s, gold) {
+        glow(x, y - s * .5, s * 2, gold ? "rgba(255,240,150,.85)" : "rgba(255,193,7,.5)");
+        ctx.fillStyle = gold ? "#ffd54a" : "#d9822b"; ctx.beginPath(); ctx.moveTo(x - s, y); ctx.quadraticCurveTo(x, y + s * 1.2, x + s, y); ctx.quadraticCurveTo(x, y + s * .25, x - s, y); ctx.fill();
+        ctx.fillStyle = gold ? "#fff3b0" : "#ffcc80"; ctx.beginPath(); ctx.ellipse(x, y, s, s * .22, 0, 0, 6.283); ctx.fill();
+        var f = 1 + Math.sin(tm * 14 + x) * .13;
+        ctx.fillStyle = "#ffb300"; ctx.beginPath(); ctx.moveTo(x, y - s * 1.55 * f); ctx.quadraticCurveTo(x + s * .6, y - s * .7, x, y - s * .1); ctx.quadraticCurveTo(x - s * .6, y - s * .7, x, y - s * 1.55 * f); ctx.fill();
+        ctx.fillStyle = "#fff6c8"; ctx.beginPath(); ctx.moveTo(x, y - s * .95 * f); ctx.quadraticCurveTo(x + s * .25, y - s * .5, x, y - s * .2); ctx.quadraticCurveTo(x - s * .25, y - s * .5, x, y - s * .95 * f); ctx.fill();
+        if (gold) { ctx.strokeStyle = "rgba(255,240,150," + (.5 + .4 * Math.sin(tm * 6)) + ")"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y - s * .4, s * 1.5 + Math.sin(tm * 6) * 2, 0, 6.283); ctx.stroke(); }
+      }
+      function drawLaddu(x, y, s) {
+        var gr = ctx.createRadialGradient(x - s * .35, y - s * .35, s * .1, x, y, s * 1.05); gr.addColorStop(0, "#ffe29a"); gr.addColorStop(1, "#d97800");
+        ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(x, y, s, 0, 6.283); ctx.fill();
+        ctx.fillStyle = "rgba(255,244,200,.8)";
+        for (var i = 0; i < 9; i++) { var a = i * 2.4, rr2 = s * (.2 + (i % 3) * .22); ctx.beginPath(); ctx.arc(x + Math.cos(a) * rr2, y + Math.sin(a) * rr2, s * .09, 0, 6.283); ctx.fill(); }
+      }
+      function drawCracker(x, y, s, seed) {
+        glow(x, y, s * 1.9, "rgba(255,60,60,.35)");
+        ctx.save(); ctx.translate(x, y); ctx.rotate(Math.sin(tm * 6 + seed) * .16);
+        ctx.fillStyle = "#d32f2f"; rr(-s * .45, -s * .55, s * .9, s * 1.3, s * .16); ctx.fill();
+        ctx.fillStyle = "#ffeb3b"; ctx.fillRect(-s * .45, -s * .05, s * .9, s * .22);
+        ctx.fillStyle = "rgba(255,255,255,.35)"; ctx.fillRect(-s * .3, -s * .5, s * .1, s * 1.15);
+        ctx.strokeStyle = "#5d4037"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, -s * .55); ctx.quadraticCurveTo(s * .3, -s * .8, s * .25, -s * 1.05); ctx.stroke();
+        var sp = .6 + Math.random() * .6; glow(s * .25, -s * 1.05, s * .55 * sp, "rgba(255,230,120,.95)");
+        ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(s * .25, -s * 1.05, s * .1, 0, 6.283); ctx.fill();
+        ctx.restore();
+      }
+      function drawBus(x, y, w, h) {
+        // headlight beams
+        var bm = ctx.createLinearGradient(0, y - h / 2, 0, y - h / 2 - h * 1.5); bm.addColorStop(0, "rgba(255,246,200,.35)"); bm.addColorStop(1, "rgba(255,246,200,0)");
+        ctx.fillStyle = bm; ctx.beginPath(); ctx.moveTo(x - w * .38, y - h / 2); ctx.lineTo(x - w * .85, y - h / 2 - h * 1.5); ctx.lineTo(x + w * .85, y - h / 2 - h * 1.5); ctx.lineTo(x + w * .38, y - h / 2); ctx.fill();
+        ctx.fillStyle = "#14101c"; rr(x - w / 2 - 4, y - h * .32, 6, h * .2, 2); ctx.fill(); rr(x + w / 2 - 2, y - h * .32, 6, h * .2, 2); ctx.fill(); rr(x - w / 2 - 4, y + h * .18, 6, h * .2, 2); ctx.fill(); rr(x + w / 2 - 2, y + h * .18, 6, h * .2, 2); ctx.fill();
+        ctx.fillStyle = "#f2b230"; rr(x - w / 2, y - h / 2, w, h, w * .2); ctx.fill();
+        ctx.fillStyle = "#ffd978"; rr(x - w * .38, y - h * .26, w * .76, h * .62, w * .12); ctx.fill();
+        ctx.fillStyle = "#0f5c45"; ctx.fillRect(x - w * .38, y - h * .02, w * .76, h * .07);
+        ctx.fillStyle = "#1d3b4a"; rr(x - w * .4, y - h / 2 + h * .05, w * .8, h * .15, w * .08); ctx.fill();
+        ctx.fillStyle = "rgba(255,255,255,.25)"; ctx.fillRect(x - w * .3, y - h / 2 + h * .075, w * .22, h * .04);
+        ctx.fillStyle = "#1d3b4a"; rr(x - w * .34, y + h * .4, w * .68, h * .07, w * .05); ctx.fill();
+        var bc = ["#ff5252", "#69f0ae", "#40c4ff"]; for (var i = 0; i < 3; i++) { ctx.fillStyle = bc[(i + (tm * 4 | 0)) % 3]; ctx.beginPath(); ctx.arc(x + (i - 1) * w * .2, y + h * .13, w * .05, 0, 6.283); ctx.fill(); }
+        ctx.fillStyle = "#fff6d6"; ctx.beginPath(); ctx.arc(x - w * .3, y - h / 2 + 2, w * .08, 0, 6.283); ctx.arc(x + w * .3, y - h / 2 + 2, w * .08, 0, 6.283); ctx.fill();
+        ctx.fillStyle = "#e53935"; ctx.fillRect(x - w * .4, y + h / 2 - 4, w * .18, 3); ctx.fillRect(x + w * .22, y + h / 2 - 4, w * .18, 3);
+      }
+      function draw() {
+        ctx.save();
+        if (shake > 0) ctx.translate((Math.random() - .5) * 10 * shake * 3, (Math.random() - .5) * 10 * shake * 3);
+        var bg = ctx.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, "#12061f"); bg.addColorStop(.6, "#2d0f43"); bg.addColorStop(1, "#4a1448");
+        ctx.fillStyle = bg; ctx.fillRect(-20, -20, W + 40, H + 40);
+        for (var i = 0; i < stars.length; i++) { var s = stars[i]; ctx.globalAlpha = .35 + .65 * Math.abs(Math.sin(tm * 1.3 + s.p)); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(s.x * W, s.y * H, s.r, 0, 6.283); ctx.fill(); }
+        ctx.globalAlpha = 1;
+        // road
+        ctx.fillStyle = "#26212e"; ctx.fillRect(roadX, -10, roadW, H + 20);
+        ctx.fillStyle = "#ffcc4d"; ctx.fillRect(roadX - 3, -10, 3, H + 20); ctx.fillRect(roadX + roadW, -10, 3, H + 20);
+        ctx.fillStyle = "rgba(255,255,255,.55)";
+        for (var d = 1; d <= 2; d++) for (var k = -1; k < H / 54 + 1; k++) { var yy = ((k * 54 + scroll) % (H + 54)); ctx.fillRect(roadX + laneW * d - 1.5, yy - 54 + 54, 3, 28); }
+        // festival light strings along both sides
+        var cols = ["#ff5252", "#ffd740", "#69f0ae", "#40c4ff", "#e040fb", "#ff9100"];
+        for (var side = 0; side < 2; side++) {
+          var lx = side ? roadX + roadW + 16 : roadX - 16;
+          for (var m = -1; m < H / 46 + 1; m++) {
+            var ly = (m * 46 + scroll) % (H + 46) - 46 + 46, cc = cols[(m + 12 + side * 3) % cols.length], tw = .55 + .45 * Math.sin(tm * 5 + m + side);
+            glow(lx, ly, 13, "rgba(255,200,80," + (.35 * tw) + ")"); ctx.globalAlpha = tw; ctx.fillStyle = cc; ctx.beginPath(); ctx.arc(lx, ly, 4, 0, 6.283); ctx.fill(); ctx.globalAlpha = 1;
+          }
+        }
+        // items (top-most first so lower ones overlap)
+        for (var n = 0; n < items.length; n++) {
+          var it = items[n], x = laneX(it.lane), sz = laneW * .26;
+          if (it.type === "diya") drawDiya(x, it.y, sz, false); else if (it.type === "gold") drawDiya(x, it.y, sz * 1.1, true);
+          else if (it.type === "laddu") drawLaddu(x, it.y, sz * .9); else drawCracker(x, it.y, sz, it.seed);
+        }
+        if (!(state === "play" && invul > 0 && ((invul * 10) | 0) % 2 === 0)) drawBus(busX, busY, busW, busH);
+        for (var p = 0; p < parts.length; p++) { var q = parts[p]; ctx.globalAlpha = Math.max(0, q.l); ctx.fillStyle = q.c; ctx.beginPath(); ctx.arc(q.x, q.y, q.r * (.5 + q.l * .5), 0, 6.283); ctx.fill(); }
+        ctx.globalAlpha = 1; ctx.font = "800 20px 'Noto Sans Tamil',sans-serif"; ctx.textAlign = "center";
+        for (var f = 0; f < floats.length; f++) { ctx.globalAlpha = Math.max(0, floats[f].l); ctx.fillStyle = "#ffe082"; ctx.fillText(floats[f].t, floats[f].x, floats[f].y); }
+        ctx.globalAlpha = 1;
+        if (flash > 0) { ctx.fillStyle = "rgba(255,40,40," + Math.min(.4, flash) + ")"; ctx.fillRect(-20, -20, W + 40, H + 40); }
+        ctx.restore();
+      }
+      function loop(ts) {
+        if (!alive) return;
+        var dt = Math.min(.05, (ts - last) / 1000 || 0); last = ts;
+        if (!document.hidden) { update(dt); draw(); }
+        raf = requestAnimationFrame(loop);
+      }
+
+      /* ---- input ---- */
+      var sx = 0, sy = 0, down = false;
+      c.addEventListener("pointerdown", function (e) { down = true; sx = e.clientX; sy = e.clientY; });
+      c.addEventListener("pointerup", function (e) {
+        if (!down) return; down = false;
+        var dx = e.clientX - sx;
+        if (Math.abs(dx) > 28) move(dx > 0 ? 1 : -1); else move(e.clientX < W / 2 ? -1 : 1);
+      });
+      function onKey(e) {
+        var k = e.key;
+        if (k === "ArrowLeft" || k === "a" || k === "A") move(-1);
+        else if (k === "ArrowRight" || k === "d" || k === "D") move(1);
+        else if (k === "Escape") close();
+        else if ((k === "Enter" || k === " ") && state !== "play") { e.preventDefault(); start(); }
+      }
+      document.addEventListener("keydown", onKey);
+      function close() {
+        if (!alive) return; alive = false; cancelAnimationFrame(raf);
+        removeEventListener("resize", size); document.removeEventListener("keydown", onKey); o.remove();
+      }
+      $(".dg-go").addEventListener("click", start); $(".dg-again").addEventListener("click", start);
+      $(".dg-quit").addEventListener("click", close); $(".dg-x").addEventListener("click", close);
+      $(".dg-snd").addEventListener("click", function () { mute = !mute; this.textContent = mute ? "🔇" : "🔊"; });
+      hud(); raf = requestAnimationFrame(loop);
+    }
+  } catch (e) {}
+})();
 </script>
 </body>
 </html>
